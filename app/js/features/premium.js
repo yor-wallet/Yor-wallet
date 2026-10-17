@@ -407,6 +407,11 @@ const Premium = (() => {
     const cardsHtml = (Runtime.cards || []).length ? '<section class="rv-sec px-sec"><div class="rv-h"><h2>' + escapeHtml(V12.vt('cards')) + '</h2><button data-nav="cards">' + escapeHtml(t('px.seeAll')) + '</button></div><div class="rv-strip">' +
       Runtime.cards.map(c => '<button class="rv-mini th-' + escapeHtml(c.theme || 'midnight') + (c.frozen ? ' fz' : '') + '" data-nav="cards" aria-label="' + escapeHtml((c.label || V12.vt('defName')) + ' •••• ' + String(c.number || '').slice(-4)) + '"><span class="ltr">•••• ' + escapeHtml(String(c.number || '0000').slice(-4)) + '</span></button>').join('') +
       '<button class="rv-mini rv-mini-add" data-nav="cards-add">' + icon('plus', 20) + '<span>' + escapeHtml(V12.vt('addCard')) + '</span></button></div></section>' : '';
+    /* other money accounts (e.g. XOF): shown in the display currency, original amount always visible (same rules as 12.6.0) */
+    const others = (Runtime.accounts || []).filter(a => a.type !== 'CRYPTO' && a.type !== 'MAIN').slice(0, 4);
+    const othersHtml = others.length ? '<section class="rv-sec px-sec"><div class="rv-h"><h2>' + escapeHtml(V12.vt('accounts')) + '</h2></div><div class="rv-grid2">' +
+      others.map(a => { const v = balanceView(a.balance, a.currency); return '<div class="rv-tile"><small>' + escapeHtml(a.name || a.currency) + '</small><b class="ltr">' + (hide ? escapeHtml(MASK) : money(v.amount, v.currency)) + '</b>' +
+        (!hide && v.converted ? '<span class="rv-cap ltr">' + escapeHtml(CurrencyEngine.format(v.orig.amount, v.orig.currency)) + '</span>' : '') + '</div>'; }).join('') + '</div></section>' : '';
     return '<div class="rv-home ds-home px-home">' +
       '<header class="px-top">' +
         '<button class="px-me" data-nav="profile" aria-label="' + escapeHtml(t('px.openProfile')) + '">' + pxAvatar(p) + '</button>' +
@@ -428,6 +433,7 @@ const Premium = (() => {
       PxInstall.card() +
       '<section class="rv-sec px-sec"><div class="rv-h"><h2>' + escapeHtml(t('px.recent')) + '</h2><button data-nav="history">' + escapeHtml(t('px.seeAll')) + '</button></div>' +
         (txs.length ? txGroupedHtml(txs, hide) : '<div class="rv-list">' + emptyState('history', V12.vt('noTx'), t('ds.nohist_body')) + '</div>') + '</section>' +
+      othersHtml +
       (typeof Promos !== 'undefined' ? Promos.html() : '') +
       cardsHtml +
       '<div style="height:calc(20px + var(--safe-b))"></div></div>';

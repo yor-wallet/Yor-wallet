@@ -232,7 +232,7 @@ test('reçu : ligne « De » avec le numéro de l\'expéditeur (réglage), absen
   await s.page.waitForSelector('#receipt-from');
   const from = await s.page.innerText('#receipt-from');
   assert.match(from, /From/);
-  assert.match(from, /\+96877986533/);
+  assert.match(from, /\+968 7798 6533/, '12.14.0 : numéro affiché en groupes lisibles (l\'export garde la valeur brute)');
   const view = await s.page.evaluate(() => window.__YOR_LAST_RECEIPT_VIEW__.fromPhone);
   assert.equal(view, '+96877986533');
   assert.doesNotMatch(await s.page.innerText('#receipt'), /Bank Muscat/i, 'aucun nom de banque tierce sur le reçu');
@@ -266,7 +266,7 @@ test('reçu en arabe et en français : libellé « من » / « De »', { skip }
     }, lang);
     await s.page.waitForSelector('#receipt-from');
     assert.match(await s.page.innerText('#receipt-from'), re);
-    assert.match(await s.page.innerText('#receipt-from'), /\+96877986533/);
+    assert.match(await s.page.innerText('#receipt-from'), /\+968 7798 6533/);
     await s.ctx.close();
   }
 });

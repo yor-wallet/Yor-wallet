@@ -130,11 +130,12 @@ test('choix (thème, devise) : la puce appuyée change tout de suite, sans redes
 
 test('langue : changer de langue redessine l\'écran mais garde la position de défilement', { skip }, async () => {
   const s = await openSettings();
-  await s.page.evaluate(() => document.querySelector('[data-lang="fr"]').scrollIntoView({ block: 'center' }));
-  await s.page.waitForTimeout(900);                                   /* le défilement doux est terminé */
+  /* 12.14.0 : la langue est dans « Apparence », en haut des Réglages ; on fait défiler l'écran en gardant le choix visible */
+  await scrollTo(s.page, 260);
+  await s.page.waitForTimeout(300);
   const y = await scrollNow(s.page);
   assert.ok(y > 100, 'l\'écran des réglages défile');
-  await s.page.click('[data-lang="fr"]');
+  await s.page.evaluate(() => document.querySelector('[data-lang="fr"]').click());
   await s.page.waitForFunction(() => /Réglages|Paramètres/i.test(document.querySelector('#settings').innerText));
   await s.page.waitForTimeout(400);
   const y2 = await scrollNow(s.page);
