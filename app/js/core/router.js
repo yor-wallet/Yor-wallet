@@ -22,6 +22,7 @@ const R = (() => {
     'crypto-to-bank-amount':'crypto-to-bank-account', 'crypto-bank-review':'crypto-to-bank-amount',
     'country-select':'home',
     'tx-amount':'country-select', 'tx-review':'tx-amount', 'receipt':'home',
+    'receive':'home', 'profile-edit':'profile', 'tx-result':'home',
     'devices':'settings', 'sessions':'settings', 'privacy':'settings', 'help':'settings', 'about':'settings', 'history':'home'
   };
   const NAV_KEYS = {

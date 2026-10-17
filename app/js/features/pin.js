@@ -8,7 +8,8 @@ const PinEngine = (() => {
   const unwrap = (r) => (Array.isArray(r.data) ? r.data[0] : r.data);
   /* Modal that collects the PIN. submit(pin, pin2) -> { ok, value } | { ok:false, msg }.
      Resolves with the value on success, or null if the user cancels. The PIN is never stored. */
-  function prompt(mode, submit){
+  function prompt(mode, submit, labels){
+    labels = labels || {};
     return new Promise(resolve => {
       let done = false, entry = '', first = null, busy = false, keyH = null;
       const finish = (v) => { if (done) return; done = true; resolve(v); };
@@ -26,8 +27,8 @@ const PinEngine = (() => {
         const $ = id => document.getElementById(id);
         if (!$('ps-title')) return;
         const paint = () => {
-          $('ps-title').textContent = t(step === 0 ? 'pin.enterTitle' : step === 1 ? 'pin.createTitle' : 'pin.confirmLabel');
-          $('ps-sub').textContent = step === 0 ? t('pin.enterSub') : step === 1 ? t('pin.createSub') : '';
+          $('ps-title').textContent = labels['t' + step] || t(step === 0 ? 'pin.enterTitle' : step === 1 ? 'pin.createTitle' : 'pin.confirmLabel');
+          $('ps-sub').textContent = labels['s' + step] != null ? labels['s' + step] : (step === 0 ? t('pin.enterSub') : step === 1 ? t('pin.createSub') : '');
           document.querySelectorAll('#ps-dots i').forEach((d, n) => d.classList.toggle('on', n < entry.length));
         };
         const fail = (msg) => {
@@ -123,6 +124,51 @@ const PinEngine = (() => {
     if (!grant) return { ok:false, cancelled:true };
     return { ok:true, grant };
   }
+  /* 12.14.0 — change the personal code with the server function change_pin(p_old, p_new): the current code is checked first by the
+     server (verify_pin: same attempt counter and lock as for a transfer), then the new code is typed twice. Nothing is stored here.
+     Resolves { ok:true } | { ok:false, cancelled? , msg? } */
+  async function change(){
+    if (!supabaseReady) return { ok:false, msg:t('errors.UNKNOWN_ERROR') };
+    if (busy) return { ok:false, cancelled:true };
+    busy = true;
+    try {
+      const has = await hasPin();
+      if (has === null) return { ok:false, msg:t('errors.UNKNOWN_ERROR') };
+      if (!has){
+        /* no code yet: the usual creation (same rules as before the first transfer) */
+        const created = await prompt('create', async (pin, pin2) => {
+          if (!/^[0-9]{6}$/.test(pin || '')) return { ok:false, msg:t('pin.format') };
+          if (pin !== pin2) return { ok:false, msg:t('pin.mismatch') };
+          const r = await sb.rpc('set_pin', { p_pin: pin });
+          if (r.error){ const m = String(r.error.message || '').toLowerCase(); return { ok:false, msg:t(m.includes('weak_pin') ? 'pin.weak' : m.includes('invalid_pin_format') ? 'pin.format' : 'errors.UNKNOWN_ERROR') }; }
+          return { ok:true, value:true };
+        });
+        return created ? { ok:true } : { ok:false, cancelled:true };
+      }
+      let oldPin = null;
+      const okOld = await prompt('enter', async (pin) => {
+        if (!/^[0-9]{6}$/.test(pin || '')) return { ok:false, msg:t('pin.format') };
+        const v = await verify(pin);
+        if (v.ok){ oldPin = pin; return { ok:true, value:true }; }
+        return v;
+      }, { t0: t('px.pinOldT'), s0: t('px.pinOldS') });
+      if (!okOld || !oldPin) return { ok:false, cancelled:true };
+      const done = await prompt('create', async (pin, pin2) => {
+        if (!/^[0-9]{6}$/.test(pin || '')) return { ok:false, msg:t('pin.format') };
+        if (pin !== pin2) return { ok:false, msg:t('pin.mismatch') };
+        if (pin === oldPin) return { ok:false, msg:t('px.pinSame') };
+        const r = await sb.rpc('change_pin', { p_old: oldPin, p_new: pin });
+        if (r.error){ const m = String(r.error.message || '').toLowerCase(); return { ok:false, msg:t(m.includes('weak_pin') ? 'pin.weak' : m.includes('invalid_pin_format') ? 'pin.format' : 'errors.UNKNOWN_ERROR') }; }
+        const d = unwrap(r) || {};
+        if (d.ok) return { ok:true, value:true };
+        if (d.error === 'pin_locked') return { ok:false, msg:tf('pin.locked', { m: 15 }) };
+        return { ok:false, msg:t('errors.UNKNOWN_ERROR') };
+      }, { t1: t('px.pinNewT'), s1: t('pin.createSub'), t2: t('pin.confirmLabel') });
+      oldPin = null;
+      return done ? { ok:true } : { ok:false, cancelled:true };
+    } catch(e){ console.error(e); return { ok:false, msg:t('errors.UNKNOWN_ERROR') }; }
+    finally { busy = false; }
+  }
   /* true / false, or null when the status cannot be read */
   async function hasPin(){
     if (!supabaseReady) return null;
@@ -131,6 +177,6 @@ const PinEngine = (() => {
     const d = unwrap(st) || {};
     return !!d.has_pin;
   }
-  return { authorize, verify, hasPin };
+  return { authorize, verify, hasPin, change };
 })();
 

@@ -41,9 +41,9 @@ Object.assign(TR.ar, {
 });
 
 /* 12.5.0 : "make another transfer" (12.6.0: the receipt no longer carries any balance) */
-Object.assign(TR.en, { 'receipt.another':'Make another transfer' });
-Object.assign(TR.fr, { 'receipt.another':'Faire un autre transfert' });
-Object.assign(TR.ar, { 'receipt.another':'إجراء تحويل آخر' });
+Object.assign(TR.en, { 'receipt.another':'Make another transfer', 'rc.docTitle':'Transaction confirmation', 'rc.pdf':'Download PDF', 'rc.png':'Save image', 'rc.copyRef':'Copy reference' });
+Object.assign(TR.fr, { 'receipt.another':'Faire un autre transfert', 'rc.docTitle':'Confirmation de transaction', 'rc.pdf':'Télécharger le PDF', 'rc.png':'Enregistrer l’image', 'rc.copyRef':'Copier la référence' });
+Object.assign(TR.ar, { 'receipt.another':'إجراء تحويل آخر', 'rc.docTitle':'تأكيد المعاملة', 'rc.pdf':'تنزيل PDF', 'rc.png':'حفظ الصورة', 'rc.copyRef':'نسخ المرجع' });
 
 /* 12.3.4 : the receipt shows the SENDER'S number ("From"), the same number the recipient sees in the SMS. */
 Object.assign(TR.en, { 'receipt.from':'From' });
@@ -221,7 +221,7 @@ function renderReceipt(){
 
   /* amounts: a failed operation draws no "total debited" line (it would claim a debit that did not happen) */
   let rows = '';
-  if (fromPhone) rows += rcRow(t('receipt.from'), escapeHtml(fromPhone), { id: 'receipt-from', vcls: 'ltr' });
+  if (fromPhone) rows += rcRow(t('receipt.from'), escapeHtml(typeof formatPhoneIntl === 'function' ? formatPhoneIntl(fromPhone) : fromPhone), { id: 'receipt-from', vcls: 'ltr' });
   if (!isIn && !isCrypto) rows += rcRow(t('receipt.paidFrom'), escapeHtml(t('receipt.paidFromVal') + ' · ' + (r.currency || 'OMR')));
   rows += rcRow(t(isIn ? 'receipt.amountReceived' : 'receipt.amountSent'), escapeHtml(amtFmt), { vcls: 'ltr' });
   if (destFmt) rows += rcRow(t('transfer.receiving'), escapeHtml(destFmt), { vcls: 'ltr acc' });
@@ -245,8 +245,8 @@ function renderReceipt(){
     '</div>';
 
   return '<div class="receipt-view rc rc-' + state + '">' +
-    '<div class="receipt-head">' + logoLockup(34) +
-      '<button class="topbar-action" data-action="share-receipt" aria-label="' + t('ui.share') + '">' + icon('share', 18) + '</button>' +
+    '<div class="receipt-head">' + logoMark(30) + '<div class="rc-doc"><b>' + escapeHtml(t('rc.docTitle')) + '</b><small>Friendly Pay</small></div>' +
+      '<button class="topbar-action" data-action="done" aria-label="' + escapeHtml(t('receipt.back_home')) + '">' + icon('close', 18) + '</button>' +
     '</div>' +
     '<section class="receipt-hero">' + rcBadge(state) +
       '<div class="rc-amt ltr">' + escapeHtml(amtFmt) + '</div>' +
@@ -263,7 +263,7 @@ function renderReceipt(){
           (benName ? '<div class="receipt-benef-name">' + escapeHtml(benName) + '</div>' : '') +
           (r.beneficiary && r.beneficiary.phone ? '<div class="receipt-benef-phone ltr" dir="ltr">' + escapeHtml(typeof formatPhoneIntl === 'function' ? formatPhoneIntl(r.beneficiary.phone) : r.beneficiary.phone) + '</div>' : '') +
           (r.beneficiary && r.beneficiary.yorId ? '<div class="receipt-benef-yor ltr">' + escapeHtml(dispId(r.beneficiary.yorId)) + '</div>' : '') +
-          (benName ? '<div class="recog-mask">' + escapeHtml(masked) + '</div>' : '') +
+
           (country ? '<div class="receipt-benef-country"><span class="receipt-flag">' + flag(country.iso) + '</span><span>' + escapeHtml(cName) + '</span></div>' : ((isCrypto || r.network) ? '<div class="receipt-benef-country"><span>' + escapeHtml(cName) + '</span></div>' : '')) +
         '</div>' +
       '</div>' +
@@ -274,11 +274,13 @@ function renderReceipt(){
       statement +
     '</section>' +
     '<div class="rc-sheet receipt-panel rc-notice" id="receipt-notice" style="display:none" aria-live="polite"></div>' +
-    '<div class="receipt-actions">' +
-      '<button class="btn btn-secondary" data-action="share-receipt">' + icon('share', 18) + '<span>' + t('action.share') + '</span></button>' +
-      '<button class="btn btn-secondary" data-action="download-pdf">' + icon('doc', 18) + '<span>PDF</span></button>' +
-      '<button class="btn btn-secondary" data-action="download-receipt">' + icon('download', 18) + '<span>PNG</span></button>' +
-      '<button class="btn btn-secondary" data-action="print-receipt">' + icon('doc', 18) + '<span>' + t('receipt.print') + '</span></button>' +
+    /* 12.14.0 — order: download (PDF / PNG), share, copy the reference, print; then another operation and home */
+    '<div class="receipt-actions rc-acts">' +
+      '<button class="btn btn-secondary rc-a" data-action="download-pdf">' + icon('download', 18) + '<span>' + escapeHtml(t('rc.pdf')) + '</span></button>' +
+      '<button class="btn btn-secondary rc-a" data-action="download-receipt">' + icon('download', 18) + '<span>' + escapeHtml(t('rc.png')) + '</span></button>' +
+      '<button class="btn btn-secondary rc-a" data-action="share-receipt">' + icon('share', 18) + '<span>' + t('action.share') + '</span></button>' +
+      (ref ? '<button class="btn btn-secondary rc-a" data-action="copy-ref" data-copy="' + escapeHtml(ref) + '">' + icon('copy', 18) + '<span>' + escapeHtml(t('rc.copyRef')) + '</span></button>' : '') +
+      '<button class="btn btn-ghost rc-a rc-print" data-action="print-receipt">' + icon('doc', 18) + '<span>' + t('receipt.print') + '</span></button>' +
     '</div>' +
     (anotherNav ? '<button class="btn btn-primary rc-another" data-nav="' + anotherNav + '">' + t('receipt.another') + '</button>' : '') +
     '<button class="btn ' + (anotherNav ? 'btn-secondary' : 'btn-primary') + ' rc-done" data-action="done">' + t('receipt.back_home') + '</button>' +

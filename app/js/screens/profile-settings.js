@@ -81,6 +81,23 @@ function faceIdRow(){
     '<div class="settings-row-body"><div class="settings-row-title">' + escapeHtml(fi.name) + '</div><div class="settings-row-sub">' + escapeHtml(faceIdText(na ? 'subNa' : on ? 'subOn' : 'subOff')) + '</div></div>' +
     '<span class="settings-value fid-state ' + (on ? 'on' : 'off') + '">' + escapeHtml(faceIdText(na ? 'na' : on ? 'on' : 'off')) + '</span></button>';
 }
+/* 12.14.0 — Settings in clear categories. Every control is the same real control as before (same data-action / ids, same writes);
+   nothing here is decorative: a row either changes a stored preference, opens a screen, or states a fact read from the device. */
+Object.assign(TR.en, { 'set.c.look':'Appearance', 'set.c.lookD':'Theme, language and display on this device', 'set.c.notif':'Notifications', 'set.c.notifD':'Three different channels — choose each one',
+  'set.c.sec':'Security and privacy', 'set.c.secD':'Personal code, biometrics, devices and sessions', 'set.c.fin':'Money preferences', 'set.c.finD':'Display only: your operations keep their own currency',
+  'set.c.acc':'Account', 'set.c.info':'Information and help', 'set.chan':'In-app notifications appear in Friendly Pay. Phone alerts (push) reach this phone even when the app is closed. SMS are text messages sent by the server to your number.',
+  'set.inapp':'In-app notifications', 'set.inappD':'Money and security alerts in the app (also controls phone alerts)', 'set.sms':'SMS confirmations', 'set.curNote':'Balances are converted with the indicated rate; transfers, receipts and history are never converted.' });
+Object.assign(TR.fr, { 'set.c.look':'Apparence', 'set.c.lookD':'Thème, langue et affichage sur cet appareil', 'set.c.notif':'Notifications', 'set.c.notifD':'Trois canaux différents — à choisir un par un',
+  'set.c.sec':'Sécurité et confidentialité', 'set.c.secD':'Code personnel, biométrie, appareils et sessions', 'set.c.fin':'Préférences financières', 'set.c.finD':'Affichage seulement : vos opérations gardent leur devise',
+  'set.c.acc':'Compte', 'set.c.info':'Informations et assistance', 'set.chan':'Les notifications dans l’application s’affichent dans Friendly Pay. Les alertes sur le téléphone (push) arrivent même application fermée. Les SMS sont des messages texte envoyés par le serveur à votre numéro.',
+  'set.inapp':'Notifications dans l’application', 'set.inappD':'Alertes d’argent et de sécurité dans l’application (commande aussi les alertes du téléphone)', 'set.sms':'Confirmations par SMS', 'set.curNote':'Les soldes sont convertis au taux indiqué ; les transferts, reçus et l’historique ne sont jamais convertis.' });
+Object.assign(TR.ar, { 'set.c.look':'المظهر', 'set.c.lookD':'المظهر واللغة والعرض على هذا الجهاز', 'set.c.notif':'الإشعارات', 'set.c.notifD':'ثلاث قنوات مختلفة — اختر كل واحدة',
+  'set.c.sec':'الأمان والخصوصية', 'set.c.secD':'الرمز الشخصي والقياسات الحيوية والأجهزة والجلسات', 'set.c.fin':'التفضيلات المالية', 'set.c.finD':'للعرض فقط: تحتفظ عملياتك بعملتها',
+  'set.c.acc':'الحساب', 'set.c.info':'المعلومات والمساعدة', 'set.chan':'إشعارات التطبيق تظهر داخل فرندي باي. تنبيهات الهاتف (Push) تصل حتى والتطبيق مغلق. الرسائل النصية يرسلها الخادم إلى رقمك.',
+  'set.inapp':'الإشعارات داخل التطبيق', 'set.inappD':'تنبيهات الأموال والأمان داخل التطبيق (تتحكم أيضاً في تنبيهات الهاتف)', 'set.sms':'التأكيد برسالة نصية', 'set.curNote':'تُحوَّل الأرصدة بالسعر المذكور؛ ولا تُحوَّل التحويلات والإيصالات والسجل أبداً.' });
+function setCat(ic, title, desc){
+  return '<div class="set-cat"><span class="set-cat-ic">' + icon(ic, 18) + '</span><div><h2>' + escapeHtml(title) + '</h2>' + (desc ? '<p>' + escapeHtml(desc) + '</p>' : '') + '</div></div>';
+}
 function renderSettings(){
   const setts = Runtime.settings || {};
   const sec = Runtime.security || {};
@@ -91,27 +108,60 @@ function renderSettings(){
   const contactCount = Runtime.contacts.length;
   const bankCount = Runtime.bankAccounts.length;
   const isAdmin = Runtime.ctx && Runtime.ctx.role === 'admin';
+  const p = Runtime.profile || {};
+  const yid = dispId(Runtime.ctx.yorId || '');
+  const chipRow = inner => '<div class="set-chips">' + inner + '</div>';
 
-  let html = '<div class="topbar">' +
+  let html = '<div class="topbar px-topbar">' +
       '<button class="topbar-back" data-action="back" aria-label="' + t('ui.back') + '"><span class="dir-flip" style="display:inline-flex">' + icon('back', 20) + '</span></button>' +
       '<span class="topbar-title">' + t('settings.title') + '</span>' +
       '<span style="width:calc(44px*var(--ui))"></span>' +
     '</div>' +
-    '<div class="screen-body" style="padding-top:var(--sp-2)">';
+    '<div class="screen-body set-body" style="padding-top:var(--sp-2)">';
 
-  html += settingsSection(t('settings.sectionProfile'));
-  html += '<div class="settings-group">';
-  html += '<div class="settings-row" style="cursor:default">' +
-      '<div class="tile" style="background:' + (isAdmin ? 'linear-gradient(180deg,var(--accent),var(--accent-600))' : 'var(--accent-soft)') + ';color:' + (isAdmin ? '#fff' : 'var(--accent)') + '">' +
-        (isAdmin ? icon('shield', 20) : icon('user', 20)) +
-      '</div>' +
-      '<div class="settings-row-body">' +
-        '<div class="settings-row-title">' + escapeHtml(((Runtime.profile.firstName || '') + ' ' + (Runtime.profile.lastName || '')).trim() || '—') + '</div>' +
-        '<div class="settings-row-sub">' + escapeHtml(dispId(Runtime.ctx.yorId || '')) + '</div>' +
-      '</div>' +
-      (isAdmin ? '<span class="badge badge-accent">ADMIN</span>' : '') +
-    '</div>';
-  html += '</div>';
+  /* account summary -> profile */
+  html += '<button class="set-me" type="button" data-nav="profile">' + (typeof pxAvatar === 'function' ? pxAvatar(p) : '') +
+    '<span class="set-me-body"><b>' + escapeHtml(((p.firstName || '') + ' ' + (p.lastName || '')).trim() || '—') + '</b><small class="ltr" dir="ltr">' + escapeHtml(yid) + '</small></span>' +
+    (isAdmin ? '<span class="badge badge-accent">ADMIN</span>' : '') + '<span class="settings-row-chev">' + icon('chev', 18) + '</span></button>';
+
+  /* 1. Appearance */
+  html += setCat('sparkle', t('set.c.look'), t('set.c.lookD'));
+  html += '<div class="settings-group">' +
+    '<div class="settings-row" style="cursor:default"><div class="tile">' + icon('sparkle', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + t('settings.theme') + '</div><div class="settings-row-sub" id="set-theme-sub">' + t('theme.' + savedThemeMode()) + '</div></div></div>' +
+    chipRow('<div class="chips" style="padding-top:2px">' + ['light','dark','system'].map(th => '<button class="chip" data-theme="' + th + '" ' + (savedThemeMode() === th ? 'aria-pressed="true"' : 'aria-pressed="false"') + '>' + t('theme.' + th) + '</button>').join('') + '</div>') +
+    '<div class="settings-row" style="cursor:default"><div class="tile">' + icon('globe', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + t('settings.language') + '</div><div class="settings-row-sub">' + t('settings.languages_list') + '</div></div></div>' +
+    chipRow('<div class="chips" style="padding-top:2px">' + ['en','fr','ar'].map(l => '<button class="chip" data-lang="' + l + '" ' + (LANG === l ? 'aria-pressed="true"' : 'aria-pressed="false"') + '>' + (l === 'fr' ? 'Français' : l === 'en' ? 'English' : 'العربية') + '</button>').join('') + '</div>') +
+    settingsToggleRow({ icon:'vibrate', title:t('settings.vibration'), sub:t('settings.vibrationDesc'), checked:vibOn, action:'settings-toggle-vibration' }) +
+    settingsToggleRow({ icon:'device', title:t('settings.desktopMode'), sub:t('settings.desktopModeDesc'), checked:LayoutMode.isDesktop(), action:'layout-toggle' }) +
+  '</div>';
+
+  /* 2. Notifications — in-app, phone alerts (push), SMS: three distinct channels */
+  html += setCat('bell', t('set.c.notif'), t('set.c.notifD'));
+  html += '<p class="set-note">' + icon('info', 15) + '<span>' + escapeHtml(t('set.chan')) + '</span></p>';
+  html += '<div class="settings-group">' +
+    settingsToggleRow({ icon:'bell', title:t('settings.notifs'), sub:t('set.inappD'), checked:notifsOn, action:'settings-toggle-notifs' }) +
+    Push.rowHtml() +     /* 12.13.0 : alertes sur le téléphone, même application fermée */
+  '</div>';
+  html += settingsSection(t('confirm.title'));
+  html += '<div class="settings-group">' +
+    '<div class="settings-row" style="cursor:default"><div class="tile">' + icon('mobile', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + t('set.sms') + '</div><div class="settings-row-sub">' + t('confirm.desc') + '</div></div></div>' +
+    '<div style="padding:0 16px 14px;border-top:1px solid var(--border)">' +
+      '<div class="field-box" style="margin-top:calc(10px*var(--ui))"><input type="tel" id="confirm-phone" inputmode="tel" dir="ltr" autocomplete="tel" placeholder="+968 7798 6533" value="' + escapeHtml(setts.confirmPhone || '') + '" aria-label="' + escapeHtml(t('confirm.title')) + '"></div>' +
+      '<div class="field-err" id="confirm-phone-err"></div>' +
+      '<button class="btn btn-secondary" id="confirm-phone-save" type="button" style="margin-top:calc(8px*var(--ui))">' + t('action.save') + '</button>' +
+    '</div>' +
+  '</div>';
+
+  /* 3. Security and privacy */
+  html += setCat('shield', t('set.c.sec'), t('set.c.secD'));
+  html += '<div class="settings-group">' +
+    '<button class="settings-row" type="button" data-px="pin"><div class="tile">' + icon('lock', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + escapeHtml(t('px.pinChange')) + '</div><div class="settings-row-sub">' + escapeHtml(t('px.pinChangeD')) + '</div></div><span class="settings-row-chev">' + icon('chev', 18) + '</span></button>' +
+    faceIdRow() +
+    settingsToggleRow({ icon:'lock', title:t('settings.txConfirm'), sub:t('settings.txConfirmDesc'), checked:txConfirmOn, action:'settings-toggle-txconfirm' }) +
+    settingsLinkRow({ icon:'device', title:t('devices.title'), sub:t('devices.current'), nav:'devices' }) +
+    settingsLinkRow({ icon:'session', title:t('sessions.title'), sub:t('sessions.current'), nav:'sessions' }) +
+    settingsLinkRow({ icon:'shield', title:t('settings.privacy'), sub:t('settings.privacyDesc'), nav:'privacy' }) +
+  '</div>';
 
   /* 12.9.0: the connected wallet lives here (it used to sit in the home balance card) */
   if (FEATURES.crypto){
@@ -119,50 +169,15 @@ function renderSettings(){
     html += '<div class="nwc-wrap" data-nwc-slot>' + (typeof NexWC !== 'undefined' ? NexWC.cardHtml() : '') + '</div>';
   }
 
-  html += settingsSection(t('confirm.title'));
-  html += '<div class="settings-group">' +
-    '<div class="settings-row" style="cursor:default"><div class="tile">' + icon('mobile', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + t('confirm.title') + '</div><div class="settings-row-sub">' + t('confirm.desc') + '</div></div></div>' +
-    '<div style="padding:0 16px 14px;border-top:1px solid var(--border)">' +
-      '<div class="field-box" style="margin-top:calc(10px*var(--ui))"><input type="tel" id="confirm-phone" inputmode="tel" dir="ltr" autocomplete="tel" placeholder="+968 7798 6533" value="' + escapeHtml(setts.confirmPhone || '') + '"></div>' +
-      '<div class="field-err" id="confirm-phone-err"></div>' +
-      '<button class="btn btn-secondary" id="confirm-phone-save" type="button" style="margin-top:calc(8px*var(--ui))">' + t('action.save') + '</button>' +
-    '</div>' +
-  '</div>';
-
-  html += settingsSection(t('settings.sectionPreferences'));
-  html += '<div class="settings-group">' +
-    '<div class="settings-row" style="cursor:default"><div class="tile">' + icon('globe', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + t('settings.language') + '</div><div class="settings-row-sub">' + t('settings.languages_list') + '</div></div></div>' +
-    '<div style="padding:0 16px 12px;border-bottom:1px solid var(--border)">' +
-      '<div class="chips" style="padding-top:2px">' + ['en','fr','ar'].map(l => '<button class="chip" data-lang="' + l + '" ' + (LANG === l ? 'aria-pressed="true"' : 'aria-pressed="false"') + '>' + (l === 'fr' ? 'Français' : l === 'en' ? 'English' : 'العربية') + '</button>').join('') + '</div>' +
-    '</div>' +
-    '<div class="settings-row" style="cursor:default"><div class="tile">' + icon('sparkle', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + t('settings.theme') + '</div><div class="settings-row-sub" id="set-theme-sub">' + t('theme.' + savedThemeMode()) + '</div></div></div>' +
-    '<div style="padding:0 16px 12px;border-bottom:1px solid var(--border)">' +
-      '<div class="chips" style="padding-top:2px">' + ['dark','light','system'].map(th => '<button class="chip" data-theme="' + th + '" ' + (savedThemeMode() === th ? 'aria-pressed="true"' : 'aria-pressed="false"') + '>' + t('theme.' + th) + '</button>').join('') + '</div>' +
-    '</div>' +
-    settingsToggleRow({ icon:'bell', title:t('settings.notifs'), sub:t('settings.notifsDesc'), checked:notifsOn, action:'settings-toggle-notifs' }) +
-    Push.rowHtml() +     /* 12.13.0 : alertes sur le téléphone, même application fermée */
-    settingsToggleRow({ icon:'vibrate', title:t('settings.vibration'), sub:t('settings.vibrationDesc'), checked:vibOn, action:'settings-toggle-vibration' }) +
-    settingsToggleRow({ icon:'device', title:t('settings.desktopMode'), sub:t('settings.desktopModeDesc'), checked:LayoutMode.isDesktop(), action:'layout-toggle' }) +
-  '</div>';
-
-  html += settingsSection(t('settings.sectionSecurity'));
-  html += '<div class="settings-group">' +
-    faceIdRow() +
-    settingsToggleRow({ icon:'lock', title:t('settings.txConfirm'), sub:t('settings.txConfirmDesc'), checked:txConfirmOn, action:'settings-toggle-txconfirm' }) +
-    settingsLinkRow({ icon:'device', title:t('devices.title'), sub:t('devices.current'), nav:'devices' }) +
-    settingsLinkRow({ icon:'session', title:t('sessions.title'), sub:t('sessions.current'), nav:'sessions' }) +
-  '</div>';
-
-  html += settingsSection(t('settings.sectionFinance'));
+  /* 4. Money preferences — only what the app really supports (display currency, saved numbers). Limits and fees are set by the server. */
+  html += setCat('banknote', t('set.c.fin'), t('set.c.finD'));
   html += '<div class="settings-group">' +
     (FEATURES.crypto ? settingsLinkRow({ icon:'bank', title:t('settings.banks'), sub: t('banks.choose_account') + ' · ' + bankCount, nav:'banks', value: String(bankCount) }) +
     settingsLinkRow({ icon:'network', title:t('settings.networks'), sub:t('crypto.networks'), nav:'crypto-networks' }) : '') +
     '<div class="settings-row" style="cursor:default"><div class="tile">' + icon('banknote', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + t('settings.primaryCurrency') + '</div><div class="settings-row-sub">' + t('settings.primaryCurrencyDesc') + '</div></div><span class="settings-value" id="set-cur-value">' + escapeHtml(primaryCur) + '</span></div>' +
-    '<div style="padding:0 16px 12px;border-bottom:1px solid var(--border)">' +
-      '<div class="chips" style="padding-top:2px;flex-wrap:wrap">' + ['OMR','USD','EUR','GBP','AED','SAR','XOF','XAF','QAR','EGP'].map(c => '<button class="chip" data-currency="' + c + '" ' + (primaryCur === c ? 'aria-pressed="true"' : 'aria-pressed="false"') + '>' + c + '</button>').join('') + '</div>' +
-    '</div>' +
+    chipRow('<div class="chips" style="padding-top:2px;flex-wrap:wrap">' + ['OMR','USD','EUR','GBP','AED','SAR','XOF','XAF','QAR','EGP'].map(c => '<button class="chip" data-currency="' + c + '" ' + (primaryCur === c ? 'aria-pressed="true"' : 'aria-pressed="false"') + '>' + c + '</button>').join('') + '</div>' +
+      '<p class="set-mini">' + escapeHtml(t('set.curNote')) + '</p>') +
   '</div>';
-
   html += settingsSection(t('settings.sectionContacts'));
   html += '<div class="settings-group">' +
     '<div class="settings-row" style="cursor:default"><div class="tile">' + icon('contact', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + t('settings.contacts') + '</div><div class="settings-row-sub">' + (contactCount === 1 ? t('settings.numbers_count_one') : tf('settings.numbers_count', { n: contactCount })) + '</div></div></div>' +
@@ -172,14 +187,18 @@ function renderSettings(){
     '</div>' +
   '</div>';
 
-  html += settingsSection(t('settings.sectionAccount'));
+  /* 5. Account + information */
+  html += setCat('user', t('set.c.acc'));
   html += '<div class="settings-group">' +
-    '<div class="settings-row" style="cursor:pointer" data-action="copy" data-copy="' + escapeHtml(dispId(Runtime.ctx.yorId || '')) + '">' +
+    '<div class="settings-row" style="cursor:pointer" data-action="copy" data-copy="' + escapeHtml(yid) + '">' +
       '<div class="tile">' + icon('copy', 20) + '</div>' +
       '<div class="settings-row-body"><div class="settings-row-title">' + escapeHtml(t('transfer.yor_id_label')) + '</div><div class="settings-row-sub">' + escapeHtml(faceIdText('tapCopy')) + '</div></div>' +
-      '<span class="settings-value ltr">' + escapeHtml(dispId(Runtime.ctx.yorId || '')) + '</span>' +
+      '<span class="settings-value ltr">' + escapeHtml(yid) + '</span>' +
     '</div>' +
-    settingsLinkRow({ icon:'shield', title:t('settings.privacy'), sub:t('settings.privacyDesc'), nav:'privacy' }) +
+    settingsLinkRow({ icon:'user', title:t('px.edit'), sub:'', nav:'profile-edit' }) +
+  '</div>';
+  html += setCat('info', t('set.c.info'));
+  html += '<div class="settings-group">' +
     settingsLinkRow({ icon:'help', title:t('settings.help'), sub:t('settings.helpDesc'), nav:'help' }) +
     settingsLinkRow({ icon:'info', title:t('settings.about'), sub:t('settings.aboutDesc'), nav:'about', value:'v' + CONFIG.APP.version }) +
     '<button class="settings-row" type="button" data-action="sign-out"><div class="tile" style="background:var(--danger-bg);color:var(--danger)">' + icon('logout', 20) + '</div><div class="settings-row-body"><div class="settings-row-title" style="color:var(--danger)">' + t('profile.logout') + '</div></div></button>' +

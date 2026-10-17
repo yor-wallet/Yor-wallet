@@ -15,13 +15,14 @@ function txRow(tx, mask){
   const credit = tx.direction === 'IN';
   const iconName = tx.type === 'CRYPTO_BUY' ? 'arrowDownRight' : tx.type === 'CRYPTO_SELL' ? 'arrowUpRight' : tx.type === 'CRYPTO_SWAP' ? 'swap' : tx.type === 'CRYPTO_SEND' ? 'send' : tx.type === 'DEPOSIT' ? 'receive' : (credit ? 'receive' : 'send');
   const op = opLabel(tx);
-  const party = tx.beneficiary && tx.beneficiary.name;
+  const b0 = tx.beneficiary || null;
+  const party = b0 && b0.name ? ((typeof receiptBenName === 'function' && b0.phone && !receiptBenName(b0)) ? formatPhoneIntl(b0.phone) : b0.name) : '';
   const name = party || (op ? op + (tx.asset ? ' · ' + tx.asset : '') : (tx.asset || tx.type));
   const sign = credit ? '+' : '−';
   const amt = tx.asset ? CurrencyEngine.formatCrypto(tx.amount, tx.asset) : CurrencyEngine.format(tx.amount, tx.currency || 'OMR');
   /* the REAL status: a completed operation shows no badge (normal case); in progress / failed are always visible and translated */
   const state = txState(tx.status);
-  const sub = escapeHtml(timeAgo(tx.createdAt)) + (party && op ? ' · ' + escapeHtml(op) : '');
+  const sub = '<span class="tx-when">' + escapeHtml(timeAgo(tx.createdAt)) + '</span>' + (party && op ? ' · ' + escapeHtml(op) : '');
   return '<div class="item tx-row tx-' + (credit ? 'in' : 'out') + ' st-' + state + '" role="button" tabindex="0" data-action="view-tx" data-tx="' + tx.id + '"><div class="tile">' + icon(state === 'failed' ? 'close' : iconName, 20) + '</div>' +
     '<div class="item-body"><div class="item-title">' + escapeHtml(name) + '</div><div class="item-sub">' + sub + (state !== 'success' ? ' ' + statusPill(state, true) : '') + '</div></div>' +
     '<div class="item-right"><div class="item-amount ltr ' + (credit && state === 'success' ? 'credit' : '') + (state === 'failed' ? ' failed' : '') + '"' + (mask ? ' aria-label="' + escapeHtml(t('ds.hidden_amt')) + '"' : '') + '>' + (mask ? '••••' : sign + escapeHtml(amt)) + '</div></div></div>';
@@ -34,28 +35,28 @@ function txRow(tx, mask){
    Numbers: +968 then 8 digits; mobile numbers start with 7 or 9. The id "country-select" is kept for links, shortcuts and the dock.
    ============================================================ */
 Object.assign(TR.en, {
+  'sx.uncertain':'Status to be checked','sx.wait':'Waiting for the server’s answer…','sx.st1':'Checked','sx.st2':'Sent','sx.st3':'Server answer','sx.st4':'Confirmed',
   'sp.title':'Send money','sp.heading':'Who are you sending to?','sp.sub':'Enter the recipient’s mobile number.','sp.label':'Mobile number',
   'sp.hint':'Oman · 8 digits, starting with 7 or 9','sp.err_prefix':'An Omani mobile number starts with 7 or 9.','sp.err_short':'The number must have 8 digits.',
   'sp.err_self':'You cannot send money to your own number.','sp.known':'Saved contact','sp.step_number':'Number','sp.to':'To',
   'sp.err_min':'Minimum amount: {n}','sp.err_max':'Maximum per transfer: {n}','sp.type':'Mobile number transfer',
-  'sx.secure':'Securing your transfer','sx.send':'Sending your money','sx.success':'Transfer confirmed','sx.fail':'The transfer was not completed',
-  'sx.st1':'Secured','sx.st2':'Sending','sx.st3':'Confirmed'
+  'sx.secure':'Securing your transfer','sx.send':'Sending your money','sx.success':'Transfer confirmed','sx.fail':'The transfer was not completed'
 });
 Object.assign(TR.fr, {
+  'sx.uncertain':'Statut à vérifier','sx.wait':'En attente de la réponse du serveur…','sx.st1':'Vérifié','sx.st2':'Envoyé','sx.st3':'Réponse du serveur','sx.st4':'Confirmé',
   'sp.title':'Envoyer de l’argent','sp.heading':'À qui envoyez-vous ?','sp.sub':'Saisissez le numéro de mobile du destinataire.','sp.label':'Numéro de mobile',
   'sp.hint':'Oman · 8 chiffres, commence par 7 ou 9','sp.err_prefix':'Un numéro de mobile omanais commence par 7 ou 9.','sp.err_short':'Le numéro doit avoir 8 chiffres.',
   'sp.err_self':'Vous ne pouvez pas envoyer de l’argent à votre propre numéro.','sp.known':'Contact enregistré','sp.step_number':'Numéro','sp.to':'À',
   'sp.err_min':'Montant minimum : {n}','sp.err_max':'Maximum par transfert : {n}','sp.type':'Transfert par numéro de mobile',
-  'sx.secure':'Sécurisation de votre transfert','sx.send':'Envoi de votre argent','sx.success':'Transfert confirmé','sx.fail':'Le transfert n’a pas abouti',
-  'sx.st1':'Sécurisé','sx.st2':'Envoi','sx.st3':'Confirmé'
+  'sx.secure':'Sécurisation de votre transfert','sx.send':'Envoi de votre argent','sx.success':'Transfert confirmé','sx.fail':'Le transfert n’a pas abouti'
 });
 Object.assign(TR.ar, {
+  'sx.uncertain':'الحالة بحاجة إلى تحقق','sx.wait':'بانتظار رد الخادم…','sx.st1':'تم التحقق','sx.st2':'تم الإرسال','sx.st3':'رد الخادم','sx.st4':'تم التأكيد',
   'sp.title':'إرسال الأموال','sp.heading':'لمن تريد الإرسال؟','sp.sub':'أدخل رقم هاتف المستلم.','sp.label':'رقم الهاتف',
   'sp.hint':'عُمان · 8 أرقام تبدأ بـ 7 أو 9','sp.err_prefix':'يبدأ رقم الهاتف العُماني بالرقم 7 أو 9.','sp.err_short':'يجب أن يتكون الرقم من 8 أرقام.',
   'sp.err_self':'لا يمكنك إرسال الأموال إلى رقمك.','sp.known':'جهة اتصال محفوظة','sp.step_number':'الرقم','sp.to':'إلى',
   'sp.err_min':'الحد الأدنى: {n}','sp.err_max':'الحد الأقصى للتحويل: {n}','sp.type':'تحويل عبر رقم الهاتف',
-  'sx.secure':'جارٍ تأمين التحويل','sx.send':'جارٍ إرسال المبلغ','sx.success':'تم تأكيد التحويل','sx.fail':'لم يكتمل التحويل',
-  'sx.st1':'تم التأمين','sx.st2':'الإرسال','sx.st3':'التأكيد'
+  'sx.secure':'جارٍ تأمين التحويل','sx.send':'جارٍ إرسال المبلغ','sx.success':'تم تأكيد التحويل','sx.fail':'لم يكتمل التحويل'
 });
 
 /* ---- Oman mobile numbers ---- */
@@ -166,6 +167,7 @@ function renderProcessing(){
     (amtStr ? '<div class="proc-amount ltr" dir="ltr">' + escapeHtml(amtStr) + '</div>' : '') +
     (b && b.phone && bd.amount ? '<div class="sx-to"><span>' + escapeHtml(t('sp.to')) + '</span> <b class="ltr" dir="ltr">' + escapeHtml(formatPhoneIntl(b.phone)) + '</b></div>' : '') +
     '<div class="proc-label" role="status" aria-live="polite" id="sx-label">' + escapeHtml(t('sx.secure')) + '</div>' +
-    '<ol class="sx-steps" aria-hidden="true"><li data-s="1"><i></i><span>' + escapeHtml(t('sx.st1')) + '</span></li><li data-s="2"><i></i><span>' + escapeHtml(t('sx.st2')) + '</span></li><li data-s="3"><i></i><span>' + escapeHtml(t('sx.st3')) + '</span></li></ol>' +
+    '<div class="sx-wait-note" aria-hidden="true">' + escapeHtml(t('sx.wait')) + '</div>' +
+    '<ol class="sx-steps sx4" aria-hidden="true">' + [1, 2, 3, 4].map(n => '<li data-s="' + n + '"><i></i><span>' + escapeHtml(t('sx.st' + n)) + '</span></li>').join('') + '</ol>' +
   '</div>';
 }

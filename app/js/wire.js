@@ -52,6 +52,7 @@ function rerenderKeepScroll(id, top0){
 function wire(id){
   const _wireRoot = document.getElementById(id) || document;
   try { V12.onScreen(id); } catch(e){ console.error(e); }
+  try { if (typeof Premium !== 'undefined') Premium.onScreen(id, _wireRoot); } catch(e){ console.error(e); }
   if (id === 'chain' && typeof wireChain === 'function'){ try { wireChain(_wireRoot); } catch(e){ console.error(e); } }
 
   _wireRoot.querySelectorAll('[data-action]').forEach(el => {
@@ -141,6 +142,7 @@ function wire(id){
       else if (n === 'banks-add') R.go('banks-add');
       else if (n === 'cards-add') R.go('cards-add');
       else if (n === 'contact-add') R.go('contact-add');
+      else if (n) R.go(n);            /* 12.14.0: any other registered screen (receive, profile-edit, ...); unknown ids are refused by the router */
     };
   });
 
@@ -245,6 +247,7 @@ function wire(id){
     let _pinBusy = false;
     async function confirmAndProceed(){
       if (_txConfirmed || _pinBusy) return;
+      if (navigator.onLine === false){ resetSwipe(); toast(t('px.offlineSend'), 'error'); return; }   /* certain: nothing was sent */
       _pinBusy = true;
       const _pin = await PinEngine.authorize();
       _pinBusy = false;
@@ -263,7 +266,7 @@ function wire(id){
           beneficiary: { firstName: '', lastName: '', phone: b.phone, country: 'OM', identifierType: 'PHONE' },
           idemKey: _idemKey, pinGrant: _pin.grant
         });
-        if (!res.ok) return { ok:false, error: res.error };
+        if (!res.ok) return { ok:false, error: res.error, uncertain: !!res.uncertain };
         const sv = res.data;
         const receipt = {
           id: ID.receipt(), transactionId: sv.transactionId, status: 'SUCCESS',
@@ -275,7 +278,15 @@ function wire(id){
         try { await recordLocalReceipt(receipt); } catch(e){ console.error(e); }
         return { ok:true, receipt };
       });
-      if (!out.ok){ toast(t(out.error || 'errors.UNKNOWN_ERROR'), 'error'); R.go('home'); return; }
+      /* 12.14.0 — never a silent return to the home screen: a refused transfer says why; an UNCERTAIN one (no answer from the server)
+         asks the person to check its status first. Nothing is ever sent again automatically. */
+      if (!out.ok){
+        TxResult.show({ kind: out.uncertain ? 'uncertain' : 'failed', error: out.error, late: out.late || null,
+          req: { amount: bd.amount, destCurrency: 'OMR', provider: provider ? provider.name : '',
+                 beneficiary: { firstName: '', lastName: '', phone: b.phone, country: 'OM', identifierType: 'PHONE' }, idemKey: _idemKey },
+          name: b.name || '', phone: b.phone });
+        return;
+      }
       InAppNotif.showCall({
         title: t('notif.fiat_sent'),
         message: (b.name || formatPhoneIntl(b.phone)),

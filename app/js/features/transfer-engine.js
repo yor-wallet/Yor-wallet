@@ -69,6 +69,34 @@ const TransferEngine = (() => {
       return { ok:false, error:'errors.UNKNOWN_ERROR' };
     } finally { setTimeout(() => inflight.delete(lock), 1500); }
   }
+  /* 12.14.0 — a failure is CERTAIN only when the database answered with an error (it then rolled the whole operation back).
+     A request that never got an answer (network cut, timeout, gateway error) is UNCERTAIN: the server may have recorded the
+     transfer. Such a request is never sent again automatically; the person checks its status (checkExternal) first. */
+  function isUncertain(error, status){
+    if (!error) return false;
+    const code = String(error.code == null ? '' : error.code);
+    if (/^[0-9A-Z]{5}$/.test(code)) return false;                                   /* SQLSTATE: the database refused and rolled back */
+    if (status >= 500 || status === 0) return true;                                 /* gateway / no HTTP answer */
+    return /fetch|network|load failed|timed? ?out|abort|connection|offline/i.test(String(error.message || ''));
+  }
+  /* Reads the outcome of an earlier request WITHOUT any risk of creating a transfer: the server replays a stored idempotency key
+     BEFORE it consumes a PIN grant, and this call carries no grant, so an unknown key always ends in "pin_required".
+     -> { state:'confirmed', data } | { state:'not_found' } | { state:'unknown' } */
+  async function checkExternal({ amount, destCurrency, provider, beneficiary, idemKey }){
+    if (!supabaseReady || !idemKey) return { state:'unknown' };
+    try {
+      const { data, error } = await sb.rpc('fiat_send_external', {
+        p_amount: Number(amount), p_dest_currency: destCurrency, p_provider: provider,
+        p_beneficiary: beneficiary, p_idempotency_key: idemKey, p_pin_grant: null
+      });
+      if (error) return /pin_required/i.test(String(error.message || '')) ? { state:'not_found' } : { state:'unknown' };
+      if (!data || !data.transaction_id) return { state:'unknown' };
+      try { await AuthEngine.hydrateRuntime(); } catch(e){}
+      return { state:'confirmed', data:{ transactionId: data.transaction_id, reference: data.reference, status: data.status,
+        amount: data.amount, fee: data.fee, vat: data.vat, total: data.total,
+        exchangeRate: data.exchange_rate, destinationAmount: data.destination_amount, destinationCurrency: data.destination_currency } };
+    } catch(e){ return { state:'unknown' }; }
+  }
   /* International transfer: validated and recorded SERVER-SIDE (fiat_send_external). Nothing is created locally. */
   async function sendExternal({ amount, destCurrency, provider, beneficiary, idemKey, pinGrant }){
     if (!supabaseReady) return { ok:false, error:'errors.UNKNOWN_ERROR' };
@@ -76,10 +104,12 @@ const TransferEngine = (() => {
     if (inflight.has(idem)) return { ok:false, error:'errors.DUPLICATE' };
     inflight.add(idem);
     try {
-      const { data, error } = await sb.rpc('fiat_send_external', {
+      const res0 = await sb.rpc('fiat_send_external', {
         p_amount: Number(amount), p_dest_currency: destCurrency, p_provider: provider,
         p_beneficiary: beneficiary, p_idempotency_key: idem, p_pin_grant: pinGrant || null
       });
+      const data = res0 && res0.data, error = res0 && res0.error;
+      if (error && isUncertain(error, res0.status)) return { ok:false, uncertain:true, error:'errors.UNCERTAIN' };
       if (error){
         const m = String(error.message || '').toLowerCase();
         if (m.includes('pin_required')) return { ok:false, error:'errors.PIN_REQUIRED' };
@@ -97,9 +127,9 @@ const TransferEngine = (() => {
         exchangeRate: data.exchange_rate, destinationAmount: data.destination_amount, destinationCurrency: data.destination_currency } };
     } catch(e){
       console.error(e);
-      return { ok:false, error:'errors.UNKNOWN_ERROR' };
+      return { ok:false, uncertain:true, error:'errors.UNCERTAIN' };     /* no answer read: the server may have recorded it */
     } finally { setTimeout(() => inflight.delete(idem), 1500); }
   }
-  return { resolveYorId, sendFiat, sendExternal, flushNotices };
+  return { resolveYorId, sendFiat, sendExternal, checkExternal, flushNotices, isUncertain };
 })();
 

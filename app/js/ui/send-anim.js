@@ -80,7 +80,7 @@ const SendAnim = (() => {
     run.mode = 'land'; run.t0 = performance.now(); run.u0 = run.u || 0; run.dur = clamp((1 - run.u0) * 700 + 260, 260, 900); run.done = done;
   }
 
-  const KEYS = { secure:'sx.secure', send:'sx.send', success:'sx.success', fail:'sx.fail' };
+  const KEYS = { secure:'sx.secure', send:'sx.send', success:'sx.success', fail:'sx.fail', uncertain:'sx.uncertain' };
   /* Sets the phase of the scene on screen. Returns a promise that resolves when the phase is really shown (the landing takes a moment). */
   function setPhase(p){
     const root = document.querySelector('.proc-view');
@@ -94,7 +94,7 @@ const SendAnim = (() => {
       if (reduced() || !run){ stop(); apply('success'); return Promise.resolve(); }
       return new Promise(res => land(root, () => { apply('success'); res(); }));
     }
-    if (p === 'fail'){ stop(); root.classList.add('sx-stopped'); apply('fail'); return Promise.resolve(); }
+    if (p === 'fail' || p === 'uncertain'){ stop(); root.classList.add('sx-stopped'); apply(p); return Promise.resolve(); }
     stop(); apply('secure'); return Promise.resolve();
   }
   return { svg, setPhase, stop };

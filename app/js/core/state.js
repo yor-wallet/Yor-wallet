@@ -41,17 +41,28 @@ const ProcessingEngine = (() => {
     opts = opts || {};
     const minMs = opts.minMs != null ? opts.minMs : 2400;
     const t0 = Date.now();
-    const job = Promise.resolve().then(work).then(r => r, e => { console.error(e); return { ok:false, error:'errors.UNKNOWN_ERROR' }; });
+    const job = Promise.resolve().then(work).then(r => r, e => { console.error(e); return { ok:false, uncertain:true, error:'errors.UNCERTAIN' }; });
     setPhase('secure');
     await sleep(900);
     setPhase('send');
-    const out = (await job) || { ok:false, error:'errors.UNKNOWN_ERROR' };
+    /* 12.14.0 — after 1.6 s without an answer the screen says it is waiting for the server (step 3); after timeoutMs (30 s) the outcome is
+       UNCERTAIN: the request is NOT cancelled and NOT sent again; the caller gets the still-running job in out.late. */
+    const waitT = setTimeout(() => { const v = document.querySelector('.proc-view'); if (v) v.setAttribute('data-wait', '1'); }, 1600);
+    let wd = 0;
+    const watchdog = new Promise(res => { wd = setTimeout(() => res({ ok:false, uncertain:true, timedOut:true, error:'errors.UNCERTAIN' }), opts.timeoutMs != null ? opts.timeoutMs : 30000); });
+    const out = (await Promise.race([job, watchdog])) || { ok:false, error:'errors.UNKNOWN_ERROR' };
+    clearTimeout(wd); clearTimeout(waitT);
+    if (out.timedOut) out.late = job;
     const spent = Date.now() - t0;
     if (spent < minMs) await sleep(minMs - spent);
     if (out.ok){
       await setPhase('success');
       try { UIKit.haptic('success'); } catch(e){}
       await sleep(opts.holdMs != null ? opts.holdMs : 1300);
+    } else if (out.uncertain){
+      await setPhase('uncertain');
+      try { UIKit.haptic('warning'); } catch(e){}
+      await sleep(opts.failMs != null ? opts.failMs : 1500);
     } else {
       await setPhase('fail');
       try { UIKit.haptic('error'); } catch(e){}
