@@ -82,10 +82,9 @@ const Promos = (() => {
     if (!s) return;
     /* 12.14.0: only the track scrolls. scrollIntoView() also scrolled every parent (#screens moved sideways by ~18 px and every later
        screen was drawn shifted; the page could jump vertically while being read). Works left-to-right and right-to-left. */
-    const t = s.parentElement; if (!t) return;
-    const a = s.getBoundingClientRect(), b = t.getBoundingClientRect();
-    const dx = document.documentElement.dir === 'rtl' ? a.right - b.right : a.left - b.left;
-    try { t.scrollBy({ left: dx, behavior: smooth && !reduceMotion() ? 'smooth' : 'auto' }); } catch (e) { t.scrollLeft += dx; }
+    const t = s.parentElement, s0 = slidesOf(root)[0]; if (!t || !s0) return;
+    const left = s.offsetLeft - s0.offsetLeft;      /* absolute position (negative in right-to-left, as browsers expect) */
+    try { t.scrollTo({ left, behavior: smooth && !reduceMotion() ? 'smooth' : 'auto' }); } catch (e) { t.scrollLeft = left; }
   }
 
   let timer = null, raf = 0;
