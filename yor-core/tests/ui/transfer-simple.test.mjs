@@ -242,7 +242,7 @@ test('animation d\'envoi : sécurisé → envoi (tant que le serveur n\'a pas r�
   await s.ctx.close();
 });
 
-test('animation d\'envoi : si le serveur refuse, elle montre « non abouti », jamais « confirmé », et ramène à l\'accueil', { skip }, async () => {
+test('animation d\'envoi : si le serveur refuse, elle montre « non abouti », jamais « confirmé », puis l\'écran « Transfert non abouti » (12.14.0)', { skip }, async () => {
   const s = await boot();
   await s.page.evaluate(() => { window.__rpcFail = true; });
   await goToReview(s);
@@ -253,7 +253,11 @@ test('animation d\'envoi : si le serveur refuse, elle montre « non abouti », j
   assert.equal(await s.page.evaluate(() => document.getElementById('sx-label').textContent), 'The transfer was not completed');
   assert.equal(await s.page.evaluate(() => document.querySelector('.proc-view').classList.contains('sx-stopped')), true, 'la pièce s\'arrête');
   await shot(s.page, '38-anim-fail.png');
-  await s.page.waitForFunction(() => R.current() === 'home', null, { timeout: 6000 });
+  /* 12.14.0 : plus de retour silencieux à l'accueil : un écran dit que le serveur a refusé et propose Réessayer / Modifier / Accueil */
+  await s.page.waitForFunction(() => R.current() === 'tx-result', null, { timeout: 6000 });
+  assert.match(await s.page.innerText('#tx-result'), /Transfer not completed/);
+  assert.match(await s.page.innerText('#tx-result'), /No money left your account/);
+  assert.equal(await s.page.locator('[data-px="txr-check"]').count(), 0, 'un refus certain ne propose pas de « vérifier le statut »');
   const phases = await s.page.evaluate(() => window.__phases);
   assert.ok(!phases.includes('success'), 'jamais « succès » : ' + phases.join(' > '));
   assert.equal(await s.page.evaluate(() => window.__rpc.filter(c => c.name === 'fiat_send_external').length), 1, 'un seul appel, pas de nouvel essai silencieux');

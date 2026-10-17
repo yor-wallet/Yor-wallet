@@ -4,7 +4,7 @@
    CONFIG / CURRENCIES / COUNTRIES / CRYPTO / NETWORKS / BANKS
    ============================================================ */
 const CONFIG = Object.freeze({
-  APP:{ name:'Friendly Pay', version:'12.13.0', schema:16, defaultLang:'en', defaultTheme:'light' },
+  APP:{ name:'Friendly Pay', version:'12.14.0', schema:16, defaultLang:'en', defaultTheme:'light' },
   FEES:{ INTERNATIONAL:{ flatOMR:0 }, LOCAL:{ flat:0 },   /* 12.12.0 : AUCUN frais sur les transferts d'argent (le serveur débite le montant seul) */
     MOBILE_MONEY_PCT:0.01, CRYPTO_TRADE_PCT:0.005, CRYPTO_SWAP_PCT:0.003, CRYPTO_TO_BANK_PCT:0.015 },
   PUSH:{ vapidPublicKey:'BFRA_csXTUfSX06fZNTpqIlevcKO9jnrMOu5B6IJx-xTDj_78r-ZJXOfqfleGlK2OsLzkBRLnjAFjyVG3xg8yCs' },   /* 12.13.0 : clé PUBLIQUE VAPID des notifications push (la clé privée n'existe que sur le serveur) */

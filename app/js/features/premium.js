@@ -126,7 +126,8 @@ function txMatches(tx, q){
     tx.amount != null ? Number(tx.amount).toFixed(3) : '', tx.amount != null ? String(tx.amount) : '', opLabel(tx), tx.note].map(pxNorm).join(' | ');
   const digits = n.replace(/\D/g, '');
   if (hay.indexOf(n) !== -1) return true;
-  return digits.length >= 3 && hay.replace(/[^\d|]/g, '').indexOf(digits) !== -1;
+  /* a number typed with spaces or "+" (phone, amount) also matches stored digits; a query with letters never falls back to digits only */
+  return /^[\d\s+().,-]+$/.test(n) && digits.length >= 3 && hay.replace(/[^\d|]/g, '').indexOf(digits) !== -1;
 }
 
 /* ============================================================
@@ -232,7 +233,7 @@ const TxResult = (() => {
     '</div>';
   }
   function wire(root){
-    root.addEventListener('click', e => {
+    root.onclick = e => {                         /* onclick, not addEventListener: the section stays between renders */
       const b = e.target.closest && e.target.closest('[data-px]'); if (!b) return;
       const a = b.getAttribute('data-px');
       if (a === 'txr-check') check(b);
@@ -240,7 +241,7 @@ const TxResult = (() => {
       else if (a === 'txr-retry'){ cur = null; R.go(TX_STATE.beneficiary && TX_STATE.amount ? 'tx-review' : 'country-select'); }
       else if (a === 'txr-amount'){ cur = null; R.go(TX_STATE.beneficiary ? 'tx-amount' : 'country-select'); }
       else if (a === 'txr-home'){ cur = null; txReset(); R.go('home', { reset:true }); }
-    });
+    };
   }
   return { show, current, render, wire, check };
 })();
@@ -291,7 +292,7 @@ const PxSearch = (() => {
         '<button type="button" class="px-s-x" data-pxs-close aria-label="' + escapeHtml(t('pin.cancel')) + '">' + escapeHtml(t('pin.cancel')) + '</button></div>' +
         '<div class="px-s-res" id="px-s-res" aria-live="polite">' + results('') + '</div></div>',
       { kind:'sheet', onClose: () => { close = null; } });
-    setTimeout(() => {
+    (() => {                                       /* wired at once: the sheet is in the page as soon as open() returns */
       const inp = document.getElementById('px-s-in'), res = document.getElementById('px-s-res');
       if (!inp || !res) return;
       let tm = 0;
@@ -306,9 +307,76 @@ const PxSearch = (() => {
         if (el.hasAttribute('data-pxs-phone')){ Premium.sendTo(el.getAttribute('data-pxs-phone'), el.getAttribute('data-pxs-name')); return; }
         openTxReceipt(el.getAttribute('data-tx'));
       });
-    }, 40);
+    })();
   }
   return { open, results };
+})();
+
+
+/* ============================================================
+   INSTALL WITHOUT AN APP STORE (12.14.0) — Friendly Pay is a web app (PWA): it is added to the home screen from its HTTPS address.
+   iPhone / iPad (Safari): Apple offers no install button to web pages; the card shows the two real steps (Share → Add to Home Screen).
+   Android / desktop Chrome / Edge: the browser's own install prompt (beforeinstallprompt) is used when it is offered.
+   Nothing is shown once the app runs from its icon (standalone). "Later" hides the card for 14 days on this device.
+   ============================================================ */
+Object.assign(TR.en, { 'pi.title':'Install Friendly Pay on this phone', 'pi.sub':'Opens full screen from its own icon, like an app. No App Store needed.', 'pi.ios1':'Tap the Share button', 'pi.ios2':'Choose “Add to Home Screen”', 'pi.ios3':'Open Friendly Pay from the new icon', 'pi.iosOther':'On iPhone, open this page in Safari to install it.', 'pi.go':'Install', 'pi.later':'Later', 'pi.row':'Install the app', 'pi.rowD':'Add Friendly Pay to your home screen', 'pi.note':'Friendly Pay is a web app: it is not an App Store app and it uses only what Safari allows.' });
+Object.assign(TR.fr, { 'pi.title':'Installer Friendly Pay sur ce téléphone', 'pi.sub':'S’ouvre en plein écran depuis sa propre icône, comme une application. Sans App Store.', 'pi.ios1':'Touchez le bouton Partager', 'pi.ios2':'Choisissez « Sur l’écran d’accueil »', 'pi.ios3':'Ouvrez Friendly Pay depuis la nouvelle icône', 'pi.iosOther':'Sur iPhone, ouvrez cette page dans Safari pour l’installer.', 'pi.go':'Installer', 'pi.later':'Plus tard', 'pi.row':'Installer l’application', 'pi.rowD':'Ajouter Friendly Pay à l’écran d’accueil', 'pi.note':'Friendly Pay est une application web : ce n’est pas une application de l’App Store et elle n’utilise que ce que Safari autorise.' });
+Object.assign(TR.ar, { 'pi.title':'ثبّت فرندي باي على هذا الهاتف', 'pi.sub':'يفتح بملء الشاشة من أيقونته مثل التطبيقات. دون متجر App Store.', 'pi.ios1':'المس زر المشاركة', 'pi.ios2':'اختر «إضافة إلى الشاشة الرئيسية»', 'pi.ios3':'افتح فرندي باي من الأيقونة الجديدة', 'pi.iosOther':'على iPhone افتح هذه الصفحة في Safari لتثبيتها.', 'pi.go':'تثبيت', 'pi.later':'لاحقاً', 'pi.row':'تثبيت التطبيق', 'pi.rowD':'أضف فرندي باي إلى الشاشة الرئيسية', 'pi.note':'فرندي باي تطبيق ويب: ليس من متجر App Store ويستخدم فقط ما يسمح به Safari.' });
+const PxInstall = (() => {
+  let deferred = null;
+  const KEY = 'fp_install_later';
+  const ua = () => navigator.userAgent || '';
+  const isIos = () => /iPad|iPhone|iPod/.test(ua()) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isSafari = () => /Safari\//.test(ua()) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\//.test(ua());
+  const standalone = () => { try { return navigator.standalone === true || !!(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches); } catch(e){ return false; } };
+  try { window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; }); window.addEventListener('appinstalled', () => { deferred = null; }); } catch(e){}
+  /* 'installed' | 'ios' (Safari: manual steps) | 'ios-other' (another iOS browser) | 'prompt' (native prompt available) | 'none' */
+  function mode(){
+    if (standalone()) return 'installed';
+    if (isIos()) return isSafari() ? 'ios' : 'ios-other';
+    return deferred ? 'prompt' : 'none';
+  }
+  function snoozed(){ try { return Number(localStorage.getItem(KEY) || 0) > Date.now(); } catch(e){ return false; } }
+  const shareIc = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+  const addIc = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg>';
+  function steps(m){
+    if (m === 'ios-other') return '<p class="pi-sub">' + escapeHtml(t('pi.iosOther')) + '</p>';
+    if (m !== 'ios') return '';
+    return '<ol class="pi-steps"><li><span class="pi-n">1</span><span>' + escapeHtml(t('pi.ios1')) + '</span><span class="pi-ic">' + shareIc + '</span></li>' +
+      '<li><span class="pi-n">2</span><span>' + escapeHtml(t('pi.ios2')) + '</span><span class="pi-ic">' + addIc + '</span></li>' +
+      '<li><span class="pi-n">3</span><span>' + escapeHtml(t('pi.ios3')) + '</span><span class="pi-ic pi-logo">' + logoMark(18) + '</span></li></ol>';
+  }
+  function card(force){
+    const m = mode();
+    if (m === 'installed' || m === 'none' || (!force && snoozed())) return '';
+    return '<section class="pi-card" data-pi-card>' + '<div class="pi-head">' + logoMark(40) + '<div><b>' + escapeHtml(t('pi.title')) + '</b><p class="pi-sub">' + escapeHtml(t('pi.sub')) + '</p></div></div>' +
+      steps(m) +
+      '<div class="pi-acts">' + (m === 'prompt' ? '<button class="btn btn-primary" data-pi="go">' + addIc + '<span>' + escapeHtml(t('pi.go')) + '</span></button>' : '') +
+        (force ? '' : '<button class="btn btn-ghost" data-pi="later">' + escapeHtml(t('pi.later')) + '</button>') + '</div>' +
+      '<p class="pi-note">' + escapeHtml(t('pi.note')) + '</p></section>';
+  }
+  function settingsRow(){
+    const m = mode();
+    if (m === 'installed' || m === 'none') return '';
+    return '<button class="settings-row" type="button" data-pi="sheet"><div class="tile">' + icon('mobile', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + escapeHtml(t('pi.row')) + '</div><div class="settings-row-sub">' + escapeHtml(t('pi.rowD')) + '</div></div><span class="settings-row-chev">' + icon('chev', 18) + '</span></button>';
+  }
+  async function prompt(){
+    if (!deferred) return;
+    const d = deferred; deferred = null;
+    try { await d.prompt(); await d.userChoice; } catch(e){}
+    document.querySelectorAll('[data-pi-card]').forEach(c => c.remove());
+  }
+  function wire(root){
+    root.querySelectorAll('[data-pi]').forEach(b => {
+      b.onclick = () => {
+        const a = b.getAttribute('data-pi');
+        if (a === 'go') prompt();
+        else if (a === 'later'){ try { localStorage.setItem(KEY, String(Date.now() + 14 * 864e5)); } catch(e){} const c = b.closest('[data-pi-card]'); if (c) c.remove(); }
+        else if (a === 'sheet'){ const close = R.overlay.open('<div class="pi-sheet">' + card(true) + '</div>', { kind:'sheet' }); setTimeout(() => { const sh = document.querySelector('.pi-sheet'); if (sh) wire(sh); }, 30); }
+      };
+    });
+  }
+  return { mode, card, settingsRow, wire, standalone };
 })();
 
 /* ============================================================
@@ -357,6 +425,7 @@ const Premium = (() => {
           '<button class="px-bal-link" data-nav="history"><span>' + escapeHtml(t('px.history')) + '</span>' + '<span class="dir-flip" style="display:inline-flex">' + icon('chev', 16) + '</span></button></div>' +
       '</section>' +
       '<nav class="rv-acts px-acts" aria-label="' + escapeHtml(t('px.more')) + '">' + act('country-select', 'send', t('px.send'), true) + act('receive', 'receive', t('px.receive')) + act('history', 'history', t('px.history')) + act('services', 'apps', t('px.more')) + '</nav>' +
+      PxInstall.card() +
       '<section class="rv-sec px-sec"><div class="rv-h"><h2>' + escapeHtml(t('px.recent')) + '</h2><button data-nav="history">' + escapeHtml(t('px.seeAll')) + '</button></div>' +
         (txs.length ? txGroupedHtml(txs, hide) : '<div class="rv-list">' + emptyState('history', V12.vt('noTx'), t('ds.nohist_body')) + '</div>') + '</section>' +
       (typeof Promos !== 'undefined' ? Promos.html() : '') +
@@ -511,6 +580,7 @@ const Premium = (() => {
       root.querySelectorAll('#pe-first,#pe-last').forEach(i => { i.onkeydown = e => { if (e.key === 'Enter'){ e.preventDefault(); b.click(); } }; });
     }
     if (id === 'tx-result') TxResult.wire(root);
+    if (id === 'home' || id === 'settings') PxInstall.wire(root);
     if (id === 'history') wireHistory(root);
     /* a scrolled screen gets a solid top bar (the bar stays readable over the content) */
     if (!root.__pxScroll){ root.__pxScroll = true; root.addEventListener('scroll', () => { root.classList.toggle('px-scrolled', root.scrollTop > 6); }, { passive:true }); }

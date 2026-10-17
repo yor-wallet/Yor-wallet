@@ -20,7 +20,7 @@ function bootFails(delta){
 /* Raccourcis de l'icône (« Envoyer », « Cartes », « Historique ») : le lien d'ouverture est lu AVANT que le routeur ne réécrive l'adresse ;
    l'écran demandé s'ouvre une fois le compte ouvert (et le code saisi), par-dessus l'accueil. Liste blanche : jamais d'écran sensible ou d'étape au milieu d'un parcours. */
 const LAUNCH_HASH = (() => { try { return location.hash || ''; } catch(e){ return ''; } })();
-const DEEP_OK = ['cards', 'country-select', 'history', 'notifications', 'profile', 'settings', 'services'].concat(FEATURES.crypto ? ['crypto'] : []);
+const DEEP_OK = ['cards', 'country-select', 'receive', 'history', 'notifications', 'profile', 'settings', 'services'].concat(FEATURES.crypto ? ['crypto'] : []);
 let _deepUsed = false;
 function openHome(){
   R.go('home', { reset:true, force:true });

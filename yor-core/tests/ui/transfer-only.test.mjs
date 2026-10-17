@@ -31,10 +31,10 @@ const seed = (s, role = 'user') => s.page.evaluate((r) => {
   openHome();
 }, role);
 
-test('version 12.13.0 ; le drapeau FEATURES.crypto est faux et gelé', { skip }, async () => {
+test('version 12.14.0 ; le drapeau FEATURES.crypto est faux et gelé', { skip }, async () => {
   const s = await openApp(browser, { node: null });
   const st = await s.page.evaluate(() => ({ v: CONFIG.APP.version, c: FEATURES.crypto, f: Object.isFrozen(FEATURES) }));
-  assert.equal(st.v, '12.13.0'); assert.equal(st.c, false); assert.equal(st.f, true);
+  assert.equal(st.v, '12.14.0'); assert.equal(st.c, false); assert.equal(st.f, true);
   assert.deepEqual(s.errors, []);
   await s.ctx.close();
 });
