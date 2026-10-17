@@ -66,7 +66,7 @@ html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3,html[dir="rtl"] .topbar
 .tile{border-radius:12px}
 .btn{font-weight:700;letter-spacing:-.005em;border-radius:16px;min-height:52px;transition:transform .18s var(--px-ease),box-shadow .2s ease,background-color .2s ease,opacity .2s ease}
 .btn:active:not(:disabled){transform:scale(.975)}
-.btn-primary{background:linear-gradient(180deg,#0E8F84 0%,#0B7F75 55%,#08675F 100%);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 14px 26px -14px rgba(11,127,117,.75)}
+.btn-primary{background:linear-gradient(180deg,#0B7F75 0%,#0A736A 55%,#08675F 100%);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 14px 26px -14px rgba(11,127,117,.75)}
 :root:not([data-theme="light"]) .btn-primary{background:linear-gradient(180deg,#5EEAD4,#2DD4BF 60%,#14B8A6);color:#022321;box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 14px 30px -14px rgba(45,212,191,.55)}
 .btn-primary:disabled{opacity:.42;box-shadow:none;filter:saturate(.6)}
 .btn-secondary{background:var(--surf);border:1px solid var(--border-2);color:var(--text)}
@@ -139,7 +139,7 @@ html[dir="rtl"] .px-chip{font-family:var(--font-ar)}
 .px-acts{display:grid!important;grid-template-columns:repeat(4,1fr);gap:calc(10px*var(--ui))}
 .px-acts .rv-act{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;animation:pxRise .5s calc(.18s + var(--i,0)*.05s) var(--px-ease) both}
 .px-acts .rv-act i{width:calc(58px*var(--ui));height:calc(58px*var(--ui));border-radius:20px;display:grid;place-items:center;background:var(--surf);border:1px solid var(--line);box-shadow:var(--px-sh-1);color:var(--accent);transition:transform .18s var(--px-spring),box-shadow .2s ease}
-.px-acts .rv-act.p i{background:linear-gradient(160deg,#10988C,#0A6F66);color:#fff;border-color:transparent;box-shadow:0 14px 24px -14px rgba(11,127,117,.8),inset 0 1px 0 rgba(255,255,255,.25)}
+.px-acts .rv-act.p i{background:linear-gradient(160deg,#0B7F75,#08675F);color:#fff;border-color:transparent;box-shadow:0 14px 24px -14px rgba(11,127,117,.8),inset 0 1px 0 rgba(255,255,255,.25)}
 :root:not([data-theme="light"]) .px-acts .rv-act.p i{background:linear-gradient(160deg,#5EEAD4,#14B8A6);color:#022321}
 .px-acts .rv-act:active i{transform:scale(.9)}
 .px-acts .rv-act span{font-size:calc(12.5px*var(--ui));font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
