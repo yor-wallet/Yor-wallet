@@ -97,3 +97,10 @@ Les trois fichiers sont dans `SHELL` de `sw.js` ; la CSP n'autorise que `https:/
 - Serveur : `supabase/functions/push-send/{index.ts,lib.ts}` (logique pure testée dans `tests/edge/push-send-lib.test.mjs`), migration `supabase/migrations/20261018_web_push.sql`. Une seule alerte par notification (`push_sent`) ; 404 / 410 → abonnement supprimé ; 10 échecs de suite → supprimé ; 10 appareils au plus par personne ; « test » limité à 1 toutes les 5 s.
 - Contraintes Apple : iOS 16.4+, application sur l'écran d'accueil, autorisation demandée sur un geste, chaque push affiche une alerte (`userVisibleOnly`).
 - Tests : `tests/ui/push-app.test.mjs` (service worker sous `vm` + écran Réglages dans Chromium avec faux `PushManager`).
+
+
+## Friendly Pay 12.14.0 (couche premium)
+- Ordre CSS : …, `resilience`, **`premium`** (dernière : polices `@font-face`, jetons, accueil, profil, réglages, reçu, animation 4 étapes, mouvement réduit). Elle surcharge `friendly.css` là où celui-ci utilise `!important` (carte de solde, transition d'écran).
+- Script `js/features/premium.js` (après `push.js`, avant `wire.js`) : enregistre `home`, `receive`, `profile`, `profile-edit`, `tx-result` (remplace les anciens rendus de `home` et `profile`, qui restent dans le code) ; modules `Premium`, `TxResult`, `PxSearch`, `PxInstall`, `BalanceFx`, aides `maskPhone`, `maskEmail`, `txMatches`. `wire()` appelle `Premium.onScreen(id, root)` ; un `data-nav` sans branche dédiée va vers `R.go(n)` (le routeur refuse les écrans inconnus).
+- Transferts : `TransferEngine.isUncertain(error, status)`, `TransferEngine.checkExternal(req)` (lecture sans autorisation PIN), `ProcessingEngine.run(work, { timeoutMs })` (30 s par défaut, phase `uncertain`, `out.late` = requête toujours en cours), `SendAnim.setPhase('uncertain')`. `PinEngine.change()` → `change_pin`.
+- Historique : objet `HIST` (`q`, `period`, `dir`) dans `history-cards.js`, appliqué par `historyFilter`.

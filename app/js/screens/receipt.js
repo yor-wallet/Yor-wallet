@@ -41,9 +41,9 @@ Object.assign(TR.ar, {
 });
 
 /* 12.5.0 : "make another transfer" (12.6.0: the receipt no longer carries any balance) */
-Object.assign(TR.en, { 'receipt.another':'Make another transfer', 'rc.docTitle':'Transaction confirmation', 'rc.pdf':'Download PDF', 'rc.png':'Save image', 'rc.copyRef':'Copy reference' });
-Object.assign(TR.fr, { 'receipt.another':'Faire un autre transfert', 'rc.docTitle':'Confirmation de transaction', 'rc.pdf':'Télécharger le PDF', 'rc.png':'Enregistrer l’image', 'rc.copyRef':'Copier la référence' });
-Object.assign(TR.ar, { 'receipt.another':'إجراء تحويل آخر', 'rc.docTitle':'تأكيد المعاملة', 'rc.pdf':'تنزيل PDF', 'rc.png':'حفظ الصورة', 'rc.copyRef':'نسخ المرجع' });
+Object.assign(TR.en, { 'receipt.another':'Make another transfer', 'rc.docTitle':'Transaction confirmation', 'rc.pdf':'PDF', 'rc.png':'PNG image', 'rc.copyRef':'Copy ref.', 'rc.pdfL':'Download the receipt as PDF', 'rc.pngL':'Save the receipt as an image (PNG)' });
+Object.assign(TR.fr, { 'receipt.another':'Faire un autre transfert', 'rc.docTitle':'Confirmation de transaction', 'rc.pdf':'PDF', 'rc.png':'Image PNG', 'rc.copyRef':'Copier la réf.', 'rc.pdfL':'Télécharger le reçu en PDF', 'rc.pngL':'Enregistrer le reçu en image (PNG)' });
+Object.assign(TR.ar, { 'receipt.another':'إجراء تحويل آخر', 'rc.docTitle':'تأكيد المعاملة', 'rc.pdf':'PDF', 'rc.png':'صورة PNG', 'rc.copyRef':'نسخ المرجع', 'rc.pdfL':'تنزيل الإيصال بصيغة PDF', 'rc.pngL':'حفظ الإيصال كصورة PNG' });
 
 /* 12.3.4 : the receipt shows the SENDER'S number ("From"), the same number the recipient sees in the SMS. */
 Object.assign(TR.en, { 'receipt.from':'From' });
@@ -276,8 +276,8 @@ function renderReceipt(){
     '<div class="rc-sheet receipt-panel rc-notice" id="receipt-notice" style="display:none" aria-live="polite"></div>' +
     /* 12.14.0 — order: download (PDF / PNG), share, copy the reference, print; then another operation and home */
     '<div class="receipt-actions rc-acts">' +
-      '<button class="btn btn-secondary rc-a" data-action="download-pdf">' + icon('download', 18) + '<span>' + escapeHtml(t('rc.pdf')) + '</span></button>' +
-      '<button class="btn btn-secondary rc-a" data-action="download-receipt">' + icon('download', 18) + '<span>' + escapeHtml(t('rc.png')) + '</span></button>' +
+      '<button class="btn btn-secondary rc-a" data-action="download-pdf" aria-label="' + escapeHtml(t('rc.pdfL')) + '">' + icon('download', 18) + '<span>' + escapeHtml(t('rc.pdf')) + '</span></button>' +
+      '<button class="btn btn-secondary rc-a" data-action="download-receipt" aria-label="' + escapeHtml(t('rc.pngL')) + '">' + icon('download', 18) + '<span>' + escapeHtml(t('rc.png')) + '</span></button>' +
       '<button class="btn btn-secondary rc-a" data-action="share-receipt">' + icon('share', 18) + '<span>' + t('action.share') + '</span></button>' +
       (ref ? '<button class="btn btn-secondary rc-a" data-action="copy-ref" data-copy="' + escapeHtml(ref) + '">' + icon('copy', 18) + '<span>' + escapeHtml(t('rc.copyRef')) + '</span></button>' : '') +
       '<button class="btn btn-ghost rc-a rc-print" data-action="print-receipt">' + icon('doc', 18) + '<span>' + t('receipt.print') + '</span></button>' +

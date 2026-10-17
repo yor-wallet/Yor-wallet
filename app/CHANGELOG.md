@@ -1,3 +1,46 @@
+# Friendly Pay 12.14.0 — refonte premium (étape 1 : animations, écrans, installation iPhone sans App Store)
+
+## Ajouté
+- **Identité visuelle premium** (`css/premium.css`, chargée en dernier) : encre pétrole profonde + teal Friendly + filet champagne discret, carte de solde avec lignes guillochées fines et reflet lumineux unique à l'ouverture. Ombres douces, rayons cohérents, boutons tactiles ≥ 44 px.
+- **Polices auto-hébergées** (`assets/fonts/`, licence SIL OFL, 304 Ko) : Manrope (interface, titres, montants en chiffres tabulaires), Inter (textes fonctionnels), IBM Plex Sans Arabic (arabe). Aucune police externe : la CSP (`font-src 'self'`) est inchangée. Repli système si une police manque.
+- **Accueil refait** (`js/features/premium.js`) : avatar → profil, salutation selon l'heure, recherche, cloche avec compteur réel ; carte « Solde disponible » avec état réel du compte, œil masquer/afficher, identifiant, accès Historique ; actions Envoyer / Recevoir / Historique / Plus ; activité récente avec statut réel. Le solde s'anime (comptage + halo) **uniquement** quand la valeur lue au serveur change ; le texte final est toujours la valeur exacte.
+- **Recevoir** : Friendly ID et numéro (copier / partager), argent reçu (réel). Explique honnêtement qu'un transfert vers un numéro ne crédite pas un solde Friendly Pay. Pas de bouton « Ajouter de l'argent » : la fonction n'existe pas.
+- **Recherche globale** : opérations (nom, numéro, référence FRD-/YOR-, montant), bénéficiaires (ouvre l'envoi pré-rempli), écrans et réglages. Données déjà chargées uniquement.
+- **Historique** : recherche, filtres période (aujourd'hui / 7 j / 30 j / ce mois) et sens (reçues / envoyées), combinés aux filtres de statut existants.
+- **Profil refait** : en-tête (avatar, nom, numéro masqué `+968 •••• 1234`, e-mail masqué, Friendly ID copiable, statut de vérification RÉEL — « Vérifié » seulement si le serveur le dit), sections Informations personnelles, Vérification, Sécurité, Préférences, Assistance.
+- **Modifier le profil** : prénom et nom seulement, écrits dans `profiles` (droits par colonne du serveur, RLS sur sa propre ligne). Numéro et pays en lecture seule (le numéro identifie le compte et les SMS).
+- **Modifier le code personnel** : fonction serveur existante `change_pin` (l'ancien code est d'abord vérifié par `verify_pin` : même compteur d'essais et même blocage que pour un transfert).
+- **Réglages par catégories** : Apparence, Notifications (in-app / alertes du téléphone / SMS clairement distingués), Sécurité et confidentialité, Préférences financières, Compte, Informations et assistance. Toutes les commandes précédentes conservées.
+- **Installation sans App Store** : carte d'accueil + ligne des Réglages, seulement si l'app n'est pas déjà installée. iPhone/iPad Safari : les 3 vraies étapes (Partager → « Sur l'écran d'accueil » → ouvrir depuis l'icône) ; autre navigateur iOS : « ouvrez dans Safari » ; Android / ordinateur : invite native du navigateur. « Plus tard » = 14 jours.
+- **Reçu** : titre « Confirmation de transaction », numéro de l'expéditeur formaté, actions dans l'ordre Télécharger PDF / Enregistrer l'image / Partager / Copier la référence / Imprimer, puis Nouvelle opération et Retour à l'accueil. Le doublon de nom masqué a été retiré.
+
+## Sécurité des transferts (important)
+- **État « à vérifier »** : une requête sans réponse lisible (réseau coupé, délai de 30 s, passerelle 5xx) n'est plus affichée comme « échec ». Écran « Statut à vérifier » : jamais « confirmé », **jamais renvoyée automatiquement**.
+- **Vérifier le statut** : relit le résultat de LA MÊME requête (même clé d'idempotence) **sans autorisation PIN** : le serveur rejoue la clé avant de consommer une autorisation, et sans autorisation il répond `pin_required` — cette vérification ne peut donc jamais créer de transfert. Enregistré → vrai reçu (référence du serveur) ; non enregistré → « Réessayer » proposé seulement à ce moment.
+- **Refus certain** (erreur SQL : opération annulée) : écran « Transfert non abouti » avec la raison, Réessayer / Modifier le montant / Accueil (avant : retour silencieux à l'accueil).
+- **Hors ligne** : le transfert n'est pas tenté et la personne en est informée.
+- Animation d'envoi en **4 étapes visibles** : Vérifié → Envoyé → Réponse du serveur (« En attente de la réponse du serveur… » après 1,6 s) → Confirmé / non abouti / à vérifier.
+
+## Corrigé
+- **Tous les écrans étaient décalés de ~18 px vers la gauche** après quelques secondes sur l'accueil (déjà en 12.13.0) : le carrousel utilisait `scrollIntoView`, qui faisait défiler `#screens` (et parfois la page verticalement). Seule la piste défile maintenant ; `#screens` ne peut plus défiler de côté.
+- Barre du haut transparente qui chevauchait le contenu au défilement (Réglages) : fond lisible dès que l'écran défile.
+- Transition d'écran avec `filter: blur(6px)` plein écran (coûteuse sur iPhone) remplacée par opacité + translation.
+- Carte de solde : l'ancienne règle `friendly.css` (grille à 2 colonnes, `!important`) est remplacée.
+- Liste des opérations : un numéro stocké comme nom s'affiche formaté (`+968 9123 4567`).
+
+## PWA
+- Version `12.14.0`, cache `fp-shell-v12.14.0` ; `premium.css`, `premium.js` et les 7 polices sont précachés. Couleurs de thème mises à jour (manifeste, `theme-color`). Raccourci « Receive money ». Le service worker ne met toujours **aucune** donnée Supabase en cache.
+
+## Tests
+- Nouveau `tests/ui/premium-1214.test.mjs` (15 tests). Mis à jour : version 12.14.0 (3 fichiers) ; `transfer-simple` : après un refus, l'écran « Transfer not completed » au lieu du retour à l'accueil.
+
+## NON EXÉCUTÉ / à faire (étape 2, demain)
+- Aucun test sur un vrai iPhone / Safari (Chromium seulement), aucune alerte push réelle, aucun SMS réel, pas de déploiement Netlify.
+- Étude publique des notifications des banques d'Oman et nouveaux modèles de notifications (en attente, échec, remboursement, dépôt, sécurité) : non commencés.
+- Le serveur n'a PAS été modifié (aucune migration, aucune fonction redéployée) ; seules des lectures du schéma ont été faites.
+
+---
+
 # Friendly Pay 12.13.0 — alertes sur le téléphone (notifications iPhone / Android, même application fermée)
 
 ## Ajouté

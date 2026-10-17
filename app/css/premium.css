@@ -306,7 +306,8 @@ html[dir="rtl"] .rc-doc small{font-family:var(--font-ar)}
 .receipt-row,.receipt-line{min-height:46px}
 .receipt-row-value,.receipt-line-value{font-weight:700}
 .rc-acts{display:grid!important;grid-template-columns:1fr 1fr;gap:10px}
-.rc-acts .btn{min-height:50px;font-size:calc(14px*var(--ui));padding:0 12px;gap:8px}
+.rc-acts .btn{min-height:50px;font-size:calc(14px*var(--ui));padding:0 12px;gap:8px;flex-direction:row!important;justify-content:center;align-items:center}
+.receipt-line-value.mono,#receipt-ref,.px-bal-id{letter-spacing:.01em!important;font-variant-numeric:normal!important;font-feature-settings:normal!important;overflow-wrap:anywhere}   /* tabular figures also widen the hyphens of a reference */
 .rc-acts .btn span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rc-acts .rc-print{grid-column:1/-1;min-height:44px}
 
