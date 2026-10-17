@@ -1,0 +1,10 @@
+node_modules
+.git
+.vercel
+*.zip
+js/dev
+ARCHITECTURE.md
+CHANGELOG.md
+DEPLOIEMENT-VERCEL.md
+_headers
+walletconnect

@@ -1,0 +1,31 @@
+# Fichier lu par Netlify et Cloudflare Pages (ignoré par Vercel, qui utilise vercel.json).
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self' data: https://fonts.reown.com; img-src 'self' data: blob: https://gebjmguoauvutiqvoswl.supabase.co https://api.web3modal.com https://api.web3modal.org https://walletconnect.com https://walletconnect.org https://secure.walletconnect.com https://secure.walletconnect.org https://ipfs.io; connect-src 'self' https://gebjmguoauvutiqvoswl.supabase.co wss://gebjmguoauvutiqvoswl.supabase.co https://nile.trongrid.io https://api.nileex.io https://rpc.walletconnect.com https://rpc.walletconnect.org https://relay.walletconnect.com https://relay.walletconnect.org https://pulse.walletconnect.com https://pulse.walletconnect.org https://keys.walletconnect.com https://keys.walletconnect.org https://notify.walletconnect.com https://notify.walletconnect.org https://echo.walletconnect.com https://echo.walletconnect.org https://push.walletconnect.com https://push.walletconnect.org wss://relay.walletconnect.com wss://relay.walletconnect.org https://api.web3modal.com https://api.web3modal.org; worker-src 'self'; frame-src https://verify.walletconnect.com https://verify.walletconnect.org https://secure.walletconnect.com https://secure.walletconnect.org; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Service-Worker-Allowed: /
+/manifest.webmanifest
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=0, must-revalidate
+/
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/*
+  Cache-Control: public, max-age=0, must-revalidate
+/offline.html
+  Cache-Control: no-cache
+/404.html
+  Cache-Control: no-cache
+/favicon.ico
+  Cache-Control: public, max-age=86400

@@ -1,0 +1,23 @@
+/* ==========================================================================
+   FRIENDLY PAY 12.11.0 — écran de secours, bannière hors-ligne, démarrage impossible
+   ========================================================================== */
+.res-screen,.res-fatal{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:calc(12px*var(--ui));
+  min-height:70vh;padding:calc(28px*var(--ui)) calc(24px*var(--ui))}
+.res-art{margin-bottom:calc(4px*var(--ui));animation:resFloat 4.6s ease-in-out infinite}
+.res-title{margin:0;font-size:calc(21px*var(--ui));line-height:1.25;font-weight:800;color:var(--text)}
+.res-body{margin:0;max-width:calc(320px*var(--ui));font-size:calc(14.5px*var(--ui));line-height:1.55;color:var(--text-2)}
+.res-actions{display:flex;flex-direction:column;gap:calc(10px*var(--ui));width:100%;max-width:calc(320px*var(--ui));margin-top:calc(10px*var(--ui))}
+.res-actions .btn,.res-fatal .btn{width:100%;min-height:calc(52px*var(--ui))}
+.res-fatal{position:absolute;inset:0}
+.res-fatal .btn{max-width:calc(320px*var(--ui));margin-top:calc(10px*var(--ui))}
+.res-fatal-logo{margin-bottom:calc(8px*var(--ui))}
+@keyframes resFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+#net-banner{position:fixed;inset-inline:0;top:0;z-index:260;display:flex;align-items:center;justify-content:center;
+  padding:calc(8px*var(--ui) + env(safe-area-inset-top,0px)) calc(14px*var(--ui)) calc(8px*var(--ui));
+  font-size:calc(13px*var(--ui));font-weight:700;line-height:1.3;text-align:center;color:#fff;pointer-events:none;
+  transform:translateY(-110%);opacity:0;transition:transform .32s cubic-bezier(.2,.9,.2,1),opacity .24s ease}
+#net-banner.is-on{transform:translateY(0);opacity:1}
+#net-banner.is-off{background:#B4532A}
+#net-banner.is-ok{background:#0B7F75}
+@media (prefers-reduced-motion:reduce){.res-art{animation:none}#net-banner{transition:none}}

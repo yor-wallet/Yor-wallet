@@ -1,0 +1,133 @@
+/* ===== Send animation (12.12.0): secure -> send -> success | fail =====
+   Two phones, a rail, a coin. The phase (data-phase on .proc-view) is set by ProcessingEngine from what REALLY happens; the coin's path is driven by
+   js/ui/send-anim.js. Base state = final state of each element; "reduce motion" shows every phase without movement. */
+.sx-view{gap:calc(12px*var(--ui))}
+.sx-stage{width:min(100%,calc(340px*var(--ui)));aspect-ratio:320/200;margin:0 auto var(--sp-1)}
+.sx-svg{width:100%;height:100%;display:block;overflow:visible}
+.sx-pin{transform-box:fill-box;transform-origin:50% 50%;animation:sxIn .7s var(--ease-out,cubic-bezier(.16,1,.3,1)) both}
+.sx-pb{animation-delay:.12s}
+@keyframes sxIn{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+.sx-body{fill:var(--surf-2,var(--glass-2));stroke:var(--line,var(--border));stroke-width:1.6}
+.sx-screen{fill:var(--glass-1);stroke:none}
+.sx-spk{fill:var(--text-3);opacity:.5}
+.sx-rail{fill:none;stroke:var(--text-3);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:.1 7;opacity:.55}
+.sx-rail-lit{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:0;opacity:.9;transition:stroke .4s ease,opacity .4s ease}
+.sx-view[data-phase="secure"] .sx-rail-lit{animation:sxDraw .9s .15s cubic-bezier(.4,0,.2,1) both}
+@keyframes sxDraw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+.sx-lock rect,.sx-lock path{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sx-lock rect{fill:color-mix(in srgb,var(--accent) 16%,transparent)}
+.sx-lock{opacity:1;transition:opacity .35s ease}
+.sx-out{fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .35s ease}
+.sx-view[data-phase="send"] .sx-lock,.sx-view[data-phase="success"] .sx-lock,.sx-view[data-phase="fail"] .sx-lock{opacity:0}
+.sx-view[data-phase="send"] .sx-out{opacity:1;animation:sxNudge 1.4s ease-in-out infinite}
+.sx-view[data-phase="success"] .sx-out,.sx-view[data-phase="fail"] .sx-out{opacity:.35}
+@keyframes sxNudge{0%,100%{opacity:.55}50%{opacity:1}}
+.sx-wait{fill:none;stroke:var(--text-3);stroke-width:2;stroke-dasharray:3 6;stroke-linecap:round;opacity:.7;transform-box:fill-box;transform-origin:50% 50%}
+.sx-view[data-phase="send"] .sx-wait{animation:sxSpin 5s linear infinite}
+@keyframes sxSpin{to{transform:rotate(360deg)}}
+.sx-got{fill:var(--success,var(--accent));opacity:0;transform-box:fill-box;transform-origin:50% 50%;transform:scale(.6);transition:opacity .35s ease,transform .5s cubic-bezier(.34,1.4,.5,1)}
+.sx-ok,.sx-no{fill:none;stroke:#fff;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:100;stroke-dashoffset:100}
+.sx-view[data-phase="success"] .sx-wait,.sx-view[data-phase="fail"] .sx-wait{opacity:0}
+.sx-view[data-phase="success"] .sx-got{opacity:1;transform:none}
+.sx-view[data-phase="success"] .sx-ok{stroke-dashoffset:0;transition:stroke-dashoffset .5s .2s cubic-bezier(.4,0,.2,1)}
+.sx-view[data-phase="fail"] .sx-got{opacity:.9;fill:var(--text-3);transform:none}
+.sx-view[data-phase="fail"] .sx-no{stroke-dashoffset:0;transition:stroke-dashoffset .4s .1s ease}
+.sx-view[data-phase="fail"] .sx-rail-lit{stroke:var(--text-3);opacity:.45}
+.sx-ripple{fill:none;stroke:var(--success,var(--accent));stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:50% 50%}
+.sx-view[data-phase="success"] .sx-ripple{animation:sxRipple 1.2s .1s ease-out both}
+@keyframes sxRipple{from{opacity:.55;transform:scale(.3)}to{opacity:0;transform:scale(1.6)}}
+.sx-coin,.sx-t1,.sx-t2{opacity:0}
+.sx-coin .sx-glow{fill:var(--accent);opacity:.18}
+.sx-coin .sx-disc{fill:url(#sxg)}
+.sx-coin .sx-ring{fill:none;stroke:#fff;stroke-opacity:.6;stroke-width:1.5}
+.sx-coin .sx-dot{fill:#fff;fill-opacity:.9}
+.sx-t1 circle,.sx-t2 circle{fill:var(--accent)}
+.sx-stopped .sx-coin,.sx-stopped .sx-t1,.sx-stopped .sx-t2{opacity:0!important;transition:opacity .3s ease}
+.sx-to{font-size:calc(13.5px*var(--ui));color:var(--text-2)}
+.sx-to b{color:var(--text);font-weight:650;letter-spacing:.01em}
+.sx-steps{display:flex;gap:calc(20px*var(--ui));list-style:none;margin:var(--sp-2) 0 0;padding:0;justify-content:center;flex-wrap:wrap}
+.sx-steps li{display:flex;align-items:center;gap:calc(7px*var(--ui));font-size:calc(12.5px*var(--ui));color:var(--text-3);font-weight:600;transition:color .3s ease}
+.sx-steps li i{width:calc(10px*var(--ui));height:calc(10px*var(--ui));border-radius:50%;border:2px solid currentColor;display:block;background:transparent;transition:background-color .3s ease,border-color .3s ease}
+.sx-view[data-phase="secure"] .sx-steps li[data-s="1"],.sx-view[data-phase="send"] .sx-steps li[data-s="2"]{color:var(--accent)}
+.sx-view[data-phase="secure"] .sx-steps li[data-s="1"] i,.sx-view[data-phase="send"] .sx-steps li[data-s="2"] i{animation:sxBlink 1.2s ease-in-out infinite}
+@keyframes sxBlink{0%,100%{opacity:.45}50%{opacity:1}}
+.sx-view[data-phase="send"] .sx-steps li[data-s="1"],.sx-view[data-phase="success"] .sx-steps li,.sx-view[data-phase="fail"] .sx-steps li[data-s="1"]{color:var(--accent)}
+.sx-view[data-phase="send"] .sx-steps li[data-s="1"] i,.sx-view[data-phase="success"] .sx-steps li i,.sx-view[data-phase="fail"] .sx-steps li[data-s="1"] i{background:currentColor}
+.sx-view[data-phase="success"] .sx-steps li{color:var(--success,var(--accent))}
+.sx-view[data-phase="fail"] .sx-steps li[data-s="2"]{color:var(--danger)}
+.sx-view[data-phase="fail"] .sx-steps li[data-s="2"] i{background:currentColor}
+.proc-label{transition:opacity .3s ease;min-height:calc(22px*var(--ui))}
+@media (prefers-reduced-motion:reduce){
+  .sx-pin,.sx-view .sx-rail-lit,.sx-view .sx-out,.sx-view .sx-wait,.sx-view .sx-ripple,.sx-steps li i{animation:none!important}
+  .sx-got,.sx-ok,.sx-no,.sx-lock,.sx-out,.sx-rail-lit,.sx-steps li,.sx-steps li i{transition:none!important}
+  .sx-view[data-phase="send"] .sx-out{opacity:1}
+  .sx-view[data-phase="success"] .sx-ripple{opacity:.25;transform:none}
+}
+
+/* ===== Premium motion layer ===== */
+:root{--ease-out:cubic-bezier(.16,1,.3,1);--ease-spring:cubic-bezier(.34,1.4,.5,1)}
+/* screen transitions: fade + slide + depth + soft blur, fast (transform/opacity only for the heavy part) */
+.screen.active{animation:screenIn 280ms var(--ease-out) both}
+@keyframes screenIn{0%{opacity:0;transform:translate3d(var(--enter-x),8px,0) scale(.985);filter:blur(5px)}60%{filter:blur(0)}100%{opacity:1;transform:none;filter:blur(0)}}
+.screen:not(.active) *{animation-play-state:paused!important}
+/* press / hover / focus micro-interactions */
+.btn,.hero-btn,.quick-item,.chip,.item,.select-item,.nav-item,.side-item{transition:transform 180ms var(--ease-spring),background-color 180ms ease,border-color 180ms ease,box-shadow 220ms ease,color 180ms ease}
+.btn:active,.hero-btn:active,.chip:active{transform:scale(.965)}
+.quick-item:active .quick-icon{transform:scale(.92)}
+@media (hover:hover){
+  .btn:hover,.hero-btn:hover{transform:translateY(-1px)}
+  .quick-item:hover .quick-icon{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 55%,var(--border));box-shadow:0 10px 24px rgba(0,0,0,.35)}
+  .item:hover,.select-item:hover{background:var(--glass-1)}
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:inherit}
+/* staggered reveal of home blocks */
+.screen.active .home-greeting,.screen.active .hg-hero,.screen.active .hg-quick,.screen.active .hg-lists{animation:elementReveal 520ms var(--ease-out) both}
+.screen.active .hg-hero{animation-delay:60ms}.screen.active .hg-quick{animation-delay:130ms}.screen.active .hg-lists{animation-delay:200ms}
+/* 3D bank card: tilt, light, parallax */
+.card-3d-wrap{touch-action:pan-y;animation:cardFloat 7s ease-in-out infinite}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.card-3d{filter:none}
+.card-shine{position:absolute;inset:0;pointer-events:none;z-index:2;border-radius:inherit;opacity:var(--shine,.55);transition:opacity .35s ease;
+  background:radial-gradient(circle at var(--mx,30%) var(--my,0%),rgba(255,255,255,.26),rgba(255,255,255,.06) 32%,transparent 55%),
+  linear-gradient(115deg,transparent calc(var(--mx,30%) - 22%),rgba(255,255,255,.10) var(--mx,30%),transparent calc(var(--mx,30%) + 22%));mix-blend-mode:soft-light}
+.card-front .card-front-top,.card-front .card-chip,.card-front .card-number,.card-front .card-bottom{transition:transform 260ms var(--ease-out)}
+.card-front .card-front-top{transform:translate(calc(var(--px,0)*3px),calc(var(--py,0)*3px))}
+.card-front .card-chip{transform:translate(calc(var(--px,0)*6px),calc(var(--py,0)*6px))}
+.card-front .card-number{transform:translate(calc(var(--px,0)*8px),calc(var(--py,0)*8px))}
+.card-front .card-bottom{transform:translate(calc(var(--px,0)*4px),calc(var(--py,0)*4px))}
+/* crypto: subtle 3D orb */
+.portfolio-hero{position:relative;overflow:hidden}
+.portfolio-hero>*:not(.crypto-orb){position:relative;z-index:1}
+.crypto-orb{position:absolute;inset-inline-end:calc(var(--sp-5)*.8);top:50%;width:calc(118px*var(--ui));height:calc(118px*var(--ui));margin-top:calc(-59px*var(--ui));perspective:calc(520px*var(--ui));pointer-events:none;z-index:0;transform:translate3d(0,var(--oty,0),0);opacity:.95}
+.co-sphere{position:absolute;inset:0;border-radius:50%;overflow:hidden;transform-style:preserve-3d;transform:rotateY(var(--oy,0deg)) rotateX(var(--ox,0deg));transition:transform 420ms var(--ease-out);
+  box-shadow:inset calc(-12px*var(--ui)) calc(-16px*var(--ui)) calc(30px*var(--ui)) rgba(0,0,0,.55),0 calc(18px*var(--ui)) calc(44px*var(--ui)) color-mix(in srgb,var(--accent) 30%,transparent);animation:orbFloat 9s ease-in-out infinite;background:#0C0C0C}
+.co-tex{position:absolute;inset:-25%;border-radius:50%;background:conic-gradient(from 0deg,var(--accent),#5EEAD4 22%,#071A18 40%,var(--accent) 62%,#0B2321 82%,var(--accent));animation:orbSpin 26s linear infinite;will-change:transform;opacity:.9}
+.co-light{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.55),rgba(255,255,255,.08) 24%,transparent 46%),radial-gradient(circle at 70% 85%,rgba(0,0,0,.55),transparent 55%)}
+.co-ring{position:absolute;inset:-16%;border-radius:50%;border:1.5px solid rgba(255,255,255,.18);transform:rotateX(74deg) rotateZ(0);animation:ringSpin 16s linear infinite;box-shadow:0 0 18px color-mix(in srgb,var(--accent) 22%,transparent)}
+@keyframes orbSpin{to{transform:rotate(360deg)}}
+@keyframes ringSpin{to{transform:rotateX(74deg) rotateZ(360deg)}}
+@keyframes orbFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@media (max-width:420px){.crypto-orb{opacity:.55}}
+/* subtle living background */
+#ambient::before,#ambient::after{will-change:transform}
+
+/* orb v2: banded rotating texture + limb darkening */
+.crypto-orb{width:calc(88px*var(--ui));height:calc(88px*var(--ui));margin-top:calc(-44px*var(--ui));inset-inline-end:calc(var(--sp-5)*1.1)}
+.co-tex{inset:auto;top:0;bottom:0;left:0;width:300%;border-radius:0;opacity:1;
+  background:linear-gradient(90deg,#14B8A6 0%,#5EEAD4 14%,#071A18 30%,#14B8A6 46%,#0B2321 62%,#0D9488 80%,#14B8A6 100%) 0 0/33.3333% 100% repeat-x;animation:orbSlide 22s linear infinite}
+@keyframes orbSlide{to{transform:translate3d(-33.3333%,0,0)}}
+.co-light{background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.6),rgba(255,255,255,.08) 22%,transparent 42%),radial-gradient(circle at 50% 50%,transparent 46%,rgba(0,0,0,.62) 100%),radial-gradient(circle at 72% 88%,rgba(0,0,0,.45),transparent 52%)}
+.co-ring{inset:-24%}
+
+.co-ring{inset:-13%}
+.quick:has(>:nth-child(5):last-child){grid-template-columns:repeat(5,1fr)}
+
+.faq-item{padding:0;overflow:hidden}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);font-weight:600;min-height:calc(52px*var(--ui))}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-chev{display:inline-flex;transition:transform .25s var(--ease-out);opacity:.7}
+.dir-flip-faq{}
+.faq-item[open] .faq-chev{transform:rotate(90deg)}
+.faq-a{padding:0 var(--sp-5) var(--sp-5);color:var(--text-2);line-height:1.6;font-size:calc(14px*var(--ui))}
+html[dir="rtl"] .faq-chev{transform:scaleX(-1)}
+html[dir="rtl"] .faq-item[open] .faq-chev{transform:scaleX(-1) rotate(90deg)}

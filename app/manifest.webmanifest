@@ -1,0 +1,27 @@
+{
+  "id": "./",
+  "name": "Friendly Pay",
+  "short_name": "Friendly Pay",
+  "description": "Send money to a mobile number in Oman and manage your cards. Simple and secure.",
+  "lang": "en",
+  "dir": "auto",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#F4FAF9",
+  "theme_color": "#F4FAF9",
+  "categories": ["finance", "business"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    { "name": "Send money", "short_name": "Send", "url": "./#/country/select", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Cards", "short_name": "Cards", "url": "./#/cards", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "History", "short_name": "History", "url": "./#/history", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
+  ]
+}

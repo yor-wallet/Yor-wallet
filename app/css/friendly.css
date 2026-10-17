@@ -1,0 +1,209 @@
+/* ==========================================================================
+   FRIENDLY PAY 12.9.0 — loaded after yor-ds.css, before wallet-connect.css.
+   1 icons (shadow shape)   2 floating dock menu   3 compact balance + transparent eye   4 quick actions
+   5 virtual keypad + code dots   6 Face ID + lock screen   7 wallet block in Settings   8 motion (screens, stagger, splash)
+   Colours come ONLY from the tokens in yor-ds.css §1b (--accent, --accent-600, --accent-soft, --on-accent, --btn-grad, --btn-glow).
+   Every animation is switched off under prefers-reduced-motion (last section).
+   ========================================================================== */
+
+/* ---------- 1. icons: the soft shadow shape behind the line drawing ---------- */
+:root{--ic2:var(--accent)}
+svg.ic .d2{fill:var(--ic2,currentColor);fill-opacity:.22;stroke:none;transform:translate(1.4px,1.4px);transition:transform .28s cubic-bezier(.34,1.56,.64,1),fill-opacity .2s}
+button:active svg.ic .d2,a:active svg.ic .d2,.fk-key:active svg.ic .d2{transform:translate(0,0)}
+.btn-primary,.nav-cta-tile,.rv-act.p i,.fid-orb,.tile-solid,.chip[aria-pressed="true"],.nwc-wrap,.ds-balance{--ic2:currentColor}
+
+/* ---------- 2. main menu: floating glass dock, gliding highlight, raised Send orb ---------- */
+:root{--dock-h:64px}
+#main{padding-bottom:calc(88px*var(--ui) + var(--safe-b))}
+#main.no-nav{padding-bottom:var(--safe-b)}
+@media (min-width:1024px){#main{padding-bottom:0}}
+@media (max-width:1023.98px){
+  #bottom-nav.bottom-nav:not([hidden]){display:block!important}
+}
+#bottom-nav.bottom-nav{
+  position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:auto!important;padding:0 14px calc(10px + var(--safe-b))!important;
+  background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  pointer-events:none;z-index:var(--z-nav)}
+#bottom-nav .nav-dock{
+  position:relative;pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:2px;
+  height:calc(var(--dock-h)*var(--ui));max-width:460px;margin:0 auto;padding:0 6px;border-radius:28px;
+  background:color-mix(in srgb,var(--bg-1) 80%,transparent);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+  border:1px solid color-mix(in srgb,var(--text) 9%,transparent);
+  box-shadow:0 22px 44px -20px rgba(4,40,36,.5),0 2px 8px rgba(4,40,36,.1),inset 0 1px 0 rgba(255,255,255,.55);
+  animation:frdDock .7s cubic-bezier(.2,.9,.2,1) backwards .1s}
+:root:not([data-theme="light"]) #bottom-nav .nav-dock{box-shadow:0 22px 44px -18px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.08)}
+#bottom-nav .nav-ind{position:absolute;left:0;top:7px;bottom:7px;width:0;border-radius:20px;opacity:0;pointer-events:none;z-index:0;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 20%,transparent),color-mix(in srgb,var(--accent) 9%,transparent));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 24%,transparent)}
+#bottom-nav .nav-ind.ready{transition:transform .5s cubic-bezier(.34,1.35,.5,1),width .35s cubic-bezier(.2,.9,.2,1),opacity .25s}
+#bottom-nav .nav-item{position:relative;z-index:1;flex:1 1 0;min-width:0;height:100%;padding:0;gap:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--text-3);background:none;border:0;font-size:calc(10.5px*var(--ui));font-weight:700;letter-spacing:.01em;-webkit-tap-highlight-color:transparent}
+#bottom-nav .nav-item::before,#bottom-nav .nav-item::after{display:none!important}
+#bottom-nav .nav-ic{display:grid;place-items:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+#bottom-nav .nav-item svg{width:calc(24px*var(--ui));height:calc(24px*var(--ui));transform:none!important}
+#bottom-nav .nav-lb{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.1}
+#bottom-nav .nav-item[aria-current="page"]{color:var(--accent)}
+#bottom-nav .nav-item[aria-current="page"] .nav-ic{transform:translateY(-2px) scale(1.08)}
+#bottom-nav .nav-item[aria-current="page"] svg.ic .d2{transform:translate(2.2px,2.2px);fill-opacity:.34}
+#bottom-nav .nav-item:active .nav-ic{transform:scale(.86)}
+#bottom-nav .nav-cta{flex:0 0 calc(74px*var(--ui));overflow:visible}
+#bottom-nav .nav-cta .nav-cta-tile{position:relative;width:calc(58px*var(--ui));height:calc(58px*var(--ui));margin:calc(-30px*var(--ui)) 0 calc(4px*var(--ui))!important;border-radius:22px!important;display:grid;place-items:center;
+  background:var(--btn-grad)!important;color:var(--on-accent)!important;border:3px solid var(--bg-1);
+  box-shadow:0 16px 28px -10px var(--btn-glow),inset 0 2px 0 rgba(255,255,255,.35)!important;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+#bottom-nav .nav-cta .nav-cta-tile::after{content:"";position:absolute;inset:-5px;border-radius:26px;border:2px solid var(--accent);opacity:0;animation:frdPulse 3.2s ease-out infinite 1.2s;pointer-events:none}
+#bottom-nav .nav-cta:active .nav-cta-tile{transform:scale(.88) rotate(-6deg)}
+#bottom-nav .nav-cta svg{width:calc(26px*var(--ui));height:calc(26px*var(--ui));color:var(--on-accent);stroke:currentColor}
+#bottom-nav .nav-cta .nav-lb{color:var(--text-2)}
+#bottom-nav .nav-cta[aria-current="page"] .nav-lb{color:var(--accent)}
+@keyframes frdDock{from{opacity:0;transform:translateY(34px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes frdPulse{0%{opacity:.5;transform:scale(.92)}70%,100%{opacity:0;transform:scale(1.28)}}
+@media (max-height:480px) and (orientation:landscape){:root{--dock-h:52px}#bottom-nav .nav-lb{display:none}#main{padding-bottom:calc(70px*var(--ui) + var(--safe-b))}}
+
+/* ---------- 3. balance: small, light, with a transparent eye ---------- */
+.ds-balance{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:10px;row-gap:0;
+  padding:calc(13px*var(--ui)) calc(14px*var(--ui)) calc(14px*var(--ui)) calc(18px*var(--ui))!important;border-radius:24px!important;
+  background:radial-gradient(70% 140% at 100% 0%,rgba(94,234,212,.28),transparent 62%),linear-gradient(135deg,#0E8176 0%,#0A6B63 58%,#07524C 100%)!important;
+  border:1px solid rgba(255,255,255,.2)!important;
+  box-shadow:0 18px 30px -18px rgba(7,82,76,.75),inset 0 1px 0 rgba(255,255,255,.28)!important}
+.ds-balance::before{animation-duration:9s!important}
+.ds-balance::after{content:"";position:absolute;right:-26px;top:-34px;width:112px;height:112px;border-radius:50%;z-index:-1;pointer-events:none;border:1.5px solid rgba(255,255,255,.16);box-shadow:inset 0 0 0 14px rgba(255,255,255,.04)}
+.ds-balance .sk{grid-column:1/-1}
+.ds-bal-top{display:contents}
+.ds-bal-label{grid-column:1;grid-row:1;font-size:calc(12px*var(--ui))!important;font-weight:650;letter-spacing:.02em;opacity:.86}
+.ds-bal-amt{grid-column:1;grid-row:2;margin:calc(1px*var(--ui)) 0 0!important;font-size:clamp(26px,8.2vw,34px)!important;line-height:1.12!important;letter-spacing:-.025em!important;animation:frdAmt .7s cubic-bezier(.2,.9,.2,1) both}
+.ds-bal-amt.is-hidden{letter-spacing:.16em!important;font-size:clamp(24px,7.4vw,30px)!important}
+.ds-bal-orig,.ds-bal-sub{grid-column:1/-1;font-size:calc(11.5px*var(--ui))!important;margin-top:calc(4px*var(--ui))!important}
+@keyframes frdAmt{0%{opacity:0;transform:translateY(12px);filter:blur(7px);letter-spacing:.06em}100%{opacity:1;transform:none;filter:blur(0)}}
+/* the eye: no fill, a see-through glass ring and a line-only glyph that "opens" when the screen draws */
+.ds-eye{grid-column:2;grid-row:1/span 2;align-self:center;position:relative;width:calc(46px*var(--ui))!important;height:calc(46px*var(--ui))!important;background:transparent!important;border:0!important;color:rgba(255,255,255,.95)!important;box-shadow:none!important;-webkit-tap-highlight-color:transparent}
+.ds-eye::before{content:"";position:absolute;inset:5px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .2s,border-color .2s}
+.ds-eye svg{position:relative;width:calc(22px*var(--ui));height:calc(22px*var(--ui));transform-origin:50% 50%;animation:frdEye .6s cubic-bezier(.2,.9,.2,1.15) both .15s}
+.ds-eye:active::before{transform:scale(.88)}
+.ds-eye[aria-pressed="true"]::before{border-style:dashed;background:rgba(255,255,255,.03)}
+@media (hover:hover){.ds-eye:hover::before{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.65)}}
+@keyframes frdEye{0%{transform:scaleY(.08);opacity:0}55%{transform:scaleY(1.18);opacity:1}100%{transform:scaleY(1)}}
+
+/* ---------- 4. quick actions: soft squircles that cascade in ---------- */
+.rv-acts{gap:calc(8px*var(--ui))!important}
+.rv-act{position:relative;gap:calc(7px*var(--ui))!important;color:var(--text-2)!important;font-weight:700!important;animation:frdAct .6s cubic-bezier(.2,.9,.2,1) backwards;animation-delay:calc(var(--i,0)*60ms + 140ms);-webkit-tap-highlight-color:transparent}
+.rv-act i{width:100%!important;max-width:calc(62px*var(--ui));border-radius:22px!important;color:var(--accent);
+  background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 16%,var(--bg-1)),color-mix(in srgb,var(--accent) 5%,var(--bg-1)))!important;
+  border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)!important;box-shadow:0 10px 18px -14px var(--btn-glow),inset 0 1px 0 rgba(255,255,255,.4);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .2s}
+.rv-act.p i{background:var(--btn-grad)!important;color:var(--on-accent)!important;border-color:transparent!important;box-shadow:0 16px 26px -12px var(--btn-glow),inset 0 2px 0 rgba(255,255,255,.32)!important}
+.rv-act:active i{transform:scale(.9) rotate(-4deg)!important}
+.rv-act.p svg,.rv-act.p i svg{color:var(--on-accent)}
+.rv-ca .rv-act.on i{background:var(--btn-grad)!important;color:var(--on-accent)!important;border-color:transparent!important}
+@keyframes frdAct{from{opacity:0;transform:translateY(18px) scale(.88)}to{opacity:1;transform:none}}
+
+/* ---------- 5. virtual keypad: glass keys that follow the finger, digits that fly into the code dots ---------- */
+.fk-pad{display:grid;grid-template-columns:repeat(3,auto);gap:calc(14px*var(--ui)) calc(20px*var(--ui));direction:ltr;justify-content:center}
+.fk-key{--lx:var(--px,50%);--ly:var(--py,26%);position:relative;overflow:hidden;width:min(76px,20.5vw);height:min(76px,20.5vw);padding:0;border:0;border-radius:50%;display:grid;place-items:center;
+  color:var(--text);font:inherit;font-size:calc(28px*var(--ui));font-weight:600;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  background:radial-gradient(circle at var(--lx) var(--ly),color-mix(in srgb,var(--accent) 26%,transparent),transparent 62%),color-mix(in srgb,var(--text) 5%,var(--bg-1));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -3px 8px rgba(0,0,0,.05),0 8px 16px -10px rgba(4,40,36,.45);
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;animation:frdKey .55s cubic-bezier(.2,.9,.2,1) backwards;animation-delay:calc(var(--n,0)*26ms + 80ms)}
+.fk-key.hit{--lx:var(--rx,50%);--ly:var(--ry,50%)}
+.fk-key:active{transform:scale(.88);box-shadow:inset 0 2px 8px rgba(0,0,0,.14),0 2px 6px -4px rgba(4,40,36,.4)}
+.fk-d{position:relative;z-index:1;font-variant-numeric:tabular-nums;transition:transform .2s cubic-bezier(.34,1.56,.64,1)}
+.fk-key:active .fk-d{transform:scale(1.18)}
+.fk-ring{position:absolute;left:var(--rx,50%);top:var(--ry,50%);width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--accent);opacity:0;pointer-events:none}
+.fk-key.hit .fk-ring{animation:frdRipple .65s ease-out}
+.fk-fn{background:transparent!important;box-shadow:none!important;color:var(--text-2)}
+.fk-fn[aria-pressed="true"]{color:var(--accent)}
+.fk-fn svg{position:relative;z-index:1}
+.fk-pad.reflow .fk-key{animation:frdFlip .5s cubic-bezier(.2,.9,.2,1) backwards;animation-delay:calc(var(--n,0)*22ms)}
+@keyframes frdKey{from{opacity:0;transform:translateY(22px) scale(.7)}to{opacity:1;transform:none}}
+@keyframes frdFlip{from{opacity:0;transform:rotateX(80deg) scale(.7)}to{opacity:1;transform:none}}
+@keyframes frdRipple{0%{opacity:.5;transform:scale(1)}100%{opacity:0;transform:scale(15)}}
+@media (max-height:700px){.fk-key{width:62px;height:62px;font-size:23px}.fk-pad{gap:10px 16px}}
+/* code dots */
+.fk-dots{display:flex;gap:calc(14px*var(--ui));direction:ltr;margin-bottom:calc(6px*var(--ui))}
+.fk-dots i{position:relative;display:block;width:calc(14px*var(--ui));height:calc(14px*var(--ui));border-radius:50%;border:2px solid color-mix(in srgb,var(--text) 26%,transparent);background:transparent;transition:background .15s,border-color .15s,box-shadow .2s}
+.fk-dots i.on{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 16%,transparent);transform:none}
+.fk-dots i.land{animation:frdLand .45s cubic-bezier(.34,1.56,.64,1)}
+.fk-dots.done i{animation:frdBloom .6s ease-out}
+.fk-orb{position:fixed;z-index:1300;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px 2px var(--accent);pointer-events:none}
+@keyframes frdLand{0%{transform:scale(.4)}55%{transform:scale(1.55)}100%{transform:scale(1)}}
+@keyframes frdBloom{0%{transform:scale(1)}40%{transform:scale(1.45);box-shadow:0 0 0 9px color-mix(in srgb,var(--accent) 24%,transparent)}100%{transform:scale(1)}}
+/* the transfer sheet reuses the same pad */
+.ps-pad.fk-pad{margin:0 auto}
+.ps-key.fk-key{width:min(72px,19.5vw);height:min(72px,19.5vw)}
+
+/* ---------- 6. lock screen + Face ID: aurora backdrop ---------- */
+.yl{isolation:isolate}
+.yl::before,.yl::after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(46px);pointer-events:none;opacity:.55}
+.yl::before{width:300px;height:300px;left:-90px;top:-70px;background:color-mix(in srgb,var(--accent) 38%,transparent);animation:frdDrift 14s ease-in-out infinite alternate}
+.yl::after{width:260px;height:260px;right:-80px;bottom:-60px;background:color-mix(in srgb,var(--accent-600,var(--accent)) 30%,transparent);animation:frdDrift 17s ease-in-out infinite alternate-reverse}
+@keyframes frdDrift{from{transform:translate(0,0) scale(1)}to{transform:translate(46px,38px) scale(1.18)}}
+.yl-dots{margin-bottom:6px}
+
+/* ---------- 7. wallet connection block (now in Settings) ---------- */
+.nwc-wrap{position:relative;isolation:isolate;overflow:hidden;color:#fff;border-radius:24px;padding:calc(16px*var(--ui));margin:0 0 calc(var(--sp-3,12px));
+  background:radial-gradient(80% 120% at 100% 0%,rgba(94,234,212,.26),transparent 62%),linear-gradient(135deg,#0E8176 0%,#0A6B63 58%,#07524C 100%);
+  border:1px solid rgba(255,255,255,.18);box-shadow:0 18px 30px -20px rgba(7,82,76,.8),inset 0 1px 0 rgba(255,255,255,.26)}
+.nwc-wrap::after{content:"";position:absolute;right:-30px;top:-40px;width:120px;height:120px;border-radius:50%;z-index:-1;border:1.5px solid rgba(255,255,255,.14);pointer-events:none}
+.nwc-wrap .nwc{margin:0;padding:0;border:0}
+/* Face ID row */
+.fid-state{font-weight:750}
+.fid-state.on{color:var(--st-ok)}
+.fid-state.off{color:var(--st-wait)}
+.fid-row.is-on .tile{background:var(--accent-soft);color:var(--accent)}
+
+/* ---------- 8. motion ---------- */
+.screen.active{animation:frdScreen .5s cubic-bezier(.2,.9,.2,1) backwards!important}
+@keyframes frdScreen{0%{opacity:0;transform:translateY(16px) scale(.985);filter:blur(6px)}100%{opacity:1;transform:none;filter:none}}
+.ds-home>*{animation:frdRise .65s cubic-bezier(.2,.9,.2,1) backwards}
+.ds-home>:nth-child(2){animation-delay:.05s}.ds-home>:nth-child(3){animation-delay:.1s}.ds-home>:nth-child(4){animation-delay:.2s}
+.ds-home>:nth-child(5){animation-delay:.27s}.ds-home>:nth-child(6){animation-delay:.34s}.ds-home>:nth-child(7){animation-delay:.41s}
+@keyframes frdRise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.settings-group,.rv-set{animation:frdRise .55s cubic-bezier(.2,.9,.2,1) backwards}
+.switch{transition:background .25s,border-color .25s,transform .2s cubic-bezier(.34,1.56,.64,1)}
+.settings-row:active .switch{transform:scaleX(1.1)}
+.btn{transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .2s,background-color .2s,opacity .2s}
+.btn:active{transform:scale(.96)}
+/* ---------- print: only the receipt prints (the dock must not override the print rule of yor-ds.css §12) ---------- */
+@media print{#bottom-nav,#bottom-nav.bottom-nav,#bottom-nav.bottom-nav:not([hidden]),.fid,.yl,.yl-cover,.fk-orb{display:none!important}}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  #bottom-nav .nav-dock,#bottom-nav .nav-cta .nav-cta-tile::after,.ds-bal-amt,.ds-eye svg,.rv-act,.fk-key,.fk-pad.reflow .fk-key,.fk-dots i,.fk-dots.done i,.yl::before,.yl::after,
+  .screen.active,.ds-home>*,.settings-group,.rv-set{animation:none!important}
+  #bottom-nav .nav-ind.ready,#bottom-nav .nav-ic,svg.ic .d2,.fk-key,.fk-d,.ds-eye::before{transition:none!important}
+  .fk-orb{display:none}
+}
+
+/* ===== Send money (12.12.0): one screen, one question — the recipient's mobile number ===== */
+.sp-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:calc(8px*var(--ui));padding:var(--sp-4) var(--sp-4) var(--sp-5)}
+.sp-hero-ic{width:calc(58px*var(--ui));height:calc(58px*var(--ui));border-radius:20px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.sp-hero h1{font-size:calc(22px*var(--ui));font-weight:750;margin:0;letter-spacing:-.01em;line-height:1.25}
+.sp-hero p{margin:0;color:var(--text-2);font-size:calc(14.5px*var(--ui));max-width:calc(300px*var(--ui));line-height:1.45}
+.sp-box{gap:calc(12px*var(--ui))}
+.sp-cc{display:flex;align-items:center;gap:calc(8px*var(--ui));padding-inline-end:calc(12px*var(--ui));border-right:1px solid var(--border);font-family:var(--font-mono);font-size:calc(17px*var(--ui));min-height:calc(30px*var(--ui))}
+.sp-flag{width:calc(26px*var(--ui));height:calc(18px*var(--ui));border-radius:3px;overflow:hidden;flex:none;line-height:0}
+.sp-flag svg{width:100%;height:100%;display:block}
+.sp-box input{font-family:var(--font-mono);font-size:calc(21px*var(--ui))!important;font-weight:650!important;letter-spacing:.05em;text-align:left}
+.sp-box input:focus,.sp-box input:focus-visible{outline:none;box-shadow:none}   /* the whole field already shows the focus ring (focus-within): no second ring inside it */
+.sp-hint{font-size:calc(12.5px*var(--ui));color:var(--text-3);margin-top:calc(8px*var(--ui));padding:0 var(--sp-1)}
+.sp-known{display:flex;align-items:center;gap:calc(10px*var(--ui));padding:calc(12px*var(--ui)) calc(14px*var(--ui));color:var(--success);font-size:calc(13px*var(--ui));margin-top:calc(8px*var(--ui))}
+.sp-known b{color:var(--text);font-weight:650;margin-inline-start:auto}
+.sp-to{display:flex;align-items:center;gap:calc(12px*var(--ui));padding:calc(12px*var(--ui)) calc(14px*var(--ui));margin-bottom:calc(4px*var(--ui))}
+.sp-to-ic{width:calc(42px*var(--ui));height:calc(42px*var(--ui));border-radius:14px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}
+.sp-to-body{display:flex;flex-direction:column;min-width:0;flex:1;gap:2px;align-items:flex-start}
+.sp-to-body small{color:var(--text-3);font-size:calc(11.5px*var(--ui));font-weight:600}
+.sp-to-body b{font-size:calc(15px*var(--ui));font-weight:650}
+.sp-to-num{font-family:var(--font-mono);font-size:calc(15px*var(--ui));color:var(--text-2);unicode-bidi:isolate}
+.sp-to-flag{width:calc(28px*var(--ui));height:calc(20px*var(--ui));border-radius:4px;overflow:hidden;flex:none;line-height:0}
+.sp-to-flag svg{width:100%;height:100%;display:block}
+
+/* 12.12.0 : the recipient's number gets its own line on the receipt (.ltr is inline-block, the country flag used to touch the last digit) */
+.receipt-benef-phone.ltr{display:block;width:max-content;max-width:100%}
+
+/* 12.13.0 : Settings → "Alerts on this phone" (push notifications). Buttons sit under the row, same rhythm as the language/theme chips. */
+.push-actions{padding:0 calc(16px*var(--ui)) calc(12px*var(--ui));border-bottom:1px solid var(--border)}
+.push-actions:not([hidden]){display:flex;gap:calc(8px*var(--ui))}
+.push-actions .push-btn{flex:1;min-height:calc(42px*var(--ui))}
+.push-row[data-push-state="off"],.push-row[data-push-state="on"]{border-bottom:none}
+.push-row[data-push-state="on"] .settings-row-sub{color:var(--accent)}

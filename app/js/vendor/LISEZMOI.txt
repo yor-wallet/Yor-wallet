@@ -1,0 +1,4 @@
+Placez ici le fichier reown-appkit.js (bundle Reown AppKit / WalletConnect, ~2,4 Mo).
+Sans lui, le bouton « Connect Wallet » affiche une erreur de chargement lisible et le reste de l'application fonctionne normalement.
+sha256 attendu : a13ad9b8420dfa99b463037530f6c3d7bed1ad213605bf295bf5f5c34213f396
+Pour le reconstruire : voir walletconnect/README.md

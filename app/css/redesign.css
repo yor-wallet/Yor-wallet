@@ -1,0 +1,28 @@
+/* ===== YOR redesign layer: cards, settings, lists, buttons, inputs ===== */
+.topbar-title{font-size:18px;font-weight:800;letter-spacing:-.01em}
+.btn{border-radius:14px;font-weight:700;letter-spacing:-.01em}
+.btn-primary{box-shadow:0 10px 26px var(--accent-glow)}
+input[type=text],input[type=tel],input[type=number],input[type=password],input[type=email],input[type=search]{font-size:16px}
+/* bank card */
+.card-face{border-radius:26px;padding:clamp(16px,5vw,24px)}
+.card-front{background:radial-gradient(90% 70% at 100% 0%,rgba(255,255,255,.28),transparent 55%),radial-gradient(70% 60% at 0% 100%,rgba(59,130,246,.35),transparent 60%),linear-gradient(145deg,#134E4A 0%,#0D9488 42%,#14B8A6 75%,#5EEAD4 100%);border:1px solid rgba(255,255,255,.22);box-shadow:0 34px 64px -22px rgba(20,184,166,.6),inset 0 1px 0 rgba(255,255,255,.4)}
+.card-back{background:linear-gradient(145deg,#031210,#134E4A);border:1px solid rgba(255,255,255,.14)}
+.card-brand{font-weight:800;letter-spacing:.18em;font-size:13px}
+.card-chip{width:46px;height:34px;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.card-number{font-size:clamp(17px,5.6vw,23px);letter-spacing:.12em;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+.card-controls{display:grid;grid-template-columns:1fr 1fr}
+.card-controls .btn{border-radius:14px}
+/* settings */
+.settings-group{border-radius:20px;border:0;background:var(--glass-1)}
+.settings-row{min-height:60px;transition:background .15s}
+.settings-row:active{background:var(--accent-soft)}
+.settings-row .tile{width:40px;height:40px;border-radius:12px}
+.settings-row-title{font-size:15.5px;font-weight:700}
+.settings-section{font-size:12px;margin:22px 4px 8px}
+.chip{min-height:44px;display:inline-flex;align-items:center;padding:0 18px;font-size:14px;font-weight:700}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+/* selectable lists (countries, services, banks, networks) */
+.select-item{border:0;border-radius:16px;min-height:64px;background:var(--glass-1);transition:transform .12s,background .15s}
+.select-item:active{transform:scale(.985);background:var(--accent-soft)}
+.select-item.selected{box-shadow:inset 0 0 0 2px var(--accent)}
+@media (prefers-reduced-motion:reduce){.select-item,.settings-row{transition:none}}

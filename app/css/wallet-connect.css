@@ -1,0 +1,30 @@
+/* Friendly Pay 12.7.0 — bloc « Connect Wallet » (dans la carte de solde de l'accueil). Charge apres yor-ds.css.
+   La carte de solde est toujours sombre (texte blanc), en theme sombre comme clair. */
+.nwc{margin-top:calc(14px*var(--ui));padding-top:calc(14px*var(--ui));border-top:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column;gap:10px;color:#fff}
+.nwc-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;min-width:0}
+.nwc-st{display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-sm);font-weight:650;min-width:0}
+.nwc-dot{width:9px;height:9px;border-radius:50%;flex:none;background:#8A8A8A}
+.nwc-dot.ok{background:var(--st-ok);box-shadow:0 0 0 3px rgba(52,211,153,.2)}
+.nwc-dot.wait{background:var(--st-wait);box-shadow:0 0 0 3px rgba(251,191,36,.2)}
+.nwc-dot.off{background:#8A8A8A}
+.nwc-addr{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:999px;min-height:36px;padding:0 14px;font-family:var(--font-mono);font-size:var(--fs-sm);font-weight:600}
+.nwc-actions{justify-content:stretch}
+.nwc-btn{flex:1 1 140px;min-height:calc(46px*var(--ui));border-radius:calc(23px*var(--ui));border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.12);color:#fff;font-weight:700;font-size:var(--fs-md);padding:0 18px;transition:transform var(--t-ds-1) var(--ease-ds),background-color var(--t-ds-2)}
+.nwc-btn:active{transform:scale(.97)}
+.nwc-btn:disabled{opacity:.6}
+@media (hover:hover){.nwc-btn:hover:not(:disabled){background:rgba(255,255,255,.2)}}
+.nwc-primary{background:#fff;border-color:transparent;color:#0B5F58;box-shadow:0 10px 22px -10px rgba(3,27,25,.55)}
+@media (hover:hover){.nwc-primary:hover:not(:disabled){background:#E6F8F5}}
+.nwc-ghost{background:transparent}
+.nwc-msg{margin:0;font-size:var(--fs-sm);font-weight:600;line-height:1.35;border-radius:12px;padding:8px 12px}
+.nwc-msg.warn{background:var(--st-wait-bg);color:#FBBF24}
+.nwc-msg.bad{background:var(--st-bad-bg);color:#FDA4AF}
+.nwc-note{margin:0;font-size:var(--fs-xs);opacity:.74;line-height:1.4}
+.nwc-help{border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-size:var(--fs-sm)}
+.nwc-help summary{list-style:none;cursor:pointer;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;font-weight:700}
+.nwc-help summary::-webkit-details-marker{display:none}
+.nwc-help summary::after{content:"";width:8px;height:8px;border-inline-end:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .25s;margin-top:-3px}
+.nwc-help[open] summary::after{transform:rotate(-135deg);margin-top:3px}
+.nwc-help ol{margin:0;padding:0 14px 12px;padding-inline-start:34px;display:flex;flex-direction:column;gap:8px;line-height:1.45;opacity:.92}
+.nwc :focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.nwc-btn,.nwc-help summary::after{transition:none}}

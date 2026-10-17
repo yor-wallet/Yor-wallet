@@ -1,0 +1,25 @@
+# Compilation et tests du contrat YOR-USDT avec Foundry.
+# Réglages choisis pour rester compatible avec la machine virtuelle TRON (TVM) :
+#  - solc 0.8.19 et evm_version istanbul : pas d'opcode PUSH0 (Shanghai), ni MCOPY/TLOAD (Cancun).
+#  - scripts/check-bytecode.mjs vérifie le bytecode produit.
+# La compatibilité TVM complète ne sera établie que par un déploiement réel sur Nile.
+[profile.default]
+src = "contracts"
+test = "test/foundry"
+out = "out"
+cache_path = "cache"
+libs = []
+solc_version = "0.8.19"
+evm_version = "istanbul"
+optimizer = true
+optimizer_runs = 200
+bytecode_hash = "none"
+cbor_metadata = false
+
+[fuzz]
+runs = 512
+
+[invariant]
+runs = 128
+depth = 40
+fail_on_revert = false

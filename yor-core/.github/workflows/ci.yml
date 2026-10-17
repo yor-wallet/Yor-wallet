@@ -1,0 +1,39 @@
+name: ci
+
+# Vérifications uniquement. AUCUN déploiement, AUCUN secret, AUCUN accès mainnet dans ce workflow.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  js:
+    name: Modèle du jeton et couche TRON (sans réseau)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --version
+      - run: npm test
+
+  contract:
+    name: Compilation et tests du contrat (Foundry)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: foundry-rs/foundry-toolchain@v1
+      - run: forge --version
+      - name: Compiler (solc 0.8.19, evm istanbul)
+        run: forge build --sizes
+      - name: Vérifier le bytecode pour la TVM (opcodes, taille)
+        run: node scripts/check-bytecode.mjs
+      - name: Tests, fuzz et invariants
+        run: forge test -vvv

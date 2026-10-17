@@ -1,0 +1,18 @@
+{
+  "name": "nex-walletconnect-bundle",
+  "version": "12.7.0",
+  "private": true,
+  "description": "Construit js/vendor/reown-appkit.js (Reown AppKit / WalletConnect, TRON Nile) pour NEX WALLET.",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@reown/appkit": "1.8.24",
+    "@reown/appkit-adapter-tron": "1.8.24",
+    "@tronweb3/tronwallet-adapter-tronlink": "1.3.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

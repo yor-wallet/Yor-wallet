@@ -1,0 +1,23 @@
+{
+  "name": "yor-core",
+  "private": true,
+  "version": "0.9.7",
+  "description": "YOR WALLET - contrat, couche blockchain, fonctions Supabase et tests (hors du dossier web servi).",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "test": "node --test \"tests/model/*.test.mjs\" \"tests/tron/*.test.mjs\" \"tests/edge/*.test.mjs\" \"tests/web/*.test.mjs\" && npm run test:sim",
+    "test:sim": "node --import ./tests/edge-sim/register.mjs --test \"tests/edge-sim/*.test.mjs\"",
+    "test:model": "node --test \"tests/model/*.test.mjs\"",
+    "test:tron": "node --test \"tests/tron/*.test.mjs\"",
+    "test:edge": "node --test \"tests/edge/*.test.mjs\"",
+    "test:web": "node --test \"tests/web/*.test.mjs\"",
+    "test:ui": "node --test --test-concurrency=1 \"tests/ui/*.test.mjs\"",
+    "test:all": "npm test && npm run test:ui",
+    "build:web": "node scripts/build-web.mjs",
+    "check:web": "node scripts/build-web.mjs --check",
+    "check:bytecode": "node scripts/check-bytecode.mjs"
+  }
+}

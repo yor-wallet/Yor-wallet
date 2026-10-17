@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="theme-color" content="#F4FAF9">
+<meta name="apple-mobile-web-app-title" content="Friendly Pay">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="description" content="Friendly Pay — send money to a mobile number in Oman and manage your cards. Simple, secure, in English, Français and العربية.">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="application-name" content="Friendly Pay">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Friendly Pay">
+<meta property="og:title" content="Friendly Pay">
+<meta property="og:description" content="Send money to a mobile number in Oman and manage your cards. Simple and secure.">
+<meta property="og:url" content="https://yor-wallet.netlify.app/">
+<meta property="og:image" content="https://yor-wallet.netlify.app/assets/share/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Friendly Pay">
+<meta name="twitter:description" content="Send money to a mobile number in Oman and manage your cards. Simple and secure.">
+<meta name="twitter:image" content="https://yor-wallet.netlify.app/assets/share/og-en.png">
+<link rel="alternate" hreflang="fr" href="https://yor-wallet.netlify.app/?lang=fr">
+<link rel="alternate" hreflang="ar" href="https://yor-wallet.netlify.app/?lang=ar">
+<link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-1320x2868-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-1320x2868-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-1206x2622-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-1206x2622-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-1290x2796-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-1290x2796-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-1179x2556-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-1179x2556-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-1284x2778-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-1284x2778-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-1170x2532-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-1170x2532-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-1125x2436-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-1125x2436-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-1242x2688-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-1242x2688-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-828x1792-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-828x1792-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-1242x2208-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-1242x2208-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-750x1334-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-750x1334-dark.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: light)" href="assets/splash/ios-640x1136-light.jpg">
+<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) and (prefers-color-scheme: dark)" href="assets/splash/ios-640x1136-dark.jpg">
+<script>
+/* Desktop Mode (real layout mode): with the stored preference, small screens lay the page out at 1024 CSS px,
+   so the existing desktop layout (sidebar, multi-column home) is used. Applied before first paint. */
+(function(){try{
+  var m=localStorage.getItem('yor_layout_mode');
+  if(m==='desktop' && Math.min(screen.width,screen.height)<1024){
+    document.querySelector('meta[name="viewport"]').setAttribute('content','width=1024,viewport-fit=cover,minimum-scale=0.2,maximum-scale=5');
+    document.documentElement.setAttribute('data-layout','desktop');
+  }
+}catch(e){}})();
+</script>
+<script>
+/* last theme used on this phone, applied before the first paint (the app confirms it once the account is known) */
+(function(){try{var t=localStorage.getItem('fp_theme'),d=document.documentElement;
+  if(t==='dark'||(t==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)){d.setAttribute('data-theme','dark');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#061110');}
+}catch(e){}})();
+</script>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Friendly Pay</title>
+<script>
+/* YOR responsive engine: computes --ui (global scale) + breakpoint/orientation/aspect flags */
+(function(){
+  var de=document.documentElement;
+  function lerp(x,pts){
+    if(x<=pts[0][0])return pts[0][1];
+    for(var i=1;i<pts.length;i++){ if(x<=pts[i][0]){var a=pts[i-1],b=pts[i];return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]);} }
+    return pts[pts.length-1][1];
+  }
+  var MOBILE=[[320,.94],[360,1.02],[390,1.1],[430,1.16],[600,1.26],[768,1.34],[1023,1.42]];
+  var DESK=[[1024,1.08],[1280,1.22],[1440,1.32],[1920,1.6],[2560,1.98],[3840,2.7]];
+  function apply(){
+    var w=window.innerWidth,h=window.innerHeight,asp=w/Math.max(h,1);
+    var ew=Math.min(w,h*1.78);                      /* ultra-wide: scale from height */
+    var ui;
+    if(w<1024){ ui=lerp(w,MOBILE); if(h<480) ui*=.86; }   /* phone landscape */
+    else { ui=lerp(Math.max(1024,ew),DESK); }
+    de.style.setProperty('--ui',ui.toFixed(3));
+    var bp=w<360?'xs':w<480?'sm':w<768?'md':w<1280?'lg':w<1920?'xl':w<2560?'2xl':'ultra';
+    de.setAttribute('data-bp',bp);
+    de.setAttribute('data-orient',w>h?'landscape':'portrait');
+    de.setAttribute('data-aspect',asp>=2.1?'ultrawide':asp>=1.6?'wide':'normal');
+    de.setAttribute('data-device',w<768?'phone':w<1024?'tablet':'desktop');
+  }
+  apply();
+  window.addEventListener('resize',apply,{passive:true});
+  window.addEventListener('orientationchange',function(){setTimeout(apply,120)},{passive:true});
+})();
+</script>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/motion.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/redesign.css">
+<link rel="stylesheet" href="css/v12.css">
+<link rel="stylesheet" href="css/chain.css">
+<link rel="stylesheet" href="css/yor-ds.css">
+<link rel="stylesheet" href="css/friendly.css">
+<link rel="stylesheet" href="css/promos.css">
+<link rel="stylesheet" href="css/wallet-connect.css">
+<link rel="stylesheet" href="css/opening.css">
+<link rel="stylesheet" href="css/resilience.css">
+</head>
+<body>
+
+<div id="splash" aria-live="polite"></div>
+<noscript><div style="position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;font:16px/1.5 system-ui,sans-serif;background:#fff;color:#0B1F1D">Friendly Pay needs JavaScript. Please enable it and reload. · Friendly Pay nécessite JavaScript. · يتطلب فرندي باي تفعيل JavaScript.</div></noscript>
+
+<div id="app">
+  <aside id="sidebar">
+    <div id="sidebar-logo"></div>
+    <nav class="side-nav" id="side-nav"></nav>
+    <div style="margin-top:auto"><button id="sidebar-layout" class="side-item" type="button" hidden></button><div id="sidebar-profile" style="cursor:pointer"></div></div>
+  </aside>
+  <div id="main">
+    <div id="ambient" aria-hidden="true"></div>
+    <div id="notif-layer" aria-live="polite" aria-atomic="false"></div>
+    <div id="toasts" aria-live="polite"></div>
+    <div id="screens"></div>
+    <nav class="bottom-nav" id="bottom-nav" hidden>
+      <a class="nav-item" data-nav="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span data-i18n="nav.home">Home</span></a>
+      <a class="nav-item" data-nav="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-9"/><path d="M15 6h6v6"/></svg><span data-i18n="nav.markets">Markets</span></a>
+      <a class="nav-item nav-cta" data-nav="country-select"><span class="nav-cta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="9"/><path d="M9 9h4a2 2 0 0 1 0 4H9v2h4M11 7v2M11 15v2"/></svg></span></a>
+      <a class="nav-item" data-nav="services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span data-i18n="nav.services">Services</span></a>
+      <a class="nav-item" data-nav="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg><span data-i18n="nav.profile">Profile</span></a>
+    </nav>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" defer></script>
+<script src="js/core/supabase-client.js" defer></script>
+<script src="js/data/reference-data.js" defer></script>
+<script src="js/i18n/translations.js" defer></script>
+<script src="js/core/engines.js" defer></script>
+<script src="js/core/domain.js" defer></script>
+<script src="js/core/notifications.js" defer></script>
+<script src="js/core/utils-lang.js" defer></script>
+<script src="js/ui/icons.js" defer></script>
+<script src="js/ui/opening-art.js" defer></script>
+<script src="js/ui/send-anim.js" defer></script>
+<script src="js/features/resilience.js" defer></script>
+<script src="js/core/router.js" defer></script>
+<script src="js/features/auth.js" defer></script>
+<script src="js/ui/keypad.js" defer></script>
+<script src="js/features/faceid.js" defer></script>
+<script src="js/features/pin.js" defer></script>
+<script src="js/features/app-lock.js" defer></script>
+<script src="js/features/onboarding.js" defer></script>
+<script src="js/features/transfer-engine.js" defer></script>
+<script src="js/features/crypto-buy.js" defer></script>
+<script src="js/features/recovery.js" defer></script>
+<script src="js/core/state.js" defer></script>
+<script src="js/core/helpers.js" defer></script>
+<script src="js/screens/auth.js" defer></script>
+<script src="js/screens/home.js" defer></script>
+<script src="js/screens/drawer.js" defer></script>
+<script src="js/screens/transfer-flow.js" defer></script>
+<script src="js/ui/receipt-export.js" defer></script>
+<script src="js/screens/receipt.js" defer></script>
+<script src="js/screens/history-cards.js" defer></script>
+<script src="js/screens/profile-settings.js" defer></script>
+<script src="js/screens/info.js" defer></script>
+<script src="js/screens/crypto-market.js" defer></script>
+<script src="js/screens/crypto-trade.js" defer></script>
+<script src="js/screens/crypto-receive-bank.js" defer></script>
+<script src="js/features/yor-chain.js" defer></script>
+<script src="js/features/chain-notice.js" defer></script>
+<script src="js/screens/chain-wallet.js" defer></script>
+<script src="js/features/wallet-connect.js" defer></script>
+<script src="js/features/v12.js" defer></script>
+<script src="js/features/promos.js" defer></script>
+<script src="js/screens/register.js" defer></script>
+<script src="js/ui/uikit.js" defer></script>
+<script src="js/features/push.js" defer></script>
+<script src="js/wire.js" defer></script>
+<script src="js/layout/sidebar.js" defer></script>
+<script src="js/layout/viewport.js" defer></script>
+<script src="js/boot.js" defer></script>
+</body>
+</html>

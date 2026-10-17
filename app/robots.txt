@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /offline.html
+Disallow: /404.html
