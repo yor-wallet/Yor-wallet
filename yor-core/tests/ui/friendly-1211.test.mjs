@@ -227,9 +227,9 @@ test('thème : « clair » par défaut ; « système » suit le téléphone (cla
   await s.page.waitForFunction(() => document.documentElement.getAttribute('data-theme') === 'light', null, { polling: 100, timeout: 8000 });
   await s.page.evaluate(() => applyTheme('nonsense'));
   assert.equal(await s.page.evaluate(() => document.documentElement.getAttribute('data-theme')), 'light');
-  assert.equal(await s.page.evaluate(() => document.querySelector('meta[name="theme-color"]').getAttribute('content')), '#F4FAF9');
+  assert.equal(await s.page.evaluate(() => document.querySelector('meta[name="theme-color"]').getAttribute('content')), '#F4F6F5');
   await s.page.evaluate(() => applyTheme('dark'));
-  assert.equal(await s.page.evaluate(() => document.querySelector('meta[name="theme-color"]').getAttribute('content')), '#061110');
+  assert.equal(await s.page.evaluate(() => document.querySelector('meta[name="theme-color"]').getAttribute('content')), '#050C0B');
   await s.ctx.close();
 });
 
