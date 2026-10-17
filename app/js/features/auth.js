@@ -139,6 +139,7 @@ const AuthEngine = (() => {
     } catch(e){ return { ok:false, error: errorKey(e) }; }
   }
   async function signOut(){
+    try { if (typeof PinEngine !== 'undefined') PinEngine.forget(); } catch(e){}   /* 12.15.0: the encrypted code never outlives the session */
     if (!supabaseReady) return;
     const c = UserContext.get();
     if (c){ try { await UserDataEngine.writeSub(c.uid, 'sessions', c.sessionId, { status:'signed_out', lastActiveAt: Date.now() }); } catch(e){} }

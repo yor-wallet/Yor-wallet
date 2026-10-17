@@ -1,11 +1,11 @@
-/* Friendly Pay service worker (12.14.0) : coquille de l'application hors ligne + réception des notifications push.
+/* Friendly Pay service worker (12.15.0) : coquille de l'application hors ligne + réception des notifications push.
    - Il ne met JAMAIS en cache le trafic Supabase / API / chaîne : soldes et transactions viennent toujours du serveur.
    - Réseau d'abord (toujours la dernière version quand on est en ligne), avec repli sur la copie locale si le réseau est absent ou trop lent.
    - Seules les réponses réussies (200) du même site sont gardées : une page d'erreur n'est jamais servie plus tard comme si c'était l'application.
    - Hors ligne : l'application démarre depuis la copie locale ; si elle n'existe pas encore, « offline.html » explique la situation.
    - Il ne touche JAMAIS aux ressources d'autres sites (client Supabase sur le CDN, WalletConnect, chaîne) : le navigateur les charge lui-même.
      (12.11.0 interceptait le client Supabase : la CSP bloquait ce rechargement par le service worker et l'application ne démarrait plus dès la 2e ouverture.) */
-const CACHE = 'fp-shell-v12.14.0';
+const CACHE = 'fp-shell-v12.15.0';
 const SLOW_MS = 4500;      /* au-delà, on sert la copie locale si on en a une */
 
 const SHELL = [

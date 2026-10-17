@@ -304,7 +304,7 @@ test('PWA : polices locales présentes et précachées, nouveaux fichiers dans l
   for (const f of ['css/premium.css', 'js/features/premium.js', 'assets/fonts/manrope-latin-var.woff2', 'assets/fonts/inter-latin-var.woff2', 'assets/fonts/plex-arabic-400.woff2']) {
     assert.ok(existsSync(WEB + '/' + f), f); assert.ok(sw.includes("'" + f + "'"), 'SHELL : ' + f);
   }
-  assert.match(sw, /fp-shell-v12\.14\.0/);
+  assert.match(sw, /fp-shell-v12\.15\.0/);
   const m = JSON.parse(readFileSync(WEB + '/manifest.webmanifest', 'utf8'));
   assert.equal(m.display, 'standalone'); assert.equal(m.start_url, './'); assert.ok(m.icons.some(i => i.sizes === '512x512'));
   const html = readFileSync(WEB + '/index.html', 'utf8');

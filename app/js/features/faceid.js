@@ -72,13 +72,14 @@ const FaceId = (() => {
         user: { id: new TextEncoder().encode(String(u)).slice(0, 64), name: label, displayName: display },
         pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }],
         authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required', residentKey: 'discouraged', requireResidentKey: false },
-        timeout: 60000, attestation: 'none'
+        timeout: 60000, attestation: 'none', extensions: { prf: {} }
       } });
       if (!cred) return { ok: false, reason: 'error' };
       const r = cred.response;
       const pk = typeof r.getPublicKey === 'function' ? r.getPublicKey() : null;
       const alg = typeof r.getPublicKeyAlgorithm === 'function' ? r.getPublicKeyAlgorithm() : -7;
-      const s = store(); s[u] = { id: b64u(cred.rawId), pk: pk ? b64u(pk) : null, alg: alg, at: Date.now() }; save(s);
+      let prf = false; try { const x = cred.getClientExtensionResults ? cred.getClientExtensionResults() : {}; prf = !!(x && x.prf && x.prf.enabled); } catch (e) {}
+      const s = store(); s[u] = { id: b64u(cred.rawId), pk: pk ? b64u(pk) : null, alg: alg, at: Date.now(), prf: prf }; save(s);
       return { ok: true };
     } catch (e) { return { ok: false, reason: (e && e.name === 'NotAllowedError') ? 'cancelled' : 'error' }; }
   }
@@ -118,17 +119,23 @@ const FaceId = (() => {
       return false;
     } catch (e) { return false; }
   }
-  async function assert(){
+  async function assert(prfSalt){
     const u = await uid(); const rec = u ? store()[u] : null;
     if (!rec) return { ok: false, reason: 'error' };
     const challenge = rand(32);
     let a;
     try {
-      a = await navigator.credentials.get({ publicKey: { challenge, rpId: location.hostname,
-        allowCredentials: [{ type: 'public-key', id: unb64u(rec.id), transports: ['internal'] }], userVerification: 'required', timeout: 60000 } });
+      const pk = { challenge, rpId: location.hostname,
+        allowCredentials: [{ type: 'public-key', id: unb64u(rec.id), transports: ['internal'] }], userVerification: 'required', timeout: 60000 };
+      if (prfSalt) pk.extensions = { prf: { eval: { first: prfSalt } } };
+      a = await navigator.credentials.get({ publicKey: pk });
     } catch (e) { return { ok: false, reason: (e && e.name === 'NotAllowedError') ? 'cancelled' : 'error' }; }
     if (!a) return { ok: false, reason: 'error' };
-    return (await check(a, challenge, rec)) ? { ok: true } : { ok: false, reason: 'invalid' };
+    if (!(await check(a, challenge, rec))) return { ok: false, reason: 'invalid' };
+    /* 12.15.0 — PRF secret (WebAuthn extension, Safari iOS 18+): released by the authenticator only after Face ID; null when unsupported */
+    let prf = null;
+    try { const x = a.getClientExtensionResults ? a.getClientExtensionResults() : {}; const f = x && x.prf && x.prf.results && x.prf.results.first; if (f && f.byteLength >= 32) prf = new Uint8Array(f); } catch (e) {}
+    return { ok: true, prf: prf, cid: rec.id };
   }
 
   /* --- feuille plein écran : orbe « Face ID » animée, un toucher pour lancer la lecture --- */
@@ -199,9 +206,9 @@ const FaceId = (() => {
       async function run(){
         if (busy || done || root.classList.contains('ok')) return;     /* a second tap during the success animation must not create a second key */
         busy = true; root.classList.add('busy'); $('fid-err').textContent = ''; $('fid-go').disabled = true;
-        const r = mode === 'enroll' ? await enroll() : await assert();
+        const r = mode === 'enroll' ? await enroll() : await assert(o.prfSalt || null);
         busy = false; root.classList.remove('busy'); $('fid-go').disabled = false;
-        if (r.ok){ root.classList.add('ok'); try { UIKit.haptic('success'); } catch (e) {} setTimeout(() => finish({ ok: true }), 700); return; }
+        if (r.ok){ root.classList.add('ok'); try { UIKit.haptic('success'); } catch (e) {} setTimeout(() => finish({ ok: true, prf: r.prf || null, cid: r.cid || null }), 700); return; }
         $('fid-err').textContent = tx(r.reason === 'cancelled' ? 'errCancelled' : r.reason === 'invalid' ? 'errInvalid' : 'errGeneric');
         $('fid-go').textContent = tx('retry');
         /* Safety valve: the device says it supports biometrics but the key cannot be created after 3 tries -> do not lock the user out */
@@ -237,5 +244,7 @@ const FaceId = (() => {
     return sheet('enroll', o || {});
   }
   function warm(){ supported(); }
-  return { gate, reenroll, supported, info, warm, name: nm, _check: check };
+  /* the stored key of this account on this device: { id, prf } or null */
+  async function record(){ const u = await uid(); const r = u ? store()[u] : null; return r ? { id: r.id, prf: r.prf === true } : null; }
+  return { gate, reenroll, supported, info, warm, record, name: nm, _check: check };
 })();

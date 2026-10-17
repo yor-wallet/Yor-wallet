@@ -5,6 +5,43 @@
    ============================================================ */
 const PinEngine = (() => {
   let busy = false;
+  /* ---------- 12.15.0 — Face ID OR the code for transfers ----------
+     The server only authorises a transfer with a grant from verify_pin (attempt counter, 15-min lock): that stays the ONLY
+     server check. After a transfer confirmed with the code AND Face ID, the code is kept on this device encrypted (AES-GCM)
+     with a key the authenticator releases only after Face ID (WebAuthn PRF). Next time, Face ID decrypts it and the app
+     calls verify_pin itself: no typing. No PRF (older iOS, other devices), Face ID cancelled or failing -> the code is typed.
+     The vault is erased on sign-out, after a code change, and as soon as the server rejects the stored code. */
+  const VAULT = 'friendly_pin_vault_v1';
+  const SALT_TXT = 'friendly-pay/pin-vault/v1';
+  const vRead = () => { try { return JSON.parse(localStorage.getItem(VAULT) || '{}') || {}; } catch(e){ return {}; } };
+  const vWrite = (o) => { try { localStorage.setItem(VAULT, JSON.stringify(o)); } catch(e){} };
+  const b64 = (u8) => { let x = ''; for (let i = 0; i < u8.length; i++) x += String.fromCharCode(u8[i]); return btoa(x); };
+  const unb64 = (str) => { const bin = atob(str), a = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i); return a; };
+  async function prfSalt(){ return new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(SALT_TXT))); }
+  async function aesKey(prf){
+    const base = await crypto.subtle.importKey('raw', prf, 'HKDF', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({ name:'HKDF', hash:'SHA-256', salt: new Uint8Array(32), info: new TextEncoder().encode('pin-vault') }, base, { name:'AES-GCM', length:256 }, false, ['encrypt', 'decrypt']);
+  }
+  function ctxUid(){ try { const c = UserContext.get(); return c && c.uid ? c.uid : null; } catch(e){ return null; } }
+  async function vaultSave(pin, prf, cid){
+    const u = ctxUid(); if (!u || !prf || !/^[0-9]{6}$/.test(pin)) return false;
+    try {
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const ct = new Uint8Array(await crypto.subtle.encrypt({ name:'AES-GCM', iv }, await aesKey(prf), new TextEncoder().encode(pin)));
+      const v = vRead(); v[u] = { iv: b64(iv), ct: b64(ct), cid: cid || null, at: Date.now() }; vWrite(v); return true;
+    } catch(e){ return false; }
+  }
+  async function vaultOpen(prf, cid){
+    const u = ctxUid(); const rec = u ? vRead()[u] : null;
+    if (!rec || !prf || (rec.cid && cid && rec.cid !== cid)) return null;
+    try {
+      const pt = await crypto.subtle.decrypt({ name:'AES-GCM', iv: unb64(rec.iv) }, await aesKey(prf), unb64(rec.ct));
+      const pin = new TextDecoder().decode(pt);
+      return /^[0-9]{6}$/.test(pin) ? pin : null;
+    } catch(e){ return null; }
+  }
+  function forget(uid){ const u = uid || ctxUid(); const v = vRead(); if (u && v[u]){ delete v[u]; vWrite(v); } }
+  function hasVault(){ const u = ctxUid(); return !!(u && vRead()[u]); }
   const unwrap = (r) => (Array.isArray(r.data) ? r.data[0] : r.data);
   /* Modal that collects the PIN. submit(pin, pin2) -> { ok, value } | { ok:false, msg }.
      Resolves with the value on success, or null if the user cancels. The PIN is never stored. */
@@ -86,10 +123,33 @@ const PinEngine = (() => {
     if (busy) return { ok:false, cancelled:true };
     busy = true;
     try {
-      let f = null;
-      try { f = await FaceId.gate({ purpose:'transfer', cancel:true }); } catch(e){ f = { ok:true, skipped:'error' }; }
-      if (!f.ok && f.cancelled) return { ok:false, cancelled:true };
-      const r = await authorizeCore();
+      let f = null, salt = null;
+      try { salt = await prfSalt(); } catch(e){}
+      try { f = await FaceId.gate({ purpose:'transfer', cancel:true, prfSalt: salt }); } catch(e){ f = { ok:false, skipped:'error' }; }
+      /* 1) Face ID confirmed and the code is in the vault: the server checks it (verify_pin), nothing to type */
+      if (f && f.ok && f.prf){
+        const pin = await vaultOpen(f.prf, f.cid);
+        if (pin){
+          const v = await verify(pin);
+          if (v.ok) return { ok:true, grant: v.value, via:'faceid' };
+          forget();                                   /* changed elsewhere or locked: never retried silently; the code is asked below */
+        }
+      }
+      /* 2) otherwise the 6-digit code (Face ID cancelled, failed, not available, or first time on this device) */
+      let typed = null;
+      const r = await authorizeCore(pin => { typed = pin; });
+      if (r.ok && typed && f && f.ok){
+        if (f.prf) await vaultSave(typed, f.prf, f.cid);        /* next time Face ID alone is enough */
+        else if (f.skipped !== 'unsupported'){
+          /* key created before 12.15.0 without PRF: one new Face ID key so the next transfers can use Face ID alone */
+          try {
+            const rec = await FaceId.record(), u = ctxUid(), k = 'friendly_prf_upgrade_v1';
+            let tried = {}; try { tried = JSON.parse(localStorage.getItem(k) || '{}') || {}; } catch(e){}
+            if (rec && !rec.prf && u && !tried[u]){ tried[u] = Date.now(); try { localStorage.setItem(k, JSON.stringify(tried)); } catch(e){} await FaceId.reenroll({ purpose:'transfer', cancel:true }); }
+          } catch(e){}
+        }
+      }
+      typed = null;
       /* Face ID could not be used (recover): the PIN just verified lets the device create a fresh Face ID key */
       if (r.ok && f && f.recover){ try { await FaceId.reenroll({ purpose:'transfer', cancel:false }); } catch(e){} }
       return r;
@@ -98,7 +158,7 @@ const PinEngine = (() => {
       return { ok:false, error:'errors.UNKNOWN_ERROR' };
     } finally { busy = false; }
   }
-  async function authorizeCore(){
+  async function authorizeCore(onPin){
     const st = await sb.rpc('pin_status');
     if (st.error) return { ok:false, error:'errors.UNKNOWN_ERROR' };
     const s = unwrap(st) || {};
@@ -118,9 +178,15 @@ const PinEngine = (() => {
       if (!created) return { ok:false, cancelled:true };
       const v = await verify(created);
       if (!v.ok) return { ok:false, error:'errors.UNKNOWN_ERROR' };
+      if (onPin) onPin(created);
       return { ok:true, grant:v.value };
     }
-    const grant = await prompt('enter', (pin) => (/^[0-9]{6}$/.test(pin || '') ? verify(pin) : { ok:false, msg:t('pin.format') }));
+    const grant = await prompt('enter', async (pin) => {
+      if (!/^[0-9]{6}$/.test(pin || '')) return { ok:false, msg:t('pin.format') };
+      const v = await verify(pin);
+      if (v.ok && onPin) onPin(pin);
+      return v;
+    });
     if (!grant) return { ok:false, cancelled:true };
     return { ok:true, grant };
   }
@@ -165,6 +231,7 @@ const PinEngine = (() => {
         return { ok:false, msg:t('errors.UNKNOWN_ERROR') };
       }, { t1: t('px.pinNewT'), s1: t('pin.createSub'), t2: t('pin.confirmLabel') });
       oldPin = null;
+      if (done) forget();
       return done ? { ok:true } : { ok:false, cancelled:true };
     } catch(e){ console.error(e); return { ok:false, msg:t('errors.UNKNOWN_ERROR') }; }
     finally { busy = false; }
@@ -177,6 +244,6 @@ const PinEngine = (() => {
     const d = unwrap(st) || {};
     return !!d.has_pin;
   }
-  return { authorize, verify, hasPin, change };
+  return { authorize, verify, hasPin, change, forget, hasVault, _vault: { save: vaultSave, open: vaultOpen } };
 })();
 

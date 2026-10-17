@@ -1,3 +1,18 @@
+# Friendly Pay 12.15.0 — Face ID OU le code pour les transferts
+
+## Changé
+- **Transferts : Face ID suffit.** Avant : Face ID PUIS le code à 6 chiffres. Maintenant : Face ID confirmé → aucun code à taper ; Face ID annulé, échoué ou indisponible → le code à 6 chiffres.
+- Comment, sans affaiblir le serveur : le serveur n'autorise toujours un transfert qu'après avoir vérifié le code (`verify_pin`, 5 essais puis blocage 15 min). Après un transfert confirmé avec le code et Face ID, le code est gardé sur CET appareil, chiffré (AES-GCM 256) avec une clé que l'iPhone ne libère qu'après Face ID (extension WebAuthn PRF). Ensuite, Face ID déchiffre le code et l'application le transmet elle-même à `verify_pin`. Le code n'est jamais stocké en clair.
+- La copie chiffrée est effacée : à la déconnexion, après un changement de code, et dès que le serveur la refuse (une seule tentative silencieuse, jamais répétée).
+- Exige iOS 18+ (PRF). Sur un appareil sans PRF, le code reste demandé à chaque transfert. Une clé Face ID créée avant 12.15.0 est remplacée une seule fois (un Face ID supplémentaire) pour activer PRF.
+- Ouverture de l'application : inchangée (Face ID, sinon le code). La session reste mémorisée (`persistSession`) : on ne se reconnecte qu'après « Se déconnecter », ou une fois par adresse de site / une fois dans l'app installée (Safari et l'icône n'ont pas la même mémoire sur iPhone).
+- Aucun changement côté serveur / base de données.
+
+## Tests
+- `tests/ui/faceid-pin-1215.test.mjs` (6 tests, Face ID simulé, chiffrement réel de Chromium). NON EXÉCUTÉ : vrai Face ID sur un vrai iPhone.
+
+---
+
 # Friendly Pay 12.14.0 — refonte premium (étape 1 : animations, écrans, installation iPhone sans App Store)
 
 ## Ajouté

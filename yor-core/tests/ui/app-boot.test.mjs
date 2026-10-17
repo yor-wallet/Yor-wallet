@@ -25,7 +25,7 @@ test('l\'app démarre sans erreur avec la CSP réelle ; seul appel externe : le 
   assert.deepEqual(s.errors, [], 'aucune erreur ni avertissement dans la console (CSP comprise)');
   assert.equal(st.r, 'function'); assert.equal(st.w, 'function'); assert.equal(st.y, 'object'); assert.equal(st.frozen, true);
   assert.deepEqual(s.external, ['GET cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js']);
-  assert.equal(st.v, '12.14.0');
+  assert.equal(st.v, '12.15.0');
   await s.ctx.close();
 });
 

@@ -64,9 +64,9 @@ function contactCardHTML(c){
 }
 /* 12.9.0 — Face ID row (replaces the old on/off biometric switch: Face ID is now mandatory where the device has it) */
 const FID_TXT = {
-  en:{ on:'On', off:'Off', na:'—', subOn:'Required to sign in and to confirm transfers', subOff:'Tap to turn on — required on this device', subNa:'Not available on this device — your PIN is used', req:'{N} is required and cannot be turned off.', unsup:'Not available on this device.', tapCopy:'Tap to copy' },
-  fr:{ on:'Activé', off:'Désactivé', na:'—', subOn:'Obligatoire pour vous connecter et confirmer les transferts', subOff:'Touchez pour activer — obligatoire sur cet appareil', subNa:'Indisponible sur cet appareil — votre code est utilisé', req:'{N} est obligatoire et ne peut pas être désactivé.', unsup:'Indisponible sur cet appareil.', tapCopy:'Touchez pour copier' },
-  ar:{ on:'مفعّل', off:'غير مفعّل', na:'—', subOn:'مطلوب لتسجيل الدخول وتأكيد التحويلات', subOff:'المس للتفعيل — مطلوب على هذا الجهاز', subNa:'غير متاح على هذا الجهاز — يُستخدم رمزك', req:'{N} مطلوب ولا يمكن إيقافه.', unsup:'غير متاح على هذا الجهاز.', tapCopy:'المس للنسخ' }
+  en:{ on:'On', off:'Off', na:'—', subOn:'Opens the app and confirms transfers — your code is asked only if it fails', subOff:'Tap to turn on — required on this device', subNa:'Not available on this device — your PIN is used', req:'{N} is required and cannot be turned off.', unsup:'Not available on this device.', tapCopy:'Tap to copy' },
+  fr:{ on:'Activé', off:'Désactivé', na:'—', subOn:'Ouvre l’app et confirme les transferts — le code n’est demandé que s’il échoue', subOff:'Touchez pour activer — obligatoire sur cet appareil', subNa:'Indisponible sur cet appareil — votre code est utilisé', req:'{N} est obligatoire et ne peut pas être désactivé.', unsup:'Indisponible sur cet appareil.', tapCopy:'Touchez pour copier' },
+  ar:{ on:'مفعّل', off:'غير مفعّل', na:'—', subOn:'يفتح التطبيق ويؤكد التحويلات — يُطلب الرمز فقط عند فشله', subOff:'المس للتفعيل — مطلوب على هذا الجهاز', subNa:'غير متاح على هذا الجهاز — يُستخدم رمزك', req:'{N} مطلوب ولا يمكن إيقافه.', unsup:'غير متاح على هذا الجهاز.', tapCopy:'المس للنسخ' }
 };
 function faceIdText(k){
   let n = 'Face ID'; try { n = FaceId.name(); } catch(e){}
