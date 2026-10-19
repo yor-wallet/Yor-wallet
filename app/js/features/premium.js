@@ -83,6 +83,16 @@ Object.assign(TR.ar, {
   'px.balUp':'تم تحديث الرصيد','px.legal':'الشروط والخصوصية','px.showBal':'إظهار الرصيد','px.hideBal':'إخفاء الرصيد'
 });
 
+
+/* 13.0.0 — horizontal lock: these containers are never meant to scroll sideways. If anything (focus, keyboard, scrollIntoView,
+   an iOS gesture) shifts one of them, it is put back at once, so the page can never stay stuck to the left. */
+(function lockSideways(){
+  const fix = el => { if (el && el.scrollLeft) el.scrollLeft = 0; };
+  const all = () => [document.scrollingElement, document.body, document.getElementById('app'), document.getElementById('main'), document.getElementById('screens')];
+  const onScroll = e => { const t = e.target === document ? document.scrollingElement : e.target; if (t && all().indexOf(t) !== -1) fix(t); if (window.scrollX) window.scrollTo(0, window.scrollY); };
+  try { document.addEventListener('scroll', onScroll, { capture:true, passive:true }); window.addEventListener('resize', () => all().forEach(fix), { passive:true }); window.addEventListener('focusin', () => setTimeout(() => all().forEach(fix), 60)); } catch(e){}
+})();
+
 /* ---------- small shared helpers ---------- */
 const pxReduced = () => { try { return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); } catch(e){ return false; } };
 /* "+96891234567" -> "+968 •••• 4567" (only the last 4 digits are shown outside the edit screen) */

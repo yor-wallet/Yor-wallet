@@ -83,8 +83,14 @@ html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3,html[dir="rtl"] .topbar
 .screen.px-scrolled > .topbar{background:color-mix(in srgb,var(--bg) 92%,transparent)!important;-webkit-backdrop-filter:saturate(1.4) blur(14px)!important;backdrop-filter:saturate(1.4) blur(14px)!important;box-shadow:0 1px 0 var(--line)}
 @supports not (background:color-mix(in srgb,red 50%,blue)){.screen.px-scrolled > .topbar{background:var(--bg)!important}}
 
-/* #screens must never scroll sideways (a carousel used to push it by ~18 px and every screen was drawn shifted) */
+/* 13.0.0 — "the page slides to the left and stays stuck": hidden screens were parked 22 px to the right (base.css, for the slide-in),
+   so #screens was 412 px wide on a 390 px phone. Any automatic scroll (carousel, focus of a field, the keyboard) moved everything left,
+   and nothing could bring it back. Hidden screens now stay inside the frame; the entry animation is vertical (pxScreenIn). */
+.screen{--enter-x:0px}
+html[dir="rtl"] .screen{--enter-x:0px}
+html,body,#app,#main,#screens{overflow-x:hidden;overscroll-behavior-x:none}
 #screens{overflow:hidden;overflow:clip}
+.screen{overflow-x:hidden}
 
 /* ---------- 6. home ---------- */
 .px-home{gap:calc(18px*var(--ui))}
