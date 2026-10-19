@@ -440,6 +440,7 @@ const Premium = (() => {
           '<button class="px-bal-link" data-nav="history"><span>' + escapeHtml(t('px.history')) + '</span>' + '<span class="dir-flip" style="display:inline-flex">' + icon('chev', 16) + '</span></button></div>' +
       '</section>' +
       '<nav class="rv-acts px-acts" aria-label="' + escapeHtml(t('px.more')) + '">' + act('country-select', 'send', t('px.send'), true) + act('receive', 'receive', t('px.receive')) + act('history', 'history', t('px.history')) + act('services', 'apps', t('px.more')) + '</nav>' +
+      (typeof V13 !== 'undefined' ? V13.insightsHtml() : '') +
       PxInstall.card() +
       '<section class="rv-sec px-sec"><div class="rv-h"><h2>' + escapeHtml(t('px.recent')) + '</h2><button data-nav="history">' + escapeHtml(t('px.seeAll')) + '</button></div>' +
         (txs.length ? txGroupedHtml(txs, hide) : '<div class="rv-list">' + emptyState('history', V12.vt('noTx'), t('ds.nohist_body')) + '</div>') + '</section>' +
@@ -598,6 +599,7 @@ const Premium = (() => {
     if (id === 'tx-result') TxResult.wire(root);
     if (id === 'home' || id === 'settings') PxInstall.wire(root);
     if (id === 'history') wireHistory(root);
+    if (typeof V13 !== 'undefined') V13.onScreen(id, root);
     /* a scrolled screen gets a solid top bar (the bar stays readable over the content) */
     if (!root.__pxScroll){ root.__pxScroll = true; root.addEventListener('scroll', () => { root.classList.toggle('px-scrolled', root.scrollTop > 6); }, { passive:true }); }
     root.classList.remove('px-scrolled');

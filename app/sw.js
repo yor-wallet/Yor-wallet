@@ -1,11 +1,11 @@
-/* Friendly Pay service worker (12.15.0) : coquille de l'application hors ligne + réception des notifications push.
+/* Friendly Pay service worker (13.0.0) : coquille de l'application hors ligne + réception des notifications push.
    - Il ne met JAMAIS en cache le trafic Supabase / API / chaîne : soldes et transactions viennent toujours du serveur.
    - Réseau d'abord (toujours la dernière version quand on est en ligne), avec repli sur la copie locale si le réseau est absent ou trop lent.
    - Seules les réponses réussies (200) du même site sont gardées : une page d'erreur n'est jamais servie plus tard comme si c'était l'application.
    - Hors ligne : l'application démarre depuis la copie locale ; si elle n'existe pas encore, « offline.html » explique la situation.
    - Il ne touche JAMAIS aux ressources d'autres sites (client Supabase sur le CDN, WalletConnect, chaîne) : le navigateur les charge lui-même.
      (12.11.0 interceptait le client Supabase : la CSP bloquait ce rechargement par le service worker et l'application ne démarrait plus dès la 2e ouverture.) */
-const CACHE = 'fp-shell-v12.15.0';
+const CACHE = 'fp-shell-v13.0.0';
 const SLOW_MS = 4500;      /* au-delà, on sert la copie locale si on en a une */
 
 const SHELL = [
@@ -19,7 +19,7 @@ const SHELL = [
   'js/screens/drawer.js', 'js/screens/transfer-flow.js', 'js/ui/receipt-export.js', 'js/screens/receipt.js', 'js/screens/history-cards.js',
   'js/screens/profile-settings.js', 'js/screens/info.js', 'js/screens/crypto-market.js', 'js/screens/crypto-trade.js', 'js/screens/crypto-receive-bank.js',
   'js/features/yor-chain.js', 'js/features/chain-notice.js', 'js/screens/chain-wallet.js', 'js/features/wallet-connect.js', 'js/features/v12.js',
-  'js/features/promos.js', 'js/features/push.js', 'js/features/premium.js', 'js/screens/register.js', 'js/ui/uikit.js', 'js/wire.js', 'js/layout/sidebar.js', 'js/layout/viewport.js', 'js/boot.js',
+  'js/features/promos.js', 'js/features/push.js', 'js/features/premium.js', 'js/features/v13.js', 'js/screens/register.js', 'js/ui/uikit.js', 'js/wire.js', 'js/layout/sidebar.js', 'js/layout/viewport.js', 'js/boot.js',
   'assets/brand/logo-mark.svg', 'assets/brand/friendly-letters-white.svg',
   'assets/fonts/manrope-latin-var.woff2', 'assets/fonts/manrope-latin-ext-var.woff2', 'assets/fonts/inter-latin-var.woff2',
   'assets/fonts/plex-arabic-400.woff2', 'assets/fonts/plex-arabic-500.woff2', 'assets/fonts/plex-arabic-600.woff2', 'assets/fonts/plex-arabic-700.woff2',
