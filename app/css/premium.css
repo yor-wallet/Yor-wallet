@@ -403,3 +403,5 @@ html[dir="rtl"] .v13-recent h3{text-transform:none;letter-spacing:0;font-family:
 .v13-n[role="button"]{cursor:pointer}
 .v13-meta{font-size:calc(12px*var(--ui))!important;color:var(--text-3)!important}
 @media (prefers-reduced-motion:reduce){.v13-month,.v13-bar,.v13-ptr-ic{animation:none!important}.v13-ptr{transition:none}}
+.v13-n .item-title{overflow:visible;white-space:normal}
+.v13-n .item-sub{white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
