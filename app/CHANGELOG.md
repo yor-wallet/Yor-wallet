@@ -1,3 +1,23 @@
+# Friendly Pay 13.0.0
+
+## Corrigé — « la page part vers la gauche et reste bloquée »
+- Cause : les écrans cachés étaient gardés décalés de 22 px vers la droite (préparation de leur glissement d'entrée, `base.css`). La zone des écrans faisait donc 412 px sur un téléphone de 390 px. Le moindre défilement automatique (carrousel, champ qui prend le focus, clavier iOS) poussait tout vers la gauche, et comme cette zone ne se fait pas défiler à la main, on ne pouvait plus revenir.
+- Correction : les écrans cachés restent dans le cadre (l'entrée se fait désormais verticalement) ; `#screens`, `#main`, `#app`, `body` ne défilent jamais de côté ; une garde remet aussitôt à 0 tout décalage horizontal (défilement, focus, redimensionnement). Vérifié : 390 px sur tous les écrans, décalage forcé remis à 0.
+
+## Ajouté
+- **Ce mois-ci** (accueil) : envoyé / reçu / nombre d'opérations — uniquement les opérations CONFIRMÉES du mois, dans la devise du compte ; masqué avec le solde.
+- **Tirer pour actualiser** (accueil, historique, notifications) : recharge vraiment depuis le serveur ; hors ligne, le dit et n'invente rien.
+- **Bénéficiaires récents** sur l'écran d'envoi : les numéros réellement utilisés dans l'historique (sans doublon) ; un toucher remplit le numéro (la personne vérifie et continue).
+- **Centre de notifications** : regroupé par jour, pastille « non lue », titre traduit selon le type (envoyé / reçu / dépôt), montant et référence tirés des données du serveur ; un toucher ouvre le reçu et marque l'alerte lue sur le serveur.
+
+## Non fait (volontairement)
+- **Logo Visa** : non ajouté. Ces cartes ne sont pas émises par un émetteur agréé Visa ; afficher la marque Visa serait trompeur et interdit sans licence. L'emplacement du réseau existe déjà et ne s'affiche que si les données de la carte indiquent un vrai émetteur et un vrai réseau.
+
+## Tests
+- `tests/ui/v13.test.mjs` (5 tests). NON EXÉCUTÉ : vrai iPhone.
+
+---
+
 # Friendly Pay 12.15.0 — Face ID OU le code pour les transferts
 
 ## Changé
