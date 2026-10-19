@@ -322,9 +322,9 @@ test('toucher une notification (message du service worker) ouvre l\'écran des n
   await s.ctx.close();
 });
 
-test('version 12.15.0 ; un transfert, l\'historique et les autres réglages restent intacts', { skip }, async () => {
+test('version 13.0.0 ; un transfert, l\'historique et les autres réglages restent intacts', { skip }, async () => {
   const s = await openSettings();
-  assert.equal(await s.page.evaluate(() => CONFIG.APP.version), '12.15.0');
+  assert.equal(await s.page.evaluate(() => CONFIG.APP.version), '13.0.0');
   const txt = await s.page.innerText('.screen.active');
   assert.match(txt, /Notifications/); assert.match(txt, /Vibration/);
   assert.equal(await s.page.locator('[data-action="settings-toggle-notifs"]').count(), 1, 'le réglage « Notifications » existant reste');
