@@ -1,10 +1,10 @@
 'use client';
 /* "Qui fait quoi": the three roles of the platform, each embodied by an illustrated character. */
 import { useI18n } from '@/lib/i18n';
-import { Character, type Mood, type Prop } from './characters';
+import { Portrait } from './portraits';
 import { Reveal } from './motion';
 
-const ROLES: { who: 'aisha' | 'salim' | 'maryam'; mood: Mood; prop: Prop; tone: string }[] = [
+const ROLES: { who: 'aisha' | 'salim' | 'maryam'; mood?: string; prop?: string; tone: string }[] = [
   { who: 'aisha', mood: 'happy', prop: 'phone', tone: 'from-emerald-50 to-white' },
   { who: 'salim', mood: 'happy', prop: 'coins', tone: 'from-gold-100 to-white' },
   { who: 'maryam', mood: 'focused', prop: 'laptop', tone: 'from-emerald-100 to-white' },
@@ -19,9 +19,9 @@ export function Cast() {
         {ROLES.map((r, i) => (
           <Reveal key={r.who} delay={i * 140} from="up">
             <article className={`group relative h-full overflow-hidden rounded-[1.75rem] border border-line bg-gradient-to-b ${r.tone} p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-lift dark:border-white/10 dark:from-white/10 dark:to-transparent`}>
-              <div className="flex items-end gap-4">
-                <Character who={r.who} mood={r.mood} prop={r.prop} title={t('chars.' + r.who)} className="h-48 w-auto shrink-0 transition duration-500 group-hover:scale-105" />
-                <div className="pb-3"><p className="text-xs font-bold uppercase tracking-wide text-gold-600">{t(`cast.${r.who}.role`)}</p><h3 className="text-xl font-black text-emerald-950 dark:text-white">{t('chars.' + r.who).split(/[,،]/)[0]}</h3></div>
+              <div className="flex items-center gap-4">
+                <span className="h-24 w-24 shrink-0 overflow-hidden rounded-full shadow-lift transition duration-500 group-hover:scale-105"><Portrait who={r.who} ring title={t('chars.' + r.who)} /></span>
+                <div><p className="text-xs font-bold uppercase tracking-wide text-gold-600">{t(`cast.${r.who}.role`)}</p><h3 className="text-xl font-black text-emerald-950 dark:text-white">{t('chars.' + r.who).split(/[,،]/)[0]}</h3></div>
               </div>
               <ul className="mt-4 space-y-2 text-sm text-ink-soft dark:text-emerald-50/85">
                 {[1, 2, 3].map(n => <li key={n} className="flex gap-2"><span className="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-emerald-600 text-[9px] text-white">✓</span>{t(`cast.${r.who}.${n}`)}</li>)}

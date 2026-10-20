@@ -6,7 +6,8 @@ import { useI18n } from '@/lib/i18n';
 import { renderNotification } from '@/lib/notif';
 import type { Application, Installment, Notification, Summary } from '@/lib/types';
 import { Ring, ScheduleBars } from '@/components/charts';
-import { Character } from '@/components/characters';
+import { Portrait } from '@/components/portraits';
+import { Icon, type IconName } from '@/components/icons';
 import { Alert, Badge, Card, ErrorBox, LinkButton, Loading, Num, PageHeader, Stat, must, useLoad } from '@/components/ui';
 
 export default function Dashboard() {
@@ -29,7 +30,7 @@ export default function Dashboard() {
   const idOk = profile?.identity_status === 'VERIFIED';
   return (
     <>
-      <PageHeader title={t('dash.title', { name: profile?.first_name ?? '' })} sub={t('dash.sub')} actions={<LinkButton href="/client/apply/">{t('cn.apply')}</LinkButton>} />
+      <PageHeader desktopOnly title={t('dash.title', { name: profile?.first_name ?? '' })} sub={t('dash.sub')} actions={<LinkButton href="/client/apply/">{t('cn.apply')}</LinkButton>} />
       {!idOk && profile && (
         <div className="mb-6"><Alert tone={profile.identity_status === 'REJECTED' || profile.identity_status === 'REUPLOAD_REQUIRED' ? 'error' : 'warn'} title={t('dash.id_title')}>
           <p>{t('dash.id_' + profile.identity_status)}</p><Link href="/client/documents/" className="mt-2 inline-block font-bold underline">{t('dash.id_cta')}</Link></Alert></div>)}
@@ -42,6 +43,11 @@ export default function Dashboard() {
         <div className="mt-6 flex flex-wrap gap-2"><LinkButton href="/client/withdraw/" variant="gold">{t('cn.withdraw')}</LinkButton><LinkButton href="/client/history/" variant="secondary" className="!border-white/20 !bg-white/10 !text-white">{t('cn.history')}</LinkButton></div>
         <p className="mt-4 text-xs text-emerald-100/60">{t('dash.balance_note')}</p>
       </section>
+      <nav aria-label={t('dash.quick')} className="mt-5 grid grid-cols-4 gap-2">
+        {([['/client/apply/', 'cn.apply', 'plus'], ['/client/documents/', 'cn.documents', 'id'], ['/client/installments/', 'cn.installments', 'calendar'], ['/client/history/', 'cn.history', 'receipt']] as [string, string, IconName][]).map(([h, k, ic]) => (
+          <Link key={h} href={h} className="press flex flex-col items-center gap-2 rounded-2xl p-2 text-center text-[11.5px] font-bold text-ink-soft dark:text-emerald-50/85">
+            <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white text-emerald-700 shadow-card ring-1 ring-line dark:bg-white/5 dark:text-emerald-300 dark:ring-white/10"><Icon name={ic} size={24} /></span>{t(k)}</Link>))}
+      </nav>
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label={t('dash.outstanding')} value={money(s.outstanding)} />
         <Stat label={t('dash.next_due')} value={s.next_due ? money(s.next_due.amount) : '—'} hint={s.next_due ? date(s.next_due.date) : t('dash.no_due')} tone="gold" />
@@ -58,7 +64,7 @@ export default function Dashboard() {
         </Card>)}
       {active.length === 0 && !app && (
         <Card className="mt-6"><div className="flex flex-wrap items-center gap-5">
-          <Character who="aisha" mood="happy" prop="phone" wave className="h-40 w-auto" title={t('chars.aisha')} />
+          <span className="h-28 w-28 shrink-0 overflow-hidden rounded-full shadow-lift"><Portrait who="aisha" ring title={t('chars.aisha')} /></span>
           <div className="max-w-md"><p className="text-lg font-extrabold">{t('dash.empty_t')}</p><p className="mt-1 text-sm text-ink-muted">{t('dash.empty_b')}</p><LinkButton href="/client/apply/" className="mt-3">{t('cn.apply')}</LinkButton></div>
         </div></Card>)}
       <div className="mt-6 grid gap-6 lg:grid-cols-2">

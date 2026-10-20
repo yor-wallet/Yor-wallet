@@ -2,16 +2,50 @@
   "name": "SULFA — سلفه",
   "short_name": "SULFA",
   "description": "Demandes de financement suivies et décidées par un administrateur.",
-  "start_url": "/client/",
+  "start_url": "/app/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f7f9f8",
+  "background_color": "#063b32",
   "theme_color": "#063b32",
   "dir": "rtl",
   "lang": "ar",
   "icons": [
-    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "id": "/app/",
+  "orientation": "portrait",
+  "shortcuts": [
+    {
+      "name": "طلب جديد",
+      "short_name": "طلب",
+      "url": "/client/apply/"
+    },
+    {
+      "name": "الأقساط",
+      "url": "/client/installments/"
+    },
+    {
+      "name": "الإشعارات",
+      "url": "/client/notifications/"
+    }
+  ],
+  "categories": [
+    "finance"
   ]
 }

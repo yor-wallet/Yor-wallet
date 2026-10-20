@@ -31,3 +31,10 @@ Sur l'offre gratuite, Netlify injecte un commentaire et un script dans les pages
 - Palette des graphiques vérifiée avec un validateur (daltonisme, contraste) en mode clair et sombre.
 - Les frais et le taux sont à 0 tant qu'un super-administrateur ne les a pas configurés dans *Administration → Paramètres* : le simulateur affiche alors un coût nul, ce qui est exact.
 - Netlify (offre gratuite) ajoute un badge « Powered by Netlify » sur le site.
+
+## Version 1.3.0 (application mobile)
+- Entrée de l'application `/app/` (ouverte par l'icône installée) : écran de lancement animé, 3 écrans de présentation à glisser, puis connexion ; un utilisateur connecté va directement dans son espace.
+- Sur téléphone : barre d'onglets en bas (libellés courts, pastille des notifications non lues), grands titres, feuille « Plus » qui monte du bas, fenêtres de confirmation en feuille, prise en compte de l'encoche et de la barre d'accueil iPhone.
+- Icônes vectorielles dessinées pour l'application ; portraits illustratifs en buste (remplacent les personnages en pied).
+- Correction : l'animation d'ouverture des pages utilisait `transform`, ce qui empêchait l'affichage des éléments fixes (barre d'onglets, feuilles) dans Chrome ; elle n'utilise plus que l'opacité.
+- **Non déployée** : Netlify a refusé le déploiement (« Skipped due to account credit usage exceeded »). La version 1.2.0 reste en ligne.

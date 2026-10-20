@@ -33,10 +33,10 @@ export function LinkButton({ href, variant = 'primary', className, children }: {
 export function Card({ className, children, as: As = 'section' }: { className?: string; children: ReactNode; as?: 'section' | 'div' | 'article' }) {
   return <As className={cx('rounded-2xl border border-line bg-white p-5 shadow-card dark:border-white/10 dark:bg-emerald-950/60', className)}>{children}</As>;
 }
-export function PageHeader({ title, sub, actions }: { title: string; sub?: string; actions?: ReactNode }) {
+export function PageHeader({ title, sub, actions, desktopOnly }: { title: string; sub?: string; actions?: ReactNode; desktopOnly?: boolean }) {
   return (
-    <header className="mb-6 flex flex-wrap items-end justify-between gap-3 animate-rise">
-      <div><h1 className="text-2xl font-extrabold text-emerald-950 dark:text-white sm:text-3xl">{title}</h1>{sub && <p className="mt-1 text-ink-muted dark:text-emerald-100/70">{sub}</p>}</div>
+    <header className={cx('mb-6 flex-wrap items-end justify-between gap-3 animate-rise', desktopOnly ? 'hidden lg:flex' : 'page-head flex')}>
+      <div><h1 className="text-[28px] font-black leading-tight text-emerald-950 dark:text-white sm:text-3xl">{title}</h1>{sub && <p className="mt-1 text-ink-muted dark:text-emerald-100/70">{sub}</p>}</div>
       {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
     </header>
   );
@@ -165,7 +165,7 @@ export function Dialog({ spec, onClose }: { spec: DialogSpec | null; onClose: ()
   };
   return (
     <dialog ref={ref} onClose={onClose} onCancel={e => { if (busy) e.preventDefault(); }}
-      className="w-[min(560px,calc(100vw-32px))] rounded-2xl border border-line bg-white p-0 text-ink shadow-lift backdrop:bg-emerald-950/50 backdrop:backdrop-blur-sm dark:border-white/10 dark:bg-emerald-950 dark:text-white">
+      className="app-dialog w-[min(560px,calc(100vw-32px))] rounded-2xl border border-line bg-white p-0 text-ink shadow-lift backdrop:bg-emerald-950/50 backdrop:backdrop-blur-sm dark:border-white/10 dark:bg-emerald-950 dark:text-white">
       <div className="space-y-4 p-6">
         <h2 className="text-xl font-extrabold">{spec.title}</h2>
         {spec.body && <div className="text-sm leading-relaxed text-ink-soft dark:text-emerald-100/80">{spec.body}</div>}

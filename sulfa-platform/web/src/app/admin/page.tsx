@@ -5,7 +5,7 @@ import { useI18n } from '@/lib/i18n';
 import { Alert, Button, Card, Dialog, ErrorBox, Loading, Num, PageHeader, Stat, useLoad, type DialogSpec } from '@/components/ui';
 import { DECIDERS, rpc, useCan } from '@/components/admin';
 import { HBars } from '@/components/charts';
-import { Character } from '@/components/characters';
+import { Portrait } from '@/components/portraits';
 
 type Overview = { reference_capital: number; cash_available: number; capital_recorded: number; receivables: number; fee_income: number; client_balances: number; reserved: number;
   clients: number; applications: Record<string, number>; approved_amount: number; disbursed_amount: number; repaid_amount: number; pending_requested: number;
@@ -62,7 +62,7 @@ export default function Overview() {
           <p className="mt-3 text-xs text-ink-muted">{t('viz.funds_note')}</p></Card>
         <Card><HBars title={t('viz.funnel_title')} color="var(--series-2)" rows={['SUBMITTED', 'IN_REVIEW', 'DOCUMENTS_REQUIRED', 'APPROVED', 'DISBURSEMENT_PENDING', 'DISBURSED', 'COMPLETED', 'REJECTED', 'CANCELLED']
           .map(st => ({ label: t('st.' + st), value: Number(o.applications[st] ?? 0) }))} />
-          {Object.keys(o.applications).length === 0 && <div className="mt-3 flex items-center gap-3"><Character who="maryam" mood="neutral" prop="laptop" className="h-28 w-auto" title={t('chars.maryam')} /><p className="text-sm text-ink-muted">{t('viz.funnel_empty')}</p></div>}</Card>
+          {Object.keys(o.applications).length === 0 && <div className="mt-3 flex items-center gap-3"><span className="h-14 w-14 shrink-0 overflow-hidden rounded-full"><Portrait who="maryam" title={t('chars.maryam')} /></span><p className="text-sm text-ink-muted">{t('viz.funnel_empty')}</p></div>}</Card>
       </div>
       <Card className="mt-6"><h2 className="mb-3 text-lg font-extrabold">{t('ov.by_status')}</h2>
         <div className="flex flex-wrap gap-2">{Object.entries(o.applications).map(([s, n]) => <Link key={s} href={`/admin/applications/?status=${s}`} className="rounded-full border border-line px-3 py-1.5 text-sm dark:border-white/10">{t('st.' + s)} · <b><Num>{n}</Num></b></Link>)}

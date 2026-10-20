@@ -5,12 +5,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useI18n } from '@/lib/i18n';
 import { useReducedMotion } from './motion';
-import { Character, type Mood, type Prop } from './characters';
+import { Portrait } from './portraits';
 import { cx, Num } from './ui';
 
 const SCENES = 6;
 /** who acts in each scene, and how they react */
-const CAST: { who: 'aisha' | 'salim' | 'maryam'; mood: Mood; prop: Prop; say: string }[] = [
+const CAST: { who: 'aisha' | 'salim' | 'maryam'; mood: string; prop: string; say: string }[] = [
   { who: 'aisha', mood: 'neutral', prop: 'phone', say: 'film.c1' }, { who: 'aisha', mood: 'happy', prop: 'id', say: 'film.c2' },
   { who: 'maryam', mood: 'focused', prop: 'magnifier', say: 'film.c3' }, { who: 'maryam', mood: 'happy', prop: 'stamp', say: 'film.c4' },
   { who: 'maryam', mood: 'neutral', prop: 'laptop', say: 'film.c5' }, { who: 'aisha', mood: 'happy', prop: 'coins', say: 'film.c6' },
@@ -167,10 +167,11 @@ export function Film() {
           </div>
           <p className="mt-4 text-xs text-emerald-100/60">{t('film.note')}</p>
         </div>
-        <div className="relative mx-auto ps-24 sm:ps-32 lg:ps-40">
-          <div key={'c' + scene} className="char-enter absolute -bottom-4 start-0 z-20 w-32 sm:w-40 lg:w-44">
-            <div className="char-bubble absolute -top-12 start-10 w-44 rounded-2xl rounded-es-sm bg-white px-3 py-2 text-xs font-bold leading-snug text-emerald-950 shadow-lift">{t(CAST[scene].say)}</div>
-            <Character who={CAST[scene].who} mood={CAST[scene].mood} prop={CAST[scene].prop} title={t('chars.' + CAST[scene].who)} className="h-auto w-full drop-shadow-[0_20px_30px_rgba(0,0,0,.35)]" />
+        <div className="relative mx-auto ps-28 sm:ps-44 lg:ps-52">
+          <div key={'c' + scene} className="char-enter absolute bottom-10 start-0 z-20 flex w-44 flex-col items-start gap-2 sm:w-52">
+            <div className="char-bubble rounded-2xl rounded-es-sm bg-white px-3 py-2.5 text-xs font-bold leading-snug text-emerald-950 shadow-lift">{t(CAST[scene].say)}</div>
+            <div className="flex items-center gap-2"><span className="h-14 w-14 overflow-hidden rounded-full shadow-lift ring-2 ring-white"><Portrait who={CAST[scene].who} title={t('chars.' + CAST[scene].who)} /></span>
+              <span className="text-[11px] font-bold text-emerald-100/80">{t('chars.' + CAST[scene].who)}</span></div>
           </div>
           <div className="phone relative h-[560px] w-[280px] rounded-[2.6rem] border-[10px] border-black bg-black shadow-[0_40px_80px_rgba(0,0,0,.45)]">
             <div className="absolute start-1/2 top-2 z-10 h-6 w-24 -translate-x-1/2 rounded-full bg-black rtl:translate-x-1/2" />

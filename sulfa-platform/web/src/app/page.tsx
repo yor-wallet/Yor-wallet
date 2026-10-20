@@ -4,7 +4,8 @@ import { Simulator } from '@/components/simulator';
 import { FaqList, Steps } from '@/components/marketing';
 import { Film } from '@/components/film';
 import { CountUp, Reveal, Tilt } from '@/components/motion';
-import { Character } from '@/components/characters';
+import { Portrait } from '@/components/portraits';
+import { Icon } from '@/components/icons';
 import { Cast } from '@/components/cast';
 import { LinkButton, Num } from '@/components/ui';
 import { useI18n } from '@/lib/i18n';
@@ -27,16 +28,18 @@ export default function Home() {
             {['home.b1', 'home.b2', 'home.b3'].map(k => <li key={k} className="flex items-center gap-2"><span className="grid h-5 w-5 place-items-center rounded-full bg-emerald-100 text-xs text-emerald-700">✓</span>{t(k)}</li>)}
           </ul></Reveal>
         </div>
-        <Reveal from="zoom" delay={150} className="relative sm:ps-28 lg:ps-28">
+        <Reveal from="zoom" delay={150} className="relative mt-6 sm:mt-0">
           <div aria-hidden className="float-slower absolute -start-6 top-10 -z-10 h-24 w-24 rounded-3xl bg-gold-300/40 blur-xl" />
           <div aria-hidden className="float-slow absolute -bottom-6 end-4 -z-10 h-32 w-32 rounded-full bg-emerald-400/30 blur-2xl" />
-          <div className="mb-2 flex items-end justify-center gap-1 sm:hidden">
-            <Character who="aisha" mood="happy" prop="phone" wave title={t('chars.aisha')} className="char-enter h-40 w-auto" />
-            <div className="char-bubble mb-24 max-w-[180px] rounded-2xl rounded-es-sm bg-white px-3 py-2 text-xs font-bold leading-snug text-emerald-950 shadow-lift dark:bg-emerald-900 dark:text-white">{t('chars.hero_bubble')}</div>
+          <div className="toast-a pointer-events-none absolute -top-12 end-2 z-20 flex w-[19rem] items-center gap-3 rounded-2xl border border-white/60 bg-white/85 p-3 shadow-lift backdrop-blur-xl sm:-end-6 dark:border-white/10 dark:bg-emerald-900/80">
+            <span className="h-11 w-11 shrink-0 overflow-hidden rounded-full"><Portrait who="aisha" title={t('chars.aisha')} /></span>
+            <span className="min-w-0 text-start"><b className="block truncate text-sm text-emerald-950 dark:text-white">{t('n.APPLICATION_SUBMITTED.t')}</b><span className="block truncate text-xs text-ink-muted">Aisha · <span dir="ltr">SLF-…</span></span></span>
+            <span className="ms-auto rounded-full bg-gold-100 px-1.5 py-0.5 text-[9px] font-bold text-gold-600">{t('hero.example')}</span>
           </div>
-          <div className="pointer-events-none absolute -bottom-12 -start-12 z-20 hidden w-40 sm:block lg:-start-8 xl:w-44">
-            <div className="char-bubble absolute bottom-2 start-[88%] w-48 rounded-2xl rounded-ss-sm bg-white px-3 py-2 text-xs font-bold leading-snug text-emerald-950 shadow-lift dark:bg-emerald-900 dark:text-white">{t('chars.hero_bubble')}</div>
-            <Character who="aisha" mood="happy" prop="phone" wave title={t('chars.aisha')} className="char-enter h-auto w-full" />
+          <div className="toast-b pointer-events-none absolute -bottom-10 start-0 z-20 flex w-[19rem] items-center gap-3 rounded-2xl border border-white/60 bg-white/85 p-3 shadow-lift backdrop-blur-xl sm:-start-10 dark:border-white/10 dark:bg-emerald-900/80">
+            <span className="relative h-11 w-11 shrink-0"><span className="block h-11 w-11 overflow-hidden rounded-full"><Portrait who="maryam" title={t('chars.maryam')} /></span><span className="absolute -bottom-0.5 -end-0.5 grid h-5 w-5 place-items-center rounded-full bg-emerald-600 text-white ring-2 ring-white"><Icon name="check" size={12} strokeWidth={3} /></span></span>
+            <span className="min-w-0 text-start"><b className="block truncate text-sm text-emerald-950 dark:text-white">{t('n.DOCUMENT_VERIFIED.t')}</b><span className="block truncate text-xs text-ink-muted">{t('chars.maryam')}</span></span>
+            <span className="ms-auto rounded-full bg-gold-100 px-1.5 py-0.5 text-[9px] font-bold text-gold-600">{t('hero.example')}</span>
           </div>
           <Tilt className="float-slow">
             <div className="shine relative rounded-[2rem] bg-gradient-to-br from-emerald-700 via-emerald-800 to-emerald-950 p-7 text-white shadow-lift">

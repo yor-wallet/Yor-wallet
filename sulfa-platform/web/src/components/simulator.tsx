@@ -7,7 +7,7 @@ import type { PublicSettings } from '@/lib/types';
 import { Alert, Card, LinkButton, Num } from './ui';
 import { useTween } from './motion';
 import { BalanceChart, CostBreakdown } from './charts';
-import { Character } from './characters';
+import { Portrait } from './portraits';
 import { remainingAfter, termInsights } from '@/lib/insights';
 
 /** settings configured by the administrator (sulfa_settings), read through the public function */
@@ -75,7 +75,7 @@ export function Simulator({ cta = true, onChange, initial }: { cta?: boolean; on
             <BalanceChart title={t('viz.balance_title')} points={remainingAfter(q).map((v, k) => ({ label: k === 0 ? t('viz.start') : String(k), sub: k === 0 ? t('viz.start') : t('viz.after', { n: k }), value: v }))} />
           </div>
           <aside className="relative rounded-2xl bg-emerald-50/70 p-5 dark:bg-white/5" aria-label={t('viz.insights')}>
-            <p className="text-sm font-extrabold text-emerald-900 dark:text-emerald-100">{t('viz.insights')}</p>
+            <div className="flex items-center gap-3"><span className="h-11 w-11 shrink-0 overflow-hidden rounded-full shadow-card"><Portrait who="salim" title={t('chars.salim')} /></span><p className="text-sm font-extrabold text-emerald-900 dark:text-emerald-100">{t('viz.insights')}</p></div>
             <ul className="mt-3 space-y-3 text-sm leading-relaxed text-ink-soft dark:text-emerald-50/85">
               <li>{t('viz.i_cost', { pct: ins.costPct, cost: money(ins.cost) })}</li>
               {ins.shorter && <li>{t('viz.i_shorter', { n: term - 1, monthly: money(ins.shorter.monthly), save: money(ins.shorter.save) })}</li>}
@@ -83,7 +83,6 @@ export function Simulator({ cta = true, onChange, initial }: { cta?: boolean; on
               <li>{t('viz.i_daily', { day: money(ins.perDay) })}</li>
             </ul>
             <p className="mt-3 text-[11px] text-ink-muted">{t('viz.i_note')}</p>
-            <Character who="salim" mood={ins.costPct <= 8 ? 'happy' : 'focused'} prop="coins" className="pointer-events-none mx-auto mt-2 h-40 w-auto" title={t('viz.char_salim')} />
           </aside>
         </div>)}
       {!loaded && failed && <div className="mt-6"><Alert tone="warn">{t('sim.not_loaded')}</Alert></div>}

@@ -7,6 +7,8 @@ import { LANGS, LANG_NAMES, type Lang } from '@/lib/i18n/dict';
 import { AuthProvider, useAuth } from '@/lib/auth';
 import type { AdminRole } from '@/lib/types';
 import { cx, Loading, NotConfigured, Alert, LinkButton } from './ui';
+import { Icon, type IconName } from './icons';
+import { supabase } from '@/lib/supabase';
 
 export function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -45,7 +47,7 @@ export function ThemeToggle() {
     const d = !dark; setDark(d); document.documentElement.classList.toggle('dark', d);
     try { localStorage.setItem('sulfa_theme', d ? 'dark' : 'light'); } catch {}
   };
-  return <button onClick={flip} aria-pressed={dark} aria-label={t('nav.theme')} className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white/80 text-lg dark:border-white/10 dark:bg-white/5">{dark ? '☾' : '☀'}</button>;
+  return <button onClick={flip} aria-pressed={dark} aria-label={t('nav.theme')} className="press grid h-10 w-10 place-items-center rounded-xl border border-line bg-white/80 dark:border-white/10 dark:bg-white/5"><Icon name={dark ? 'moon' : 'sun'} size={19} /></button>;
 }
 
 const PUBLIC_NAV = [['/how-it-works/', 'nav.how'], ['/simulator/', 'nav.simulator'], ['/eligibility/', 'nav.eligibility'], ['/faq/', 'nav.faq'], ['/about/', 'nav.about']] as const;
@@ -67,7 +69,7 @@ export function SiteHeader() {
           {session
             ? <LinkButton href={role ? '/admin/' : '/client/'} className="hidden sm:inline-flex">{role ? t('nav.admin') : t('nav.my_space')}</LinkButton>
             : <><LinkButton href="/login/" variant="ghost" className="hidden sm:inline-flex">{t('nav.login')}</LinkButton><LinkButton href="/signup/" className="hidden sm:inline-flex">{t('nav.start')}</LinkButton></>}
-          <button className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white lg:hidden dark:border-white/10 dark:bg-white/5" aria-expanded={open} aria-label={t('nav.menu')} onClick={() => setOpen(o => !o)}>☰</button>
+          <button className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white lg:hidden dark:border-white/10 dark:bg-white/5" aria-expanded={open} aria-label={t('nav.menu')} onClick={() => setOpen(o => !o)}><Icon name="more" size={24} strokeWidth={3} /></button>
         </div>
       </div>
       {open && (
@@ -110,17 +112,24 @@ export function PublicPage({ children, narrow }: { children: ReactNode; narrow?:
 }
 
 /* ---------------------------------------------------------------- signed-in areas */
-const CLIENT_NAV = [
-  ['/client/', 'cn.dashboard', '◈'], ['/client/apply/', 'cn.apply', '＋'], ['/client/applications/', 'cn.applications', '▤'],
-  ['/client/documents/', 'cn.documents', '⎙'], ['/client/installments/', 'cn.installments', '◷'], ['/client/withdraw/', 'cn.withdraw', '↗'],
-  ['/client/history/', 'cn.history', '≡'], ['/client/notifications/', 'cn.notifications', '◔'], ['/client/settings/', 'cn.settings', '⚙'],
-] as const;
-const ADMIN_NAV = [
-  ['/admin/', 'an.overview', '◈'], ['/admin/applications/', 'an.applications', '▤'], ['/admin/documents/', 'an.documents', '⎙'],
-  ['/admin/clients/', 'an.clients', '☺'], ['/admin/withdrawals/', 'an.withdrawals', '↗'], ['/admin/repayments/', 'an.repayments', '↙'],
-  ['/admin/ledger/', 'an.ledger', '≡'], ['/admin/notifications/', 'an.notifications', '◔'], ['/admin/audit/', 'an.audit', '⌕'],
-  ['/admin/operators/', 'an.operators', '⇄'], ['/admin/settings/', 'an.settings', '⚙'],
-] as const;
+type NavItem = readonly [href: string, key: string, icon: IconName];
+const CLIENT_NAV: readonly NavItem[] = [
+  ['/client/', 'cn.dashboard', 'home'], ['/client/apply/', 'cn.apply', 'plus'], ['/client/applications/', 'cn.applications', 'file'],
+  ['/client/documents/', 'cn.documents', 'id'], ['/client/installments/', 'cn.installments', 'calendar'], ['/client/withdraw/', 'cn.withdraw', 'out'],
+  ['/client/history/', 'cn.history', 'history'], ['/client/notifications/', 'cn.notifications', 'bell'], ['/client/settings/', 'cn.settings', 'settings'],
+];
+/** the four tabs shown in the bottom bar on phones; everything else is in the "More" sheet */
+const CLIENT_TABS = ['/client/', '/client/applications/', '/client/installments/', '/client/notifications/'];
+const ADMIN_NAV: readonly NavItem[] = [
+  ['/admin/', 'an.overview', 'chart'], ['/admin/applications/', 'an.applications', 'file'], ['/admin/documents/', 'an.documents', 'id'],
+  ['/admin/clients/', 'an.clients', 'users'], ['/admin/withdrawals/', 'an.withdrawals', 'out'], ['/admin/repayments/', 'an.repayments', 'in'],
+  ['/admin/ledger/', 'an.ledger', 'ledger'], ['/admin/notifications/', 'an.notifications', 'bell'], ['/admin/audit/', 'an.audit', 'search'],
+  ['/admin/operators/', 'an.operators', 'plug'], ['/admin/settings/', 'an.settings', 'settings'],
+];
+const ADMIN_TABS = ['/admin/', '/admin/applications/', '/admin/documents/', '/admin/withdrawals/'];
+/** short labels for the tab bar (the full names stay in menus and titles) */
+const TAB_LABEL: Record<string, string> = { '/client/': 'tab.home', '/client/applications/': 'tab.apps', '/client/installments/': 'tab.inst', '/client/notifications/': 'tab.notif',
+  '/admin/': 'tab.overview', '/admin/applications/': 'tab.apps', '/admin/documents/': 'tab.docs', '/admin/withdrawals/': 'tab.wd' };
 
 function Guard({ admin, roles, children }: { admin?: boolean; roles?: AdminRole[]; children: ReactNode }) {
   const { ready, session, role, profile, profileError } = useAuth(); const { t } = useI18n();
@@ -134,44 +143,105 @@ function Guard({ admin, roles, children }: { admin?: boolean; roles?: AdminRole[
   return <>{children}</>;
 }
 
-function SpaceShell({ nav, title, admin, children }: { nav: readonly (readonly [string, string, string])[]; title: string; admin?: boolean; children: ReactNode }) {
-  const { t } = useI18n(); const { profile, role, signOut, session } = useAuth();
-  const path = usePathname(); const router = useRouter();
-  const [open, setOpen] = useState(false);
-  useEffect(() => setOpen(false), [path]);
-  const name = profile ? `${profile.first_name} ${profile.last_name}`.trim() : session?.user.email ?? '';
-  const out = async () => { await signOut(); router.replace('/'); };
-  const navEl = (
-    <nav className="space-y-1" aria-label={title}>
-      {nav.map(([h, k, ic]) => {
-        const on = h === path || (h !== '/client/' && h !== '/admin/' && path.startsWith(h));
-        return <Link key={h} href={h} aria-current={on ? 'page' : undefined} className={cx('flex min-h-11 items-center gap-3 rounded-xl px-3 text-[15px] font-semibold transition', on ? 'bg-emerald-700 text-white shadow-card' : 'text-ink-soft hover:bg-emerald-50 dark:text-emerald-100/80 dark:hover:bg-white/5')}><span aria-hidden className="w-5 text-center">{ic}</span>{t(k)}</Link>;
-      })}
-    </nav>
-  );
+function isOn(h: string, path: string) { return h === path || (h !== '/client/' && h !== '/admin/' && path.startsWith(h)); }
+
+/** bottom sheet (phones) / popover (desktop) */
+export function Sheet({ open, onClose, title, children }: { open: boolean; onClose: () => void; title: string; children: ReactNode }) {
+  useEffect(() => {
+    if (!open) return;
+    const k = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', k); document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', k); document.body.style.overflow = ''; };
+  }, [open, onClose]);
+  if (!open) return null;
   return (
-    <div className="min-h-screen overflow-x-clip lg:grid lg:grid-cols-[260px_1fr]">
-      <aside className="hidden border-e border-line bg-white/70 p-4 lg:block dark:border-white/10 dark:bg-emerald-950/50">
-        <div className="sticky top-4 space-y-6"><Brand />
-          {admin && <span className="inline-block rounded-full bg-gold-100 px-3 py-1 text-xs font-extrabold text-gold-600">{t('admin.badge')} · {role ? t('role.' + role) : ''}</span>}
-          {navEl}
-        </div>
-      </aside>
-      <div className="min-w-0">
-        <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-line bg-paper/85 px-4 py-3 backdrop-blur-md sm:px-6 dark:border-white/10 dark:bg-emerald-950/85">
-          <button className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white lg:hidden dark:border-white/10 dark:bg-white/5" aria-expanded={open} aria-label={t('nav.menu')} onClick={() => setOpen(o => !o)}>☰</button>
-          <span className="lg:hidden"><Brand compact /></span>
-          <span className="truncate text-sm text-ink-muted">{t('nav.hello', { name })}</span>
-          <div className="ms-auto flex items-center gap-2"><LangSwitch className="hidden sm:block" /><ThemeToggle />
-            <button onClick={out} className="min-h-10 whitespace-nowrap rounded-xl px-3 text-sm font-bold text-emerald-800 hover:bg-emerald-50 dark:text-emerald-100 dark:hover:bg-white/5">{t('nav.logout')}</button></div>
-        </header>
-        {open && <div className="border-b border-line bg-white p-4 lg:hidden dark:border-white/10 dark:bg-emerald-950">{navEl}<div className="mt-3"><LangSwitch /></div></div>}
-        <main id="main" className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8"><NotConfigured /><Guard admin={admin}>{children}</Guard></main>
+    <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label={title}>
+      <button aria-label={title} className="sheet-backdrop absolute inset-0 bg-emerald-950/45 backdrop-blur-sm" onClick={onClose} />
+      <div className="sheet-panel absolute inset-x-0 bottom-0 max-h-[85vh] overflow-y-auto rounded-t-[1.75rem] bg-paper px-4 pb-[calc(env(safe-area-inset-bottom)+16px)] pt-3 shadow-lift dark:bg-emerald-950">
+        <div className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-ink/15 dark:bg-white/20" />
+        <p className="mb-3 px-1 text-lg font-black">{title}</p>
+        {children}
       </div>
     </div>
   );
 }
 
-export const ClientShell = ({ children }: { children: ReactNode }) => { const { t } = useI18n(); return <SpaceShell nav={CLIENT_NAV} title={t('cn.title')}>{children}</SpaceShell>; };
-export const AdminShell = ({ children }: { children: ReactNode }) => { const { t } = useI18n(); return <SpaceShell nav={ADMIN_NAV} title={t('an.title')} admin>{children}</SpaceShell>; };
+function SpaceShell({ nav, tabs, title, admin, children }: { nav: readonly NavItem[]; tabs: string[]; title: string; admin?: boolean; children: ReactNode }) {
+  const { t } = useI18n(); const { profile, role, signOut, session } = useAuth();
+  const path = usePathname(); const router = useRouter();
+  const [more, setMore] = useState(false);
+  const [unread, setUnread] = useState(0);
+  useEffect(() => setMore(false), [path]);
+  useEffect(() => {                                                       // unread badge on the bell tab (own notifications, RLS)
+    if (!supabase || !session || admin) return;
+    supabase.from('sulfa_notifications').select('id', { count: 'exact', head: true }).eq('user_id', session.user.id).is('read_at', null)
+      .then(({ count }) => setUnread(count ?? 0));
+  }, [session, admin, path]);
+  const name = profile ? `${profile.first_name} ${profile.last_name}`.trim() : session?.user.email ?? '';
+  const out = async () => { await signOut(); router.replace('/app/'); };
+  const current = nav.find(([h]) => isOn(h, path)) ?? nav[0];
+  const tabItems = tabs.map(h => nav.find(n => n[0] === h)!).filter(Boolean);
+  const moreOn = !tabItems.some(([h]) => isOn(h, path));
+  return (
+    <div className="app-root min-h-[100dvh] overflow-x-clip lg:grid lg:grid-cols-[264px_1fr]">
+      <aside className="hidden border-e border-line bg-white/70 p-4 lg:block dark:border-white/10 dark:bg-emerald-950/50">
+        <div className="sticky top-4 space-y-6"><Brand />
+          {admin && <span className="inline-block rounded-full bg-gold-100 px-3 py-1 text-xs font-extrabold text-gold-600">{t('admin.badge')} · {role ? t('role.' + role) : ''}</span>}
+          <nav className="space-y-1" aria-label={title}>
+            {nav.map(([h, k, ic]) => {
+              const on = isOn(h, path);
+              return <Link key={h} href={h} aria-current={on ? 'page' : undefined} className={cx('flex min-h-11 items-center gap-3 rounded-xl px-3 text-[15px] font-semibold transition', on ? 'bg-emerald-700 text-white shadow-card' : 'text-ink-soft hover:bg-emerald-50 dark:text-emerald-100/80 dark:hover:bg-white/5')}><Icon name={ic} size={20} />{t(k)}</Link>;
+            })}
+          </nav>
+        </div>
+      </aside>
+      <div className="min-w-0">
+        {/* top bar: app-style on phones (title of the current tab), full header on desktop */}
+        <header className="sticky top-0 z-30 border-b border-line/70 bg-paper/80 px-4 pb-2 pt-[calc(env(safe-area-inset-top)+10px)] backdrop-blur-xl sm:px-6 dark:border-white/10 dark:bg-emerald-950/80">
+          <div className="flex items-center gap-3">
+            <span className="lg:hidden"><Brand compact /></span>
+            <span className="min-w-0 truncate text-sm text-ink-muted lg:block">{t('nav.hello', { name })}</span>
+            <div className="ms-auto flex items-center gap-2"><LangSwitch className="hidden sm:block" /><ThemeToggle />
+              <button onClick={out} className="hidden min-h-10 items-center gap-2 whitespace-nowrap rounded-xl px-3 text-sm font-bold text-emerald-800 hover:bg-emerald-50 sm:inline-flex dark:text-emerald-100 dark:hover:bg-white/5"><Icon name="logout" size={18} />{t('nav.logout')}</button></div>
+          </div>
+          <p className="shell-title mt-2 text-[28px] font-black leading-tight text-emerald-950 lg:hidden dark:text-white">{current[0] === '/client/' ? t('dash.title', { name: profile?.first_name ?? '' }) : t(current[1])}</p>
+        </header>
+        <main id="main" className="mx-auto max-w-6xl px-4 pb-[calc(env(safe-area-inset-bottom)+96px)] pt-5 sm:px-6 sm:py-8 lg:pb-8"><NotConfigured /><Guard admin={admin}>{children}</Guard></main>
+      </div>
+
+      {/* bottom tab bar (phones / tablets) */}
+      <nav aria-label={title} className="tabbar fixed inset-x-0 bottom-0 z-40 border-t border-line/70 bg-paper/85 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-emerald-950/85">
+        <ul className="mx-auto grid max-w-lg grid-cols-5">
+          {tabItems.map(([h, k, ic]) => {
+            const on = isOn(h, path);
+            return (
+              <li key={h}><Link href={h} aria-current={on ? 'page' : undefined} className={cx('tab relative flex flex-col items-center gap-0.5 pb-2 pt-2.5 text-[10.5px] font-bold', on ? 'text-emerald-700 dark:text-emerald-300' : 'text-ink-muted')}>
+                <span className={cx('grid h-8 w-14 place-items-center rounded-full transition', on && 'bg-emerald-100 dark:bg-emerald-500/15')}><Icon name={ic} size={22} /></span>
+                <span className="max-w-full truncate px-1">{t(TAB_LABEL[h] ?? k)}</span>
+                {ic === 'bell' && unread > 0 && <span className="absolute end-[22%] top-1.5 grid min-w-[18px] place-items-center rounded-full bg-red-600 px-1 text-[10px] font-black text-white ring-2 ring-paper">{unread > 9 ? '9+' : unread}</span>}
+              </Link></li>);
+          })}
+          <li><button onClick={() => setMore(true)} aria-expanded={more} className={cx('tab flex w-full flex-col items-center gap-0.5 pb-2 pt-2.5 text-[10.5px] font-bold', moreOn ? 'text-emerald-700 dark:text-emerald-300' : 'text-ink-muted')}>
+            <span className={cx('grid h-8 w-14 place-items-center rounded-full', moreOn && 'bg-emerald-100 dark:bg-emerald-500/15')}><Icon name="more" size={26} strokeWidth={3} /></span>{t('nav.more')}</button></li>
+        </ul>
+      </nav>
+      <Sheet open={more} onClose={() => setMore(false)} title={t('nav.more')}>
+        <div className="mb-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-card dark:bg-white/5">
+          <span className="grid h-11 w-11 place-items-center rounded-full bg-emerald-700 text-lg font-black text-white">{(profile?.first_name || name || '?').slice(0, 1).toUpperCase()}</span>
+          <div className="min-w-0"><p className="truncate font-extrabold">{name}</p><p className="truncate text-xs text-ink-muted" dir="ltr">{session?.user.email}</p></div>
+        </div>
+        <ul className="grid grid-cols-3 gap-2">
+          {nav.filter(([h]) => !tabs.includes(h)).map(([h, k, ic]) => (
+            <li key={h}><Link href={h} className="press flex h-full flex-col items-center gap-2 rounded-2xl bg-white p-3 text-center text-xs font-bold shadow-card dark:bg-white/5">
+              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300"><Icon name={ic} /></span>{t(k)}</Link></li>))}
+        </ul>
+        <div className="mt-4 flex items-center justify-between gap-2 rounded-2xl bg-white p-3 shadow-card dark:bg-white/5"><span className="flex items-center gap-2 text-sm font-bold"><Icon name="globe" size={18} />{t('nav.language')}</span><LangSwitch /></div>
+        <button onClick={out} className="press mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-50 p-3.5 font-extrabold text-red-700 dark:bg-red-500/10 dark:text-red-300"><Icon name="logout" size={18} />{t('nav.logout')}</button>
+      </Sheet>
+    </div>
+  );
+}
+
+export const ClientShell = ({ children }: { children: ReactNode }) => { const { t } = useI18n(); return <SpaceShell nav={CLIENT_NAV} tabs={CLIENT_TABS} title={t('cn.title')}>{children}</SpaceShell>; };
+export const AdminShell = ({ children }: { children: ReactNode }) => { const { t } = useI18n(); return <SpaceShell nav={ADMIN_NAV} tabs={ADMIN_TABS} title={t('an.title')} admin>{children}</SpaceShell>; };
 export function RoleGate({ roles, children }: { roles: AdminRole[]; children: ReactNode }) { return <Guard admin roles={roles}>{children}</Guard>; }
