@@ -2,7 +2,7 @@
 
 | Élément | Valeur |
 |---|---|
-| Site public | https://sulfa-oman.netlify.app (Netlify, projet `sulfa-oman`) |
+| Site public | **https://sulfa-oman.vercel.app** (Vercel, projet `sulfa-oman`, équipe yordigitalefinance, relié à GitHub) — ancienne adresse Netlify https://sulfa-oman.netlify.app figée en 1.2.0 |
 | Base de données | Supabase, projet séparé `sulfa` (`pkcjyksbiogdouqxzjcd`, région ap-south-1). Le projet Friendly Pay n'a pas été touché. |
 | Clé utilisée par le site | clé publique `sb_publishable_…` uniquement (aucune clé secrète dans le site) |
 | Administrateur | `dydamys8@gmail.com`, rôle SUPER_ADMIN (création auditée : `ADMIN_BOOTSTRAPPED`) |
@@ -18,7 +18,7 @@ L'outil de migration a refusé les blocs SQL dynamiques (`DO … execute format(
 écrites une à une (déclencheurs, RLS, droits), d'où la vérification par empreintes ci-dessus.
 
 ## À faire dans le tableau de bord Supabase (non accessible depuis cet outil)
-*Authentication → URL Configuration* : **Site URL** = `https://sulfa-oman.netlify.app` ; **Redirect URLs** : `https://sulfa-oman.netlify.app/login/` et `https://sulfa-oman.netlify.app/reset-password/`.
+*Authentication → URL Configuration* : **Site URL** = `https://sulfa-oman.vercel.app` ; **Redirect URLs** : `https://sulfa-oman.vercel.app/login/` et `https://sulfa-oman.vercel.app/reset-password/`.
 Sans cela, les liens des e-mails de confirmation et de réinitialisation pointent vers l'adresse par défaut.
 Pour la production, configurer aussi un SMTP (*Auth → SMTP Settings*) : l'envoi par défaut de Supabase est limité à quelques e-mails par heure.
 
@@ -45,4 +45,5 @@ Sur l'offre gratuite, Netlify injecte un commentaire et un script dans les pages
 - Typographie : Readex Pro (titres) et IBM Plex Sans Arabic (texte) dans les trois langues, chiffres en Inter ; polices embarquées, aucun appel externe.
 - Menus : tuiles en relief pour la barre d'onglets, la feuille « Plus », les actions rapides, la barre latérale et le menu mobile du site public ; boutons principaux brillants.
 - Cache hors ligne renommé `sulfa-shell-v1.4.0` (l'ancien cache est supprimé à l'activation).
-- **Non déployée** : Netlify refuse encore (« Skipped due to account credit usage exceeded », déploiement `6ad7dcd70a84e41178ba04b0`). La version 1.2.0 reste en ligne. Le dossier `out/` construit est prêt à être publié dès que des crédits sont ajoutés ou sur un autre hébergeur statique.
+- Netlify ayant refusé (« Skipped due to account credit usage exceeded »), la 1.4.0 est publiée sur **Vercel** : https://sulfa-oman.vercel.app. Compilation sur Vercel depuis la branche GitHub (`sulfa-platform/web`), variables publiques Supabase dans le projet Vercel, en-têtes de sécurité dans `web/vercel.json`. Protection Vercel limitée aux aperçus : la production est publique.
+- Vérifié en ligne : pages, images 3D, en-têtes (CSP, HSTS, X-Frame-Options), cache `sulfa-shell-v1.4.0`, connexion réelle de l'administrateur → `/admin/`, 1 000 000,000 / 0,000 OMR, paramètres modifiables, aucune erreur de page (plus d'injection Netlify, donc plus d'erreur #418).
