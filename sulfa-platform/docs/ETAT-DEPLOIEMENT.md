@@ -17,9 +17,9 @@
 L'outil de migration a refusé les blocs SQL dynamiques (`DO … execute format(…)`). Les mêmes instructions ont été appliquées
 écrites une à une (déclencheurs, RLS, droits), d'où la vérification par empreintes ci-dessus.
 
-## À faire dans le tableau de bord Supabase (non accessible depuis cet outil)
+## Tableau de bord Supabase — URL configurées (fait par le propriétaire le 20 octobre 2026)
 *Authentication → URL Configuration* : **Site URL** = `https://sulfa-oman.vercel.app` ; **Redirect URLs** : `https://sulfa-oman.vercel.app/login/` et `https://sulfa-oman.vercel.app/reset-password/`.
-Sans cela, les liens des e-mails de confirmation et de réinitialisation pointent vers l'adresse par défaut.
+Fait par le propriétaire du projet (non vérifiable depuis l'outil : aucun accès à la configuration Auth). Sans cela, les liens des e-mails de confirmation et de réinitialisation pointent vers l'adresse par défaut.
 Pour la production, configurer aussi un SMTP (*Auth → SMTP Settings*) : l'envoi par défaut de Supabase est limité à quelques e-mails par heure.
 
 ## Remarque Netlify
