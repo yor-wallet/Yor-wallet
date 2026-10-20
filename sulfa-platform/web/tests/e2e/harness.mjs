@@ -71,6 +71,7 @@ export async function open(browser, { path = '/', lang, user, handlers = {}, vie
     } catch {}
   }, { lang: lang ?? null, sess: user ? session(user) : null });
   await page.goto(srv.url + path);
+  if (lang) await page.waitForFunction(l => document.documentElement.lang === l, lang);   // saved language applied after hydration
   return { ctx, page, errors, calls };
 }
 

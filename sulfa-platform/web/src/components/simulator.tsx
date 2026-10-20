@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase';
 import { computeQuote, FALLBACK_SETTINGS, type QuoteSettings } from '@/lib/quote';
 import type { PublicSettings } from '@/lib/types';
 import { Alert, Card, LinkButton, Num } from './ui';
+import { useTween } from './motion';
 
 /** settings configured by the administrator (sulfa_settings), read through the public function */
 export function usePublicSettings(): { settings: QuoteSettings; loaded: boolean; failed: boolean } {
@@ -27,6 +28,7 @@ export function Simulator({ cta = true, onChange, initial }: { cta?: boolean; on
   useEffect(() => { setAmount(a => Math.min(Math.max(a, s.min_amount), s.max_amount)); setTerm(x => Math.min(Math.max(x, s.min_term), s.max_term)); }, [s]);
   useEffect(() => { onChange?.(amount, term); }, [amount, term, onChange]);
   const q = useMemo(() => { try { return computeQuote(s, amount, term); } catch { return null; } }, [s, amount, term]);
+  const monthlyShown = useTween(q?.monthly ?? 0);
   const terms = Array.from({ length: s.max_term - s.min_term + 1 }, (_, i) => s.min_term + i);
   return (
     <Card className="!p-6 sm:!p-8">
@@ -52,7 +54,7 @@ export function Simulator({ cta = true, onChange, initial }: { cta?: boolean; on
         </div>
         <div className="rounded-2xl bg-gradient-to-br from-emerald-800 to-emerald-950 p-6 text-white shadow-lift">
           <p className="text-sm text-emerald-100/80">{t('sim.monthly')}</p>
-          <p className="mt-1 text-4xl font-black" aria-live="polite"><Num>{q ? money(q.monthly) : '—'}</Num></p>
+          <p className="mt-1 text-4xl font-black" aria-live="polite"><Num>{q ? money(Math.round(monthlyShown * 1000) / 1000) : '—'}</Num></p>
           <dl className="mt-6 space-y-2 text-sm">
             {q && ([['sim.principal', q.amount], ['sim.fee', q.fee], ['sim.interest', q.interest], ['sim.total', q.total]] as const).map(([k, v]) => (
               <div key={k} className={'flex justify-between gap-4 ' + (k === 'sim.total' ? 'border-t border-white/20 pt-2 font-extrabold' : '')}><dt className="text-emerald-100/80">{t(k)}</dt><dd><Num>{money(v)}</Num></dd></div>))}

@@ -78,3 +78,18 @@ test('reviewer: can read the application but gets no decision button', { skip },
   assert.equal(await s.page.locator('main button:has-text("Approve")').count(), 0);
   await s.ctx.close();
 });
+
+test('regression: signing in through the form as an administrator lands on /admin/, not /client/', { skip }, async () => {
+  const { session } = await import('./harness.mjs');
+  const s = await open(browser, { path: '/login/', lang: 'en', handlers: base('SUPER_ADMIN', {
+    'POST:/auth/v1/token': () => session(admin),
+    'GET:sulfa_admins': async () => { await new Promise(r => setTimeout(r, 700)); return [{ role: 'SUPER_ADMIN', active: true }]; },   // slow role lookup
+    'rpc:sulfa_admin_overview': () => OVERVIEW,
+  }) });
+  await s.page.fill('input[type=email]', admin.email); await s.page.fill('input[type=password]', 'x-test-password');
+  await s.page.click('button[type=submit]');
+  await s.page.waitForURL(/\/admin\/$/);
+  await s.page.waitForSelector('text=Reference capital (configured)');
+  assert.ok(!s.calls.some(c => c.key === 'rpc:sulfa_my_summary'), 'the client dashboard was never opened');
+  await s.ctx.close();
+});

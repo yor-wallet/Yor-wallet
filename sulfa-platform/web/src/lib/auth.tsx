@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from './supabase';
 import type { Profile, AdminRole } from './types';
@@ -17,15 +17,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [role, setRole] = useState<AdminRole | null>(null);
   const [profileError, setProfileError] = useState<string | null>(null);
 
+  const known = useRef<string | null>(null);                              // user id whose role is already loaded
   const load = useCallback(async (s: Session | null) => {
-    setSession(s);
-    if (!s || !supabase) { setProfile(null); setRole(null); setReady(true); return; }
+    if (!s || !supabase) { known.current = null; setSession(null); setProfile(null); setRole(null); setReady(true); return; }
+    if (known.current !== s.user.id) setReady(false);                                                      // nobody routes on a session whose role is not known yet
     const [p, a] = await Promise.all([
       supabase.rpc('sulfa_ensure_profile'),                               // creates the SULFA profile on first sign-in only
       supabase.from('sulfa_admins').select('role, active').eq('user_id', s.user.id).maybeSingle(),
     ]);
     if (p.error) { setProfileError(p.error.message); setProfile(null); } else { setProfileError(null); setProfile(p.data as Profile); }
     setRole(a.data && a.data.active ? (a.data.role as AdminRole) : null);
+    known.current = s.user.id;
+    setSession(s);
     setReady(true);
   }, []);
 
