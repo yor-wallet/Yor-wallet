@@ -24,3 +24,10 @@ Pour la production, configurer aussi un SMTP (*Auth → SMTP Settings*) : l'envo
 
 ## Remarque Netlify
 Sur l'offre gratuite, Netlify injecte un commentaire et un script dans les pages servies. React le signale dans la console (erreur #418) puis redessine la page : aucun effet fonctionnel (testé), et les mêmes fichiers servis ailleurs n'ont pas ce message.
+
+## Version 1.2.0 (personnages et visualisation de données)
+- Personnages illustrés (Aisha, Salim, Maryam) : vectoriels, animés (clignement, respiration, gestes), réagissant à chaque scène du film. Indiqués comme illustratifs.
+- Graphiques : composition du coût, solde restant après chaque mensualité (infobulle + tableau), part remboursée et échéancier réel du client, fonds enregistrés et demandes par étape côté administration.
+- Palette des graphiques vérifiée avec un validateur (daltonisme, contraste) en mode clair et sombre.
+- Les frais et le taux sont à 0 tant qu'un super-administrateur ne les a pas configurés dans *Administration → Paramètres* : le simulateur affiche alors un coût nul, ce qui est exact.
+- Netlify (offre gratuite) ajoute un badge « Powered by Netlify » sur le site.

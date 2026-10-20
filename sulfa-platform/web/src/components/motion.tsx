@@ -42,7 +42,7 @@ export function Reveal({ children, delay = 0, from = 'up', className, as: As = '
 export function CountUp({ to, duration = 1400, format }: { to: number; duration?: number; format: (n: number) => string }) {
   const [ref, seen] = useInView<HTMLSpanElement>();
   const reduced = useReducedMotion();
-  const [v, setV] = useState(0);
+  const [v, setV] = useState(to);                                         // the real value is in the HTML; the count-up is only decoration
   useEffect(() => {
     if (!seen) return;
     if (reduced) { setV(to); return; }

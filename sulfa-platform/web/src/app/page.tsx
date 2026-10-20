@@ -4,6 +4,8 @@ import { Simulator } from '@/components/simulator';
 import { FaqList, Steps } from '@/components/marketing';
 import { Film } from '@/components/film';
 import { CountUp, Reveal, Tilt } from '@/components/motion';
+import { Character } from '@/components/characters';
+import { Cast } from '@/components/cast';
 import { LinkButton, Num } from '@/components/ui';
 import { useI18n } from '@/lib/i18n';
 
@@ -25,9 +27,17 @@ export default function Home() {
             {['home.b1', 'home.b2', 'home.b3'].map(k => <li key={k} className="flex items-center gap-2"><span className="grid h-5 w-5 place-items-center rounded-full bg-emerald-100 text-xs text-emerald-700">✓</span>{t(k)}</li>)}
           </ul></Reveal>
         </div>
-        <Reveal from="zoom" delay={150} className="relative">
+        <Reveal from="zoom" delay={150} className="relative sm:ps-28 lg:ps-28">
           <div aria-hidden className="float-slower absolute -start-6 top-10 -z-10 h-24 w-24 rounded-3xl bg-gold-300/40 blur-xl" />
           <div aria-hidden className="float-slow absolute -bottom-6 end-4 -z-10 h-32 w-32 rounded-full bg-emerald-400/30 blur-2xl" />
+          <div className="mb-2 flex items-end justify-center gap-1 sm:hidden">
+            <Character who="aisha" mood="happy" prop="phone" wave title={t('chars.aisha')} className="char-enter h-40 w-auto" />
+            <div className="char-bubble mb-24 max-w-[180px] rounded-2xl rounded-es-sm bg-white px-3 py-2 text-xs font-bold leading-snug text-emerald-950 shadow-lift dark:bg-emerald-900 dark:text-white">{t('chars.hero_bubble')}</div>
+          </div>
+          <div className="pointer-events-none absolute -bottom-12 -start-12 z-20 hidden w-40 sm:block lg:-start-8 xl:w-44">
+            <div className="char-bubble absolute bottom-2 start-[88%] w-48 rounded-2xl rounded-ss-sm bg-white px-3 py-2 text-xs font-bold leading-snug text-emerald-950 shadow-lift dark:bg-emerald-900 dark:text-white">{t('chars.hero_bubble')}</div>
+            <Character who="aisha" mood="happy" prop="phone" wave title={t('chars.aisha')} className="char-enter h-auto w-full" />
+          </div>
           <Tilt className="float-slow">
             <div className="shine relative rounded-[2rem] bg-gradient-to-br from-emerald-700 via-emerald-800 to-emerald-950 p-7 text-white shadow-lift">
               <div aria-hidden className="tilt-glare pointer-events-none absolute inset-0 rounded-[2rem]" />
@@ -63,6 +73,8 @@ export default function Home() {
       </section>
 
       <Film />
+
+      <Cast />
 
       <section className="mt-16" aria-labelledby="sim-h">
         <Reveal><h2 id="sim-h" className="mb-2 text-3xl font-black text-emerald-950 dark:text-white">{t('sim.title')}</h2><p className="mb-6 text-ink-muted">{t('sim.sub')}</p></Reveal>

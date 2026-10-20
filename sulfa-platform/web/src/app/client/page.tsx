@@ -4,23 +4,28 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 import { useI18n } from '@/lib/i18n';
 import { renderNotification } from '@/lib/notif';
-import type { Application, Notification, Summary } from '@/lib/types';
+import type { Application, Installment, Notification, Summary } from '@/lib/types';
+import { Ring, ScheduleBars } from '@/components/charts';
+import { Character } from '@/components/characters';
 import { Alert, Badge, Card, ErrorBox, LinkButton, Loading, Num, PageHeader, Stat, must, useLoad } from '@/components/ui';
 
 export default function Dashboard() {
   const { t, money, date, lang } = useI18n(); const { profile, session } = useAuth();
   const uid = session!.user.id;
   const { data, error, loading, reload } = useLoad(async () => {
-    const [summary, apps, notes] = await Promise.all([
+    const [summary, apps, notes, inst] = await Promise.all([
       must(supabase!.rpc('sulfa_my_summary')),
       must(supabase!.from('sulfa_applications').select('*').eq('user_id', uid).order('created_at', { ascending: false }).limit(1)),
       must(supabase!.from('sulfa_notifications').select('*').eq('user_id', uid).order('created_at', { ascending: false }).limit(4)),
+      must(supabase!.from('sulfa_installments').select('*').eq('user_id', uid).order('due_date')),
     ]);
-    return { summary: summary as Summary, app: (apps as Application[])[0] ?? null, notes: notes as Notification[] };
+    return { summary: summary as Summary, app: (apps as Application[])[0] ?? null, notes: notes as Notification[], inst: inst as Installment[] };
   }, [uid]);
   if (loading && !data) return <Loading />;
   if (error) return <ErrorBox failure={error} onRetry={reload} />;
-  const { summary: s, app, notes } = data!;
+  const { summary: s, app, notes, inst } = data!;
+  const active = app ? inst.filter(i => i.application_id === app.id) : [];
+  const payoff = active.filter(i => i.status !== 'PAID').at(-1)?.due_date ?? null;
   const idOk = profile?.identity_status === 'VERIFIED';
   return (
     <>
@@ -43,6 +48,19 @@ export default function Dashboard() {
         <Stat label={t('dash.repaid')} value={money(s.repaid_total)} />
         <Stat label={t('dash.open_apps')} value={<Num>{s.open_applications}</Num>} />
       </div>
+      {active.length > 0 && (
+        <Card className="mt-6">
+          <div className="grid items-center gap-6 lg:grid-cols-[auto_1fr]">
+            <Ring value={s.repaid_total} max={s.repaid_total + s.outstanding} label={t('viz.repaid_share')}
+              sub={<>{t('viz.repaid_of', { paid: money(s.repaid_total), total: money(s.repaid_total + s.outstanding) })}{payoff && <><br />{t('viz.payoff', { date: date(payoff) })}</>}</>} />
+            <ScheduleBars title={t('viz.schedule_title', { ref: app!.reference })} items={active.map(i => ({ seq: i.seq, due: Number(i.amount_due), paid: Number(i.amount_paid), date: i.due_date }))} />
+          </div>
+        </Card>)}
+      {active.length === 0 && !app && (
+        <Card className="mt-6"><div className="flex flex-wrap items-center gap-5">
+          <Character who="aisha" mood="happy" prop="phone" wave className="h-40 w-auto" title={t('chars.aisha')} />
+          <div className="max-w-md"><p className="text-lg font-extrabold">{t('dash.empty_t')}</p><p className="mt-1 text-sm text-ink-muted">{t('dash.empty_b')}</p><LinkButton href="/client/apply/" className="mt-3">{t('cn.apply')}</LinkButton></div>
+        </div></Card>)}
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         <Card>
           <h2 className="mb-4 text-lg font-extrabold">{t('dash.last_app')}</h2>

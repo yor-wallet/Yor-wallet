@@ -6,6 +6,9 @@ import { computeQuote, FALLBACK_SETTINGS, type QuoteSettings } from '@/lib/quote
 import type { PublicSettings } from '@/lib/types';
 import { Alert, Card, LinkButton, Num } from './ui';
 import { useTween } from './motion';
+import { BalanceChart, CostBreakdown } from './charts';
+import { Character } from './characters';
+import { remainingAfter, termInsights } from '@/lib/insights';
 
 /** settings configured by the administrator (sulfa_settings), read through the public function */
 export function usePublicSettings(): { settings: QuoteSettings; loaded: boolean; failed: boolean } {
@@ -29,6 +32,7 @@ export function Simulator({ cta = true, onChange, initial }: { cta?: boolean; on
   useEffect(() => { onChange?.(amount, term); }, [amount, term, onChange]);
   const q = useMemo(() => { try { return computeQuote(s, amount, term); } catch { return null; } }, [s, amount, term]);
   const monthlyShown = useTween(q?.monthly ?? 0);
+  const ins = useMemo(() => (q ? termInsights(s, amount, term) : null), [q, s, amount, term]);
   const terms = Array.from({ length: s.max_term - s.min_term + 1 }, (_, i) => s.min_term + i);
   return (
     <Card className="!p-6 sm:!p-8">
@@ -54,7 +58,7 @@ export function Simulator({ cta = true, onChange, initial }: { cta?: boolean; on
         </div>
         <div className="rounded-2xl bg-gradient-to-br from-emerald-800 to-emerald-950 p-6 text-white shadow-lift">
           <p className="text-sm text-emerald-100/80">{t('sim.monthly')}</p>
-          <p className="mt-1 text-4xl font-black" aria-live="polite"><Num>{q ? money(Math.round(monthlyShown * 1000) / 1000) : '—'}</Num></p>
+          <p className="mt-1 text-4xl font-black" aria-live="off"><Num>{q ? money(Math.round(monthlyShown * 1000) / 1000) : '—'}</Num></p>
           <dl className="mt-6 space-y-2 text-sm">
             {q && ([['sim.principal', q.amount], ['sim.fee', q.fee], ['sim.interest', q.interest], ['sim.total', q.total]] as const).map(([k, v]) => (
               <div key={k} className={'flex justify-between gap-4 ' + (k === 'sim.total' ? 'border-t border-white/20 pt-2 font-extrabold' : '')}><dt className="text-emerald-100/80">{t(k)}</dt><dd><Num>{money(v)}</Num></dd></div>))}
@@ -64,6 +68,24 @@ export function Simulator({ cta = true, onChange, initial }: { cta?: boolean; on
           {cta && <LinkButton href={`/signup/?amount=${amount}&term=${term}`} variant="gold" className="mt-5 w-full">{t('sim.cta')}</LinkButton>}
         </div>
       </div>
+      {q && ins && (
+        <div className="mt-8 grid gap-6 border-t border-line pt-6 lg:grid-cols-[1.35fr_1fr] dark:border-white/10">
+          <div className="space-y-6">
+            <div><p className="mb-3 text-sm font-bold">{t('viz.made_of', { total: money(q.total) })}</p><CostBreakdown principal={q.amount} interest={q.interest} fee={q.fee} /></div>
+            <BalanceChart title={t('viz.balance_title')} points={remainingAfter(q).map((v, k) => ({ label: k === 0 ? t('viz.start') : String(k), sub: k === 0 ? t('viz.start') : t('viz.after', { n: k }), value: v }))} />
+          </div>
+          <aside className="relative rounded-2xl bg-emerald-50/70 p-5 dark:bg-white/5" aria-label={t('viz.insights')}>
+            <p className="text-sm font-extrabold text-emerald-900 dark:text-emerald-100">{t('viz.insights')}</p>
+            <ul className="mt-3 space-y-3 text-sm leading-relaxed text-ink-soft dark:text-emerald-50/85">
+              <li>{t('viz.i_cost', { pct: ins.costPct, cost: money(ins.cost) })}</li>
+              {ins.shorter && <li>{t('viz.i_shorter', { n: term - 1, monthly: money(ins.shorter.monthly), save: money(ins.shorter.save) })}</li>}
+              {ins.longer && <li>{t('viz.i_longer', { n: term + 1, monthly: money(ins.longer.monthly), more: money(ins.longer.more) })}</li>}
+              <li>{t('viz.i_daily', { day: money(ins.perDay) })}</li>
+            </ul>
+            <p className="mt-3 text-[11px] text-ink-muted">{t('viz.i_note')}</p>
+            <Character who="salim" mood={ins.costPct <= 8 ? 'happy' : 'focused'} prop="coins" className="pointer-events-none mx-auto mt-2 h-40 w-auto" title={t('viz.char_salim')} />
+          </aside>
+        </div>)}
       {!loaded && failed && <div className="mt-6"><Alert tone="warn">{t('sim.not_loaded')}</Alert></div>}
     </Card>
   );

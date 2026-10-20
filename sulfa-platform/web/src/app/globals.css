@@ -87,7 +87,42 @@ html[dir='rtl'] .marquee { animation-direction: reverse; }
 .film-dot { animation: blink 1.2s steps(2) infinite; }
 @keyframes blink { 50% { opacity: .25; } }
 
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } .reveal { opacity: 1 !important; transform: none !important; } .film-type { max-width: 100%; } .film-swap-a { display: none; } }
+
+/* characters */
+.char { overflow: visible; }
+.char-blink { transform-box: fill-box; transform-origin: center; animation: blink-eye 5.2s infinite; }
+@keyframes blink-eye { 0%, 92%, 100% { transform: scaleY(1); } 94% { transform: scaleY(.08); } }
+.char-breathe { transform-origin: 100px 280px; animation: breathe 4.2s ease-in-out infinite; }
+@keyframes breathe { 0%,100% { transform: scale(1, 1); } 50% { transform: scale(1.006, 1.012); } }
+.char-head { transform-origin: 100px 110px; animation: head-tilt 7s ease-in-out infinite; }
+@keyframes head-tilt { 0%,100% { transform: rotate(0); } 30% { transform: rotate(-2deg); } 65% { transform: rotate(1.5deg); } }
+.char-wave { animation: wave 2.4s ease-in-out infinite; }
+@keyframes wave { 0%,60%,100% { transform: rotate(0); } 70% { transform: rotate(14deg); } 80% { transform: rotate(-4deg); } 90% { transform: rotate(10deg); } }
+.char-held { transform-origin: 126px 168px; animation: held 3.6s ease-in-out infinite; }
+@keyframes held { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-3px) rotate(-2deg); } }
+.char-scan { animation: scan-move 3s ease-in-out infinite; }
+@keyframes scan-move { 0%,100% { transform: translate(0,0); } 25% { transform: translate(-14px,6px); } 50% { transform: translate(-6px,14px); } 75% { transform: translate(4px,4px); } }
+.char-stamp { animation: stamp-down 2.6s cubic-bezier(.5,0,.3,1) infinite; }
+@keyframes stamp-down { 0%, 55%, 100% { transform: translateY(0); } 70% { transform: translateY(14px); } 76% { transform: translateY(12px); } }
+.char-glow { animation: glow-ui 2.2s ease-in-out infinite; }
+@keyframes glow-ui { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
+.char-bubble { animation: bubble 0.6s cubic-bezier(.3,1.6,.5,1) .5s both; }
+@keyframes bubble { from { opacity: 0; transform: translateY(8px) scale(.7); } to { opacity: 1; } }
+.char-enter { animation: char-enter .7s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes char-enter { from { opacity: 0; transform: translateY(24px) scale(.94); } to { opacity: 1; transform: none; } }
+
+/* charts: validated categorical palette (emerald / blue / gold), selected per mode */
+:root { --series-1: #087f5b; --series-2: #2a78d6; --series-3: #b8862b; --grid: #e3ebe7; --axis-ink: #71817b; }
+html.dark { --series-1: #139468; --series-2: #3a82dc; --series-3: #b3842a; --grid: rgba(255,255,255,.1); --axis-ink: #9fb8ae; }
+.chart-line { stroke-dasharray: var(--len, 2000); stroke-dashoffset: var(--len, 2000); animation: draw 1.4s cubic-bezier(.4,0,.2,1) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.chart-grow { transform-box: fill-box; transform-origin: bottom; animation: grow .8s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes grow { from { transform: scaleY(0); } }
+.chart-grow-x { transform-box: fill-box; transform-origin: left; animation: growx .9s cubic-bezier(.2,.8,.2,1) both; }
+html[dir='rtl'] .chart-grow-x { transform-origin: right; }
+@keyframes growx { from { transform: scaleX(0); } }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } .reveal { opacity: 1 !important; transform: none !important; } .film-type { max-width: 100%; } .film-swap-a { display: none; } .chart-line { stroke-dashoffset: 0; } }
 @media print {
   body { background: #fff !important; }
   header, aside, nav, .no-print { display: none !important; }
