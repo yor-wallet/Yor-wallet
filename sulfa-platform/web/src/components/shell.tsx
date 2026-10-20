@@ -50,6 +50,7 @@ export function ThemeToggle() {
   return <button onClick={flip} aria-pressed={dark} aria-label={t('nav.theme')} className="press grid h-10 w-10 place-items-center rounded-xl border border-line bg-white/80 dark:border-white/10 dark:bg-white/5"><Icon name={dark ? 'moon' : 'sun'} size={19} /></button>;
 }
 
+const PUBLIC_ICON: Record<string, IconName> = { '/how-it-works/': 'apply', '/simulator/': 'chart', '/eligibility/': 'check', '/faq/': 'search', '/about/': 'shield' };
 const PUBLIC_NAV = [['/how-it-works/', 'nav.how'], ['/simulator/', 'nav.simulator'], ['/eligibility/', 'nav.eligibility'], ['/faq/', 'nav.faq'], ['/about/', 'nav.about']] as const;
 
 export function SiteHeader() {
@@ -72,15 +73,18 @@ export function SiteHeader() {
           <button className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white lg:hidden dark:border-white/10 dark:bg-white/5" aria-expanded={open} aria-label={t('nav.menu')} onClick={() => setOpen(o => !o)}><Icon name="more" size={24} strokeWidth={3} /></button>
         </div>
       </div>
-      {open && (
-        <nav className="border-t border-line bg-paper px-4 pb-4 lg:hidden dark:border-white/10 dark:bg-emerald-950" aria-label={t('nav.main')}>
-          {PUBLIC_NAV.map(([h, k]) => <Link key={h} href={h} className="block border-b border-line py-3 font-semibold dark:border-white/10">{t(k)}</Link>)}
-          <div className="mt-3 flex flex-wrap gap-2"><LangSwitch />
-            {session ? <LinkButton href={role ? '/admin/' : '/client/'}>{role ? t('nav.admin') : t('nav.my_space')}</LinkButton>
-              : <><LinkButton href="/login/" variant="secondary">{t('nav.login')}</LinkButton><LinkButton href="/signup/">{t('nav.start')}</LinkButton></>}
-          </div>
-        </nav>
-      )}
+      <Sheet open={open} onClose={() => setOpen(false)} title={t('nav.menu')}>
+        <ul className="grid grid-cols-3 gap-2">
+          {PUBLIC_NAV.map(([h, k], n) => (
+            <li key={h} className="sheet-item" style={{ animationDelay: `${60 + n * 35}ms` }}><Link href={h} className="press flex h-full flex-col items-center gap-2 rounded-2xl bg-white p-3 text-center text-xs font-bold shadow-card dark:bg-white/5">
+              <span className={cx('tile-3d grid h-12 w-12 place-items-center rounded-2xl', TILE[n % 4])}><Icon name={PUBLIC_ICON[h] ?? 'file'} /></span>{t(k)}</Link></li>))}
+        </ul>
+        <div className="mt-4 flex items-center justify-between gap-2 rounded-2xl bg-white p-3 shadow-card dark:bg-white/5"><span className="flex items-center gap-2 text-sm font-bold"><Icon name="globe" size={18} />{t('nav.language')}</span><LangSwitch /></div>
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          {session ? <LinkButton href={role ? '/admin/' : '/client/'} className="col-span-2">{role ? t('nav.admin') : t('nav.my_space')}</LinkButton>
+            : <><LinkButton href="/login/" variant="secondary">{t('nav.login')}</LinkButton><LinkButton href="/signup/">{t('nav.start')}</LinkButton></>}
+        </div>
+      </Sheet>
     </header>
   );
 }
@@ -143,6 +147,7 @@ function Guard({ admin, roles, children }: { admin?: boolean; roles?: AdminRole[
   return <>{children}</>;
 }
 
+const TILE = ['', 'tile-gold', 'tile-blue', 'tile-ink'];
 function isOn(h: string, path: string) { return h === path || (h !== '/client/' && h !== '/admin/' && path.startsWith(h)); }
 
 /** bottom sheet (phones) / popover (desktop) */
@@ -190,7 +195,7 @@ function SpaceShell({ nav, tabs, title, admin, children }: { nav: readonly NavIt
           <nav className="space-y-1" aria-label={title}>
             {nav.map(([h, k, ic]) => {
               const on = isOn(h, path);
-              return <Link key={h} href={h} aria-current={on ? 'page' : undefined} className={cx('flex min-h-11 items-center gap-3 rounded-xl px-3 text-[15px] font-semibold transition', on ? 'bg-emerald-700 text-white shadow-card' : 'text-ink-soft hover:bg-emerald-50 dark:text-emerald-100/80 dark:hover:bg-white/5')}><Icon name={ic} size={20} />{t(k)}</Link>;
+              return <Link key={h} href={h} aria-current={on ? 'page' : undefined} className={cx('flex min-h-11 items-center gap-3 rounded-xl px-3 text-[15px] font-semibold transition', on ? 'tile-3d' : 'text-ink-soft hover:bg-emerald-50 dark:text-emerald-100/80 dark:hover:bg-white/5')}><Icon name={ic} size={20} />{t(k)}</Link>;
             })}
           </nav>
         </div>
@@ -216,13 +221,13 @@ function SpaceShell({ nav, tabs, title, admin, children }: { nav: readonly NavIt
             const on = isOn(h, path);
             return (
               <li key={h}><Link href={h} aria-current={on ? 'page' : undefined} className={cx('tab relative flex flex-col items-center gap-0.5 pb-2 pt-2.5 text-[10.5px] font-bold', on ? 'text-emerald-700 dark:text-emerald-300' : 'text-ink-muted')}>
-                <span className={cx('grid h-8 w-14 place-items-center rounded-full transition', on && 'bg-emerald-100 dark:bg-emerald-500/15')}><Icon name={ic} size={22} /></span>
+                <span className={cx('grid h-8 w-14 place-items-center rounded-full transition', on && 'tile-3d')}><Icon name={ic} size={21} /></span>
                 <span className="max-w-full truncate px-1">{t(TAB_LABEL[h] ?? k)}</span>
                 {ic === 'bell' && unread > 0 && <span className="absolute end-[22%] top-1.5 grid min-w-[18px] place-items-center rounded-full bg-red-600 px-1 text-[10px] font-black text-white ring-2 ring-paper">{unread > 9 ? '9+' : unread}</span>}
               </Link></li>);
           })}
           <li><button onClick={() => setMore(true)} aria-expanded={more} className={cx('tab flex w-full flex-col items-center gap-0.5 pb-2 pt-2.5 text-[10.5px] font-bold', moreOn ? 'text-emerald-700 dark:text-emerald-300' : 'text-ink-muted')}>
-            <span className={cx('grid h-8 w-14 place-items-center rounded-full', moreOn && 'bg-emerald-100 dark:bg-emerald-500/15')}><Icon name="more" size={26} strokeWidth={3} /></span>{t('nav.more')}</button></li>
+            <span className={cx('grid h-8 w-14 place-items-center rounded-full', moreOn && 'tile-3d')}><Icon name="more" size={26} strokeWidth={3} /></span>{t('nav.more')}</button></li>
         </ul>
       </nav>
       <Sheet open={more} onClose={() => setMore(false)} title={t('nav.more')}>
@@ -231,9 +236,9 @@ function SpaceShell({ nav, tabs, title, admin, children }: { nav: readonly NavIt
           <div className="min-w-0"><p className="truncate font-extrabold">{name}</p><p className="truncate text-xs text-ink-muted" dir="ltr">{session?.user.email}</p></div>
         </div>
         <ul className="grid grid-cols-3 gap-2">
-          {nav.filter(([h]) => !tabs.includes(h)).map(([h, k, ic]) => (
-            <li key={h}><Link href={h} className="press flex h-full flex-col items-center gap-2 rounded-2xl bg-white p-3 text-center text-xs font-bold shadow-card dark:bg-white/5">
-              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300"><Icon name={ic} /></span>{t(k)}</Link></li>))}
+          {nav.filter(([h]) => !tabs.includes(h)).map(([h, k, ic], n) => (
+            <li key={h} className="sheet-item" style={{ animationDelay: `${60 + n * 35}ms` }}><Link href={h} className="press flex h-full flex-col items-center gap-2 rounded-2xl bg-white p-3 text-center text-xs font-bold shadow-card dark:bg-white/5">
+              <span className={cx('tile-3d grid h-12 w-12 place-items-center rounded-2xl', TILE[n % 4])}><Icon name={ic} /></span>{t(k)}</Link></li>))}
         </ul>
         <div className="mt-4 flex items-center justify-between gap-2 rounded-2xl bg-white p-3 shadow-card dark:bg-white/5"><span className="flex items-center gap-2 text-sm font-bold"><Icon name="globe" size={18} />{t('nav.language')}</span><LangSwitch /></div>
         <button onClick={out} className="press mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-50 p-3.5 font-extrabold text-red-700 dark:bg-red-500/10 dark:text-red-300"><Icon name="logout" size={18} />{t('nav.logout')}</button>

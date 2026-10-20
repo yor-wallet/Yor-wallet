@@ -6,6 +6,7 @@ import { useI18n } from '@/lib/i18n';
 import { describeError, type RpcFailure } from '@/lib/errors';
 import type { Doc } from '@/lib/types';
 import { Alert, Badge, Button, Card, ErrorBox, Loading, PageHeader, must, useLoad } from '@/components/ui';
+import { Img3D } from '@/components/img3d';
 
 const TYPES = ['id_front', 'id_back', 'address_proof', 'other'] as const;
 const MIME = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];
@@ -63,7 +64,7 @@ export default function Documents() {
   const done = () => { reload(); refreshProfile(); };
   return (
     <>
-      <PageHeader title={t('cn.documents')} sub={t('doc.sub')} />
+      <div className="flex items-center gap-4"><div className="min-w-0 flex-1"><PageHeader title={t('cn.documents')} sub={t('doc.sub')} /></div><Img3D name="idcard" className="-mt-6 w-32 shrink-0 sm:w-40" alt="" /></div>
       <div className="mb-6 flex flex-wrap items-center gap-3"><span className="font-bold">{t('doc.identity')}</span>{profile && <Badge status={profile.identity_status} group="id" />}</div>
       <div className="grid gap-4 md:grid-cols-2">{TYPES.map(ty => <Slot key={ty} type={ty} docs={data as Doc[]} uid={uid} onDone={done} />)}</div>
       <p className="mt-6 text-sm text-ink-muted">{t('doc.privacy')}</p>

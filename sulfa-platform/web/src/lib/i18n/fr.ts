@@ -403,4 +403,5 @@ export const fr = {
   "tab.overview": "Vue",
   "tab.docs": "Documents",
   "tab.wd": "Retraits",
+  "img.card": "Carte SULFA et pièces en or (illustration 3D)",
 } as const;

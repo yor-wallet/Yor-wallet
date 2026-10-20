@@ -1,11 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import '@fontsource/tajawal/400.css';
-import '@fontsource/tajawal/500.css';
-import '@fontsource/tajawal/700.css';
-import '@fontsource/tajawal/800.css';
-import '@fontsource/tajawal/900.css';
 import '@fontsource/ibm-plex-sans-arabic/400.css';
+import '@fontsource/ibm-plex-sans-arabic/500.css';
 import '@fontsource/ibm-plex-sans-arabic/600.css';
+import '@fontsource/ibm-plex-sans-arabic/700.css';
+import '@fontsource-variable/readex-pro/index.css';
 import '@fontsource-variable/inter/index.css';
 import './globals.css';
 import { Providers } from '@/components/shell';

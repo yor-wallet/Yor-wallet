@@ -382,4 +382,5 @@ export const en: Record<keyof typeof fr, string> = {
   "tab.overview": "Overview",
   "tab.docs": "Documents",
   "tab.wd": "Payouts",
+  "img.card": "SULFA card and gold coins (3D illustration)",
 };

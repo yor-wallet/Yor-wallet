@@ -3,9 +3,10 @@ import { PublicPage } from '@/components/shell';
 import { Simulator } from '@/components/simulator';
 import { FaqList, Steps } from '@/components/marketing';
 import { Film } from '@/components/film';
-import { CountUp, Reveal, Tilt } from '@/components/motion';
+import { CountUp, Reveal } from '@/components/motion';
 import { Portrait } from '@/components/portraits';
 import { Icon } from '@/components/icons';
+import { Img3D } from '@/components/img3d';
 import { Cast } from '@/components/cast';
 import { LinkButton, Num } from '@/components/ui';
 import { useI18n } from '@/lib/i18n';
@@ -27,6 +28,7 @@ export default function Home() {
           <Reveal delay={360}><ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-ink-soft dark:text-emerald-100/80">
             {['home.b1', 'home.b2', 'home.b3'].map(k => <li key={k} className="flex items-center gap-2"><span className="grid h-5 w-5 place-items-center rounded-full bg-emerald-100 text-xs text-emerald-700">✓</span>{t(k)}</li>)}
           </ul></Reveal>
+          <Reveal delay={420}><p className="mt-4 max-w-xl text-xs leading-relaxed text-ink-muted">{t('home.card_note')}</p></Reveal>
         </div>
         <Reveal from="zoom" delay={150} className="relative mt-6 sm:mt-0">
           <div aria-hidden className="float-slower absolute -start-6 top-10 -z-10 h-24 w-24 rounded-3xl bg-gold-300/40 blur-xl" />
@@ -41,19 +43,8 @@ export default function Home() {
             <span className="min-w-0 text-start"><b className="block truncate text-sm text-emerald-950 dark:text-white">{t('n.DOCUMENT_VERIFIED.t')}</b><span className="block truncate text-xs text-ink-muted">{t('chars.maryam')}</span></span>
             <span className="ms-auto rounded-full bg-gold-100 px-1.5 py-0.5 text-[9px] font-bold text-gold-600">{t('hero.example')}</span>
           </div>
-          <Tilt className="float-slow">
-            <div className="shine relative rounded-[2rem] bg-gradient-to-br from-emerald-700 via-emerald-800 to-emerald-950 p-7 text-white shadow-lift">
-              <div aria-hidden className="tilt-glare pointer-events-none absolute inset-0 rounded-[2rem]" />
-              <div className="flex items-center justify-between"><span className="text-sm text-emerald-100/80">{t('home.card_label')}</span><span className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 text-xl font-black">س</span></div>
-              <p className="mt-6 text-sm text-emerald-100/70">{t('home.card_range')}</p>
-              <p className="mt-1 text-4xl font-black"><Num><CountUp to={500} format={fmtInt} duration={900} /> – <CountUp to={10000} format={fmtInt} /></Num> <span className="gold-text text-xl">{t('cur')}</span></p>
-              <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
-                <div className="rounded-xl bg-white/10 p-3 backdrop-blur"><p className="text-emerald-100/70">{t('home.card_term')}</p><p className="mt-1 font-extrabold">{t('home.card_term_v')}</p></div>
-                <div className="rounded-xl bg-white/10 p-3 backdrop-blur"><p className="text-emerald-100/70">{t('home.card_decision')}</p><p className="mt-1 font-extrabold">{t('home.card_decision_v')}</p></div>
-              </div>
-              <p className="mt-5 text-xs leading-relaxed text-emerald-100/60">{t('home.card_note')}</p>
-            </div>
-          </Tilt>
+          <div aria-hidden className="absolute inset-[8%] -z-10 rounded-full bg-gradient-to-br from-emerald-300/45 via-gold-200/40 to-transparent blur-3xl dark:from-emerald-500/20" />
+          <Img3D name="card" eager parallax alt={t('img.card')} className="mx-auto w-full max-w-[560px]" />
         </Reveal>
       </section>
 

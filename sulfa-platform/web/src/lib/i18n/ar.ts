@@ -382,4 +382,5 @@ export const ar: Record<keyof typeof fr, string> = {
   "tab.overview": "نظرة",
   "tab.docs": "المستندات",
   "tab.wd": "السحوبات",
+  "img.card": "بطاقة سلفه وعملات ذهبية (رسم ثلاثي الأبعاد)",
 };

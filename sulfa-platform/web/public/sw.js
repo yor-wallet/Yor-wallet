@@ -1,6 +1,6 @@
 /* SULFA service worker: caches the static shell only. Supabase traffic (data, auth, documents) is NEVER cached,
    so a balance or a status is always the one the server returns, or an error. */
-const CACHE = 'sulfa-shell-v1.0.0';
+const CACHE = 'sulfa-shell-v1.4.0';
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(['/', '/offline.html', '/icon.svg', '/manifest.webmanifest'])).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {

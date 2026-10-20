@@ -6,6 +6,7 @@ import { useAuth } from '@/lib/auth';
 import { useI18n } from '@/lib/i18n';
 import { renderNotification } from '@/lib/notif';
 import type { Notification } from '@/lib/types';
+import { Img3D } from '@/components/img3d';
 import { Button, Card, Empty, ErrorBox, Loading, PageHeader, cx, must, useLoad } from '@/components/ui';
 
 const LINK: Record<string, (id: string) => string> = { application: id => `/client/applications/?id=${id}`, document: () => '/client/documents/', withdrawal: () => '/client/withdraw/', repayment: () => '/client/installments/', installment: () => '/client/installments/' };
@@ -22,7 +23,7 @@ export default function Notifications() {
   return (
     <>
       <PageHeader title={t('cn.notifications')} sub={t('notif.sub')} actions={<Button variant="secondary" onClick={reload}>{t('common.refresh')}</Button>} />
-      {list.length === 0 ? <Empty title={t('notif.empty')} /> : (
+      {list.length === 0 ? <Empty title={t('notif.empty')} art={<Img3D name="bell" className="mx-auto -mt-4 mb-1 w-40" />} /> : (
         <Card className="!p-0"><ul className="divide-y divide-line dark:divide-white/10">
           {list.map(n => { const r = renderNotification(n, lang); const href = n.entity_type && LINK[n.entity_type] ? LINK[n.entity_type](n.entity_id ?? '') : null; return (
             <li key={n.id} className={cx('flex gap-4 p-5', !n.read_at && 'bg-emerald-50/60 dark:bg-white/5')}>

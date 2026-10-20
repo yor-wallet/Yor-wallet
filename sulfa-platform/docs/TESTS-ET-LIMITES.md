@@ -17,3 +17,4 @@
 - Aucun test sur un **vrai iPhone** (Safari iOS, installation sur l'écran d'accueil) : seulement Chromium à 375 px.
 - Les textes juridiques (confidentialité, conditions) sont des modèles à faire valider par un juriste ; aucune licence n'est affirmée.
 - Aucun fournisseur d'e-mail ni opérateur de paiement n'est connecté (par conception).
+- Les illustrations 3D sont des images rendues (pas de 3D temps réel) : vérifiées visuellement et par la présence des 12 fichiers dans `out/3d`, pas par un test automatique de rendu. Les portraits restent illustratifs, ce ne sont pas des photos de personnes réelles.

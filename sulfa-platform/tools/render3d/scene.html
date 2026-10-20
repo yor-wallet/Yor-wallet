@@ -1,0 +1,178 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  @font-face { font-family: Tajawal; font-weight: 900; src: url('../../web/node_modules/@fontsource/tajawal/files/tajawal-arabic-900-normal.woff2') format('woff2'); }
+  @font-face { font-family: TajawalL; font-weight: 900; src: url('../../web/node_modules/@fontsource/tajawal/files/tajawal-latin-900-normal.woff2') format('woff2'); }
+  html, body { margin: 0; background: transparent; }
+</style>
+<script type="importmap">{ "imports": { "three": "./node_modules/three/build/three.module.js", "three/addons/": "./node_modules/three/examples/jsm/" } }</script>
+</head><body>
+<script type="module">
+/* SULFA 3D illustrations. Usage: scene.html?obj=card&size=2048 — sets window.__png (data URL) when rendered. */
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const q = new URLSearchParams(location.search);
+const OBJ = q.get('obj') || 'card', SIZE = Number(q.get('size') || 1024);
+await document.fonts.load('900 100px Tajawal', 'س'); await document.fonts.load('900 100px TajawalL', 'SULFA');
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(SIZE, SIZE);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.035).texture;
+const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+camera.position.set(0, 1.2, 11); camera.lookAt(0, 0, 0);
+
+const key = new THREE.DirectionalLight(0xffffff, 2.4); key.position.set(-4, 8, 6); key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048); key.shadow.radius = 9; key.shadow.bias = -0.0004;
+Object.assign(key.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 1, far: 30 });
+scene.add(key);
+const rim = new THREE.DirectionalLight(0xfff1d6, 1.2); rim.position.set(6, 3, -4); scene.add(rim);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x0b3b30, 0.35));
+
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity: 0.22 }));
+floor.rotation.x = -Math.PI / 2; floor.position.y = -2.2; floor.receiveShadow = true; scene.add(floor);
+
+/* materials */
+const gold = () => new THREE.MeshPhysicalMaterial({ color: 0xd9ad55, metalness: 1, roughness: 0.24, clearcoat: 0.4, clearcoatRoughness: 0.15 });
+const goldDark = () => new THREE.MeshPhysicalMaterial({ color: 0xb8862b, metalness: 1, roughness: 0.32 });
+const emerald = () => new THREE.MeshPhysicalMaterial({ color: 0x0a5c46, metalness: 0.1, roughness: 0.42, clearcoat: 0.55, clearcoatRoughness: 0.25, envMapIntensity: 0.35 });
+const deep = () => new THREE.MeshPhysicalMaterial({ color: 0x053d30, metalness: 0.2, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.08 });
+const porcelain = () => new THREE.MeshPhysicalMaterial({ color: 0xf6f5f0, metalness: 0, roughness: 0.38, clearcoat: 0.6, clearcoatRoughness: 0.2 });
+const glass = () => new THREE.MeshPhysicalMaterial({ color: 0xe8fff5, metalness: 0, roughness: 0.06, transmission: 0.92, thickness: 0.6, ior: 1.45, clearcoat: 1, attenuationColor: new THREE.Color(0x9fe3c7), attenuationDistance: 2.5 });
+
+function canvasTex(w, h, draw) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); draw(g, w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+}
+const goldGrad = (g, x0, y0, x1, y1) => { const gr = g.createLinearGradient(x0, y0, x1, y1); gr.addColorStop(0, '#fff1c7'); gr.addColorStop(.45, '#e3c07a'); gr.addColorStop(1, '#a77a26'); return gr; };
+function decal(w, h, tex, mat = {}) {
+  return new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshPhysicalMaterial({ map: tex, transparent: true, metalness: 0.7, roughness: 0.28, clearcoat: 0.5, ...mat }));
+}
+const cast = o => { o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return o; };
+
+/* a coin turned on a lathe: raised rim, recessed face, bevelled edge */
+function coin(r = 0.95, h = 0.17, face = true) {
+  const p = [[0, h / 2 - 0.02], [r * 0.78, h / 2 - 0.02], [r * 0.82, h / 2], [r * 0.95, h / 2], [r, h / 2 - 0.03], [r, -h / 2 + 0.03], [r * 0.95, -h / 2], [r * 0.82, -h / 2], [r * 0.78, -h / 2 + 0.02], [0, -h / 2 + 0.02]].map(([x, y]) => new THREE.Vector2(x, y));
+  const g = new THREE.Group();
+  g.add(new THREE.Mesh(new THREE.LatheGeometry(p, 128), gold()));
+  for (let i = 0; i < 90; i++) {                                       // milled edge
+    const k = new THREE.Mesh(new THREE.BoxGeometry(0.02, h * 0.62, 0.025), goldDark()); const a = (i / 90) * Math.PI * 2;
+    k.position.set(Math.cos(a) * r, 0, Math.sin(a) * r); k.rotation.y = -a; g.add(k);
+  }
+  if (face) {
+    const tex = canvasTex(512, 512, (c, w) => { c.fillStyle = goldGrad(c, 0, 0, w, w); c.font = '900 300px Tajawal'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('س', w / 2, w / 2 + 20);
+      c.strokeStyle = goldGrad(c, w, 0, 0, w); c.lineWidth = 10; c.beginPath(); c.arc(w / 2, w / 2, w * 0.44, 0, Math.PI * 2); c.stroke(); });
+    const d = decal(r * 1.55, r * 1.55, tex, { metalness: 1, roughness: 0.18, color: 0xffe2a0 }); d.rotation.x = -Math.PI / 2; d.position.y = h / 2 - 0.012; g.add(d);
+  }
+  return cast(g);
+}
+
+function card() {
+  const g = new THREE.Group();
+  const body = new THREE.Mesh(new RoundedBoxGeometry(3.6, 2.27, 0.11, 8, 0.16), new THREE.MeshPhysicalMaterial({ color: 0x075a44, metalness: 0.05, roughness: 0.5, clearcoat: 0.15, clearcoatRoughness: 0.4 })); g.add(body);
+  const chip = new THREE.Mesh(new RoundedBoxGeometry(0.52, 0.4, 0.04, 4, 0.06), gold()); chip.position.set(-1.25, 0.25, 0.07); g.add(chip);
+  for (let i = 0; i < 3; i++) { const l = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.012, 0.01), goldDark()); l.position.set(-1.25, 0.13 + i * 0.12, 0.093); g.add(l); }
+  const tex = canvasTex(1800, 1135, (c, w, h) => {
+    c.fillStyle = goldGrad(c, 0, 0, w, h);
+    c.font = '900 300px Tajawal'; c.textAlign = 'right'; c.textBaseline = 'alphabetic'; c.fillText('سلفه', w - 110, 390);
+    c.font = '900 120px TajawalL'; c.textAlign = 'left'; c.fillText('SULFA', 110, h - 120);
+    c.font = '900 70px TajawalL'; c.globalAlpha = .75; c.fillText('••••  ••••  ••••  2026', 110, h - 300); c.globalAlpha = 1;
+    c.textAlign = 'right'; c.font = '900 110px TajawalL'; c.fillText('OMR', w - 110, h - 120);
+  });
+  const d = decal(3.6, 2.27, tex, { metalness: 1, roughness: 0.22, clearcoat: 0, alphaTest: 0.35 }); d.position.z = 0.058; g.add(d);
+  return cast(g);
+}
+
+function shieldShape(s = 1) {
+  const sh = new THREE.Shape();
+  sh.moveTo(0, 1.25 * s); sh.bezierCurveTo(0.55 * s, 0.95 * s, 0.9 * s, 0.95 * s, 1.15 * s, 0.98 * s);
+  sh.bezierCurveTo(1.2 * s, 0.1 * s, 0.95 * s, -0.75 * s, 0, -1.3 * s); sh.bezierCurveTo(-0.95 * s, -0.75 * s, -1.2 * s, 0.1 * s, -1.15 * s, 0.98 * s);
+  sh.bezierCurveTo(-0.9 * s, 0.95 * s, -0.55 * s, 0.95 * s, 0, 1.25 * s); return sh;
+}
+function shield() {
+  const g = new THREE.Group();
+  const outer = new THREE.Mesh(new THREE.ExtrudeGeometry(shieldShape(1), { depth: 0.32, bevelEnabled: true, bevelThickness: 0.12, bevelSize: 0.1, bevelSegments: 10, curveSegments: 64 }), gold());
+  outer.position.z = -0.2; g.add(outer);
+  const inner = new THREE.Mesh(new THREE.ExtrudeGeometry(shieldShape(0.84), { depth: 0.3, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.06, bevelSegments: 8, curveSegments: 64 }), emerald());
+  inner.position.z = 0.05; g.add(inner);
+  const check = new THREE.Shape(); check.moveTo(-0.5, 0.02); check.lineTo(-0.15, -0.36); check.lineTo(0.55, 0.42); check.lineTo(0.42, 0.55); check.lineTo(-0.15, -0.08); check.lineTo(-0.37, 0.16); check.closePath();
+  const ck = new THREE.Mesh(new THREE.ExtrudeGeometry(check, { depth: 0.12, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.04, bevelSegments: 6 }), gold()); ck.position.set(0, 0, 0.42); g.add(ck);
+  return cast(g);
+}
+
+function idcard() {
+  const g = new THREE.Group();
+  g.add(new THREE.Mesh(new RoundedBoxGeometry(3.3, 2.1, 0.08, 8, 0.14), porcelain()));
+  const photo = new THREE.Mesh(new RoundedBoxGeometry(0.95, 1.2, 0.04, 4, 0.08), emerald()); photo.position.set(-0.95, 0.05, 0.05); g.add(photo);
+  const tex = canvasTex(1650, 1050, (c, w, h) => {
+    c.fillStyle = '#0a6b51'; c.fillRect(0, 0, w, 150);
+    c.fillStyle = '#ffffff'; c.font = '900 84px Tajawal'; c.textAlign = 'right'; c.fillText('بطاقة الهوية', w - 70, 105);
+    c.fillStyle = 'rgba(255,255,255,.9)'; c.beginPath(); c.arc(w * 0.21, h * 0.45, 110, 0, Math.PI * 2); c.fill(); c.beginPath(); c.ellipse(w * 0.21, h * 0.78, 190, 140, 0, Math.PI, 0); c.fill();
+    c.fillStyle = '#c7d3ce'; for (let i = 0; i < 4; i++) { c.beginPath(); c.roundRect(w * 0.47, 300 + i * 150, (i % 2 ? 0.34 : 0.44) * w, 44, 22); c.fill(); }
+    c.fillStyle = goldGrad(c, 0, 0, w, h); c.beginPath(); c.roundRect(w * 0.47, h - 150, w * 0.44, 30, 15); c.fill();
+  });
+  const d = decal(3.3, 2.1, tex, { metalness: 0, roughness: 0.4 }); d.position.z = 0.0425; g.add(d);
+  const lens = new THREE.Group();                                        // magnifier over the card
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.09, 32, 96), gold()); lens.add(ring);
+  const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.58, 0.58, 0.06, 64), glass()); disc.rotation.x = Math.PI / 2; lens.add(disc);
+  const handle = new THREE.Mesh(new THREE.CapsuleGeometry(0.11, 0.9, 8, 24), deep()); handle.position.set(0.78, -0.78, 0); handle.rotation.z = Math.PI / 4; lens.add(handle);
+  lens.position.set(0.9, -0.15, 0.6); lens.rotation.set(0.15, -0.35, 0); g.add(lens);
+  return cast(g);
+}
+
+function calendar() {
+  const g = new THREE.Group();
+  g.add(new THREE.Mesh(new RoundedBoxGeometry(2.8, 2.9, 0.3, 8, 0.22), porcelain()));
+  const top = new THREE.Mesh(new RoundedBoxGeometry(2.8, 0.75, 0.34, 8, 0.2), emerald()); top.position.y = 1.08; g.add(top);
+  for (const x of [-0.75, 0.75]) { const r = new THREE.Mesh(new THREE.CapsuleGeometry(0.09, 0.45, 8, 24), gold()); r.position.set(x, 1.5, 0.1); g.add(r); }
+  for (let row = 0; row < 3; row++) for (let col = 0; col < 4; col++) {
+    const on = row === 1 && col === 2;
+    const b = new THREE.Mesh(new RoundedBoxGeometry(0.46, 0.4, on ? 0.16 : 0.06, 4, 0.08), on ? gold() : new THREE.MeshPhysicalMaterial({ color: 0xdfe8e3, roughness: 0.5 }));
+    b.position.set(-0.93 + col * 0.62, 0.32 - row * 0.55, 0.17 + (on ? 0.05 : 0)); g.add(b);
+  }
+  const tex = canvasTex(1120, 300, (c, w, h) => { c.fillStyle = '#fff'; c.font = '900 150px Tajawal'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('الأقساط', w / 2, h / 2 + 12); });
+  const d = decal(2.2, 0.59, tex, { metalness: 0, roughness: 0.4 }); d.position.set(0, 1.07, 0.177); g.add(d);
+  return cast(g);
+}
+
+function bell() {
+  const prof = [[0, 1.1], [0.12, 1.08], [0.18, 0.95], [0.32, 0.8], [0.5, 0.5], [0.62, 0.0], [0.72, -0.45], [0.95, -0.7], [1.0, -0.78], [0.98, -0.84], [0, -0.84]].map(([x, y]) => new THREE.Vector2(x, y));
+  const g = new THREE.Group(); g.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 128), gold()));
+  const clap = new THREE.Mesh(new THREE.SphereGeometry(0.24, 48, 48), goldDark()); clap.position.y = -1.0; g.add(clap);
+  const knob = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.05, 24, 48), goldDark()); knob.position.y = 1.18; g.add(knob);
+  const dot = new THREE.Mesh(new THREE.SphereGeometry(0.3, 48, 48), new THREE.MeshPhysicalMaterial({ color: 0xd8342c, roughness: 0.25, clearcoat: 1 })); dot.position.set(0.72, 0.72, 0.3); g.add(dot);
+  return cast(g);
+}
+
+let root;
+switch (OBJ) {
+  case 'card': { root = new THREE.Group(); const c = card(); c.rotation.set(-0.22, 0.55, 0.2); c.position.set(-0.15, 0.35, 0); root.add(c);
+    const stack = new THREE.Group(); for (let i = 0; i < 5; i++) { const k = coin(); k.position.set((i % 2) * 0.05, -1.95 + i * 0.18, 0); k.rotation.y = i; stack.add(k); }
+    stack.position.set(1.15, 0, 0.75); root.add(stack);
+    const stand = coin(); stand.rotation.set(Math.PI / 2 - 0.25, 0, -0.35); stand.position.set(-1.95, -1.35, 1.9); root.add(stand); camera.position.set(0, 1.6, 12); break; }
+  case 'coins': { root = new THREE.Group(); for (let i = 0; i < 7; i++) { const k = coin(); k.position.set(Math.sin(i * 1.7) * 0.06, -2.0 + i * 0.18, 0); k.rotation.y = i; root.add(k); }
+    for (let i = 0; i < 3; i++) { const k = coin(); k.position.set(-1.4, -2.0 + i * 0.18, 0.6); root.add(k); }
+    const f = coin(); f.rotation.set(Math.PI / 2 - 0.3, 0, 0.3); f.position.set(1.3, -0.9, 0.9); root.add(f); camera.position.set(0, 2.2, 10); camera.lookAt(0, -0.6, 0); break; }
+  case 'shield': root = shield(); root.rotation.set(0.05, -0.38, 0); camera.position.set(0, 0.6, 9); break;
+  case 'idcard': root = idcard(); root.rotation.set(-0.35, 0.38, 0.08); camera.position.set(0, 1.4, 10); break;
+  case 'calendar': root = calendar(); root.rotation.set(-0.12, -0.45, 0); camera.position.set(0, 0.8, 10); break;
+  case 'bell': root = bell(); root.rotation.set(0.1, 0, -0.18); camera.position.set(0, 0.4, 7.5); break;
+}
+scene.add(root);
+// frame the object: fit its bounding sphere in the view with a margin
+const box = new THREE.Box3().setFromObject(root); const sph = box.getBoundingSphere(new THREE.Sphere());
+const dist = sph.radius / Math.sin(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.08;
+const dir = camera.position.clone().sub(sph.center).normalize(); camera.position.copy(sph.center.clone().add(dir.multiplyScalar(dist))); camera.lookAt(sph.center);
+floor.position.y = box.min.y - 0.02;
+renderer.render(scene, camera);
+window.__png = renderer.domElement.toDataURL('image/png');
+</script>
+</body></html>

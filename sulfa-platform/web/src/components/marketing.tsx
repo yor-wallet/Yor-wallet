@@ -1,6 +1,7 @@
 'use client';
 import { Card } from './ui';
 import { Reveal } from './motion';
+import { Img3D, type Asset3D } from './img3d';
 import { useI18n } from '@/lib/i18n';
 
 export const FAQ_COUNT = 8;
@@ -16,14 +17,14 @@ export function FaqList({ count = FAQ_COUNT }: { count?: number }) {
     </div>
   );
 }
-export const STEPS = ['＋', '⎙', '⌕', '✓', '↗', '◷'];
+export const STEPS: Asset3D[] = ['card', 'idcard', 'shield', 'bell', 'coins', 'calendar'];
 export function Steps({ n = 6 }: { n?: number }) {
   const { t } = useI18n();
   return (
     <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {STEPS.slice(0, n).map((ic, i) => (
         <Reveal as="li" key={i} delay={i * 110}><Card className="group h-full transition duration-300 hover:-translate-y-1 hover:shadow-lift">
-          <div className="flex items-center gap-3"><span className="grid h-11 w-11 place-items-center rounded-xl bg-emerald-50 text-lg text-emerald-700 transition duration-300 group-hover:rotate-6 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white dark:bg-white/5">{ic}</span><span className="font-latin text-sm font-black text-gold-500">0{i + 1}</span></div>
+          <div className="flex items-center gap-3"><Img3D name={ic} float={false} className="-my-2 -ms-2 h-24 w-24 transition duration-500 group-hover:-translate-y-1 group-hover:scale-110" /><span className="font-latin text-sm font-black text-gold-500">0{i + 1}</span></div>
           <h3 className="mt-4 text-lg font-extrabold">{t(`how.s${i + 1}.t`)}</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink-soft dark:text-emerald-50/80">{t(`how.s${i + 1}.b`)}</p>
         </Card></Reveal>))}

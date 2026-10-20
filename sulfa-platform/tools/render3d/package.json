@@ -1,0 +1,1 @@
+{ "name": "sulfa-render3d", "private": true, "description": "Renders the app's 3D illustrations (PNG/WebP, transparent) with three.js in headless Chromium.", "dependencies": { "three": "0.169.0" } }

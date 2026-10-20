@@ -38,3 +38,11 @@ Sur l'offre gratuite, Netlify injecte un commentaire et un script dans les pages
 - Icônes vectorielles dessinées pour l'application ; portraits illustratifs en buste (remplacent les personnages en pied).
 - Correction : l'animation d'ouverture des pages utilisait `transform`, ce qui empêchait l'affichage des éléments fixes (barre d'onglets, feuilles) dans Chrome ; elle n'utilise plus que l'opacité.
 - **Non déployée** : Netlify a refusé le déploiement (« Skipped due to account credit usage exceeded »). La version 1.2.0 reste en ligne.
+
+## Version 1.4.0 (illustrations 3D HD, typographie arabe, menus)
+- Six illustrations 3D rendues en haute définition (1536 px, WebP + PNG de secours) : carte SULFA, pièces, bouclier, carte d'identité, calendrier, cloche. Utilisées dans l'accueil, les étapes, les écrans de présentation, les états vides et les documents ; légère lévitation et parallaxe au pointeur, coupées si « réduire les animations » est activé.
+- Générées par `tools/render3d` (three.js, éclairage d'environnement, ombres douces) : `cd tools/render3d && npm ci && node render.mjs 1536` réécrit `web/public/3d`. Aucune marque ni logo de carte bancaire.
+- Typographie : Readex Pro (titres) et IBM Plex Sans Arabic (texte) dans les trois langues, chiffres en Inter ; polices embarquées, aucun appel externe.
+- Menus : tuiles en relief pour la barre d'onglets, la feuille « Plus », les actions rapides, la barre latérale et le menu mobile du site public ; boutons principaux brillants.
+- Cache hors ligne renommé `sulfa-shell-v1.4.0` (l'ancien cache est supprimé à l'activation).
+- **Non déployée** : Netlify refuse encore (« Skipped due to account credit usage exceeded », déploiement `6ad7dcd70a84e41178ba04b0`). La version 1.2.0 reste en ligne. Le dossier `out/` construit est prêt à être publié dès que des crédits sont ajoutés ou sur un autre hébergeur statique.

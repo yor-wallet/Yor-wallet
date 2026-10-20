@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 import { useI18n } from '@/lib/i18n';
 import type { Installment, Repayment, Application } from '@/lib/types';
+import { Img3D } from '@/components/img3d';
 import { Alert, Badge, Card, Empty, ErrorBox, Loading, Num, PageHeader, Table, Td, must, useLoad } from '@/components/ui';
 
 export default function Installments() {
@@ -26,7 +27,7 @@ export default function Installments() {
       <div className="mb-6"><Alert tone="info" title={t('inst.how_t')}>{t('inst.how_b')}</Alert></div>
       <Card>
         <h2 className="mb-4 text-lg font-extrabold">{t('inst.schedule')}</h2>
-        {inst.length === 0 ? <Empty title={t('inst.none')} /> : (
+        {inst.length === 0 ? <Empty title={t('inst.none')} art={<Img3D name="calendar" className="mx-auto -mt-4 mb-1 w-40" />} /> : (
           <Table head={[t('common.reference'), '#', t('inst.due_date'), t('inst.due'), t('inst.paid'), t('inst.left'), t('common.status')]}>
             {inst.map(i => { const late = i.status !== 'PAID' && i.due_date < today; return (
               <tr key={i.id} className={late ? 'bg-red-50/60 dark:bg-red-500/5' : ''}><Td><Num>{ref[i.application_id]}</Num></Td><Td><Num>{i.seq}</Num></Td><Td>{date(i.due_date)}{late && <span className="ms-2 text-xs font-bold text-red-700">{t('inst.late')}</span>}</Td>

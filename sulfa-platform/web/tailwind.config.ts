@@ -13,9 +13,10 @@ export default {
         line: '#e3ebe7',
       },
       fontFamily: {
-        sans: ['Tajawal', '"IBM Plex Sans Arabic"', '"Inter Variable"', 'system-ui', 'sans-serif'],
-        latin: ['"Inter Variable"', 'system-ui', 'sans-serif'],
-        num: ['"Inter Variable"', 'Tajawal', 'system-ui', 'sans-serif'],
+        sans: ['"IBM Plex Sans Arabic"', '"Readex Pro Variable"', 'system-ui', 'sans-serif'],
+        display: ['"Readex Pro Variable"', '"IBM Plex Sans Arabic"', 'system-ui', 'sans-serif'],
+        latin: ['"Readex Pro Variable"', 'system-ui', 'sans-serif'],
+        num: ['"Inter Variable"', '"IBM Plex Sans Arabic"', 'system-ui', 'sans-serif'],
       },
       boxShadow: { card: '0 1px 2px rgba(6,59,50,.06), 0 12px 32px rgba(6,59,50,.07)', lift: '0 24px 70px rgba(6,59,50,.14)' },
       borderRadius: { xl2: '1.25rem' },

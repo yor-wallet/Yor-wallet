@@ -10,11 +10,11 @@ export const cx = (...c: (string | false | null | undefined)[]) => c.filter(Bool
 /* ---------------------------------------------------------------- buttons, links */
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'gold';
 const VARIANT: Record<Variant, string> = {
-  primary: 'bg-gradient-to-br from-emerald-600 to-emerald-700 text-white shadow-[0_10px_24px_rgba(8,127,91,.22)] hover:shadow-[0_14px_30px_rgba(8,127,91,.32)]',
+  primary: 'gloss bg-gradient-to-b from-emerald-500 to-emerald-700 text-white hover:brightness-110',
   secondary: 'border border-line bg-white text-emerald-900 hover:border-emerald-300 dark:border-white/10 dark:bg-white/5 dark:text-emerald-50',
   ghost: 'text-emerald-800 hover:bg-emerald-50 dark:text-emerald-100 dark:hover:bg-white/5',
   danger: 'bg-red-700 text-white hover:bg-red-800',
-  gold: 'bg-gradient-to-br from-gold-400 to-gold-500 text-emerald-950 hover:from-gold-300',
+  gold: 'bg-gradient-to-b from-gold-300 to-gold-500 text-emerald-950 shadow-[inset_0_1px_0_rgba(255,255,255,.5),0_10px_22px_-8px_rgba(168,122,34,.6)] hover:brightness-105',
 };
 const BTN = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-[15px] font-bold transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 disabled:cursor-not-allowed disabled:opacity-50 active:scale-[.98]';
 
@@ -57,10 +57,10 @@ export function Loading() {
   const { t } = useI18n();
   return <div className="flex items-center gap-3 p-6 text-ink-muted"><Spinner /> {t('common.loading')}</div>;
 }
-export function Empty({ title, children }: { title: string; children?: ReactNode }) {
+export function Empty({ title, children, art }: { title: string; children?: ReactNode; art?: ReactNode }) {
   return (
     <div className="rounded-2xl border border-dashed border-line p-8 text-center dark:border-white/15">
-      <div className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-700 dark:bg-white/5">◌</div>
+      {art ?? <div className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-700 dark:bg-white/5">◌</div>}
       <p className="font-bold text-emerald-950 dark:text-white">{title}</p>
       {children && <div className="mt-2 text-sm text-ink-muted">{children}</div>}
     </div>

@@ -6,14 +6,15 @@ import { useRouter } from 'next/navigation';
 import { useI18n } from '@/lib/i18n';
 import { useAuth } from '@/lib/auth';
 import { Portrait } from '@/components/portraits';
+import { Img3D, type Asset3D } from '@/components/img3d';
 import { Icon, type IconName } from '@/components/icons';
 import { LangSwitch } from '@/components/shell';
 import { cx } from '@/components/ui';
 
-const SLIDES: { who: 'aisha' | 'salim' | 'maryam'; chip: IconName; tone: string }[] = [
-  { who: 'aisha', chip: 'check', tone: 'from-emerald-500 to-emerald-800' },
-  { who: 'salim', chip: 'receipt', tone: 'from-gold-400 to-gold-600' },
-  { who: 'maryam', chip: 'shield', tone: 'from-emerald-700 to-emerald-950' },
+const SLIDES: { who: 'aisha' | 'salim' | 'maryam'; chip: IconName; tone: string; art: Asset3D }[] = [
+  { who: 'aisha', chip: 'check', tone: 'from-emerald-500 to-emerald-800', art: 'idcard' },
+  { who: 'salim', chip: 'receipt', tone: 'from-gold-400 to-gold-600', art: 'coins' },
+  { who: 'maryam', chip: 'shield', tone: 'from-emerald-700 to-emerald-950', art: 'shield' },
 ];
 
 export default function AppEntry() {
@@ -45,10 +46,11 @@ export default function AppEntry() {
       <div ref={track} onScroll={onScroll} className="no-scrollbar flex flex-1 snap-x snap-mandatory overflow-x-auto overscroll-x-contain" aria-roledescription="carousel">
         {SLIDES.map((s, k) => (
           <section key={s.who} className="flex w-full shrink-0 snap-center flex-col items-center justify-center px-7 text-center" aria-label={`${k + 1} / ${SLIDES.length}`}>
-            <div className={cx('relative mb-10 transition duration-700', i === k ? 'scale-100 opacity-100' : 'scale-90 opacity-40')}>
+            <div className={cx('relative mb-6 transition duration-700', i === k ? 'scale-100 opacity-100' : 'scale-90 opacity-40')}>
               <div className={`absolute -inset-6 rounded-full bg-gradient-to-br ${s.tone} opacity-20 blur-2xl`} />
-              <div className="float-slow relative h-56 w-56 rounded-full shadow-lift sm:h-64 sm:w-64"><Portrait who={s.who} ring title={t('chars.' + s.who)} /></div>
-              <div className={cx('absolute -bottom-3 -end-6 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-extrabold text-emerald-950 shadow-lift dark:bg-emerald-900 dark:text-white', i === k && 'chip-pop')}>
+              <Img3D name={s.art} eager={k === 0} className="relative w-72 sm:w-80" />
+              <span className="absolute -top-1 start-2 h-16 w-16 overflow-hidden rounded-full shadow-lift ring-4 ring-white dark:ring-emerald-900"><Portrait who={s.who} title={t('chars.' + s.who)} /></span>
+              <div className={cx('absolute bottom-6 -end-2 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-extrabold text-emerald-950 shadow-lift dark:bg-emerald-900 dark:text-white', i === k && 'chip-pop')}>
                 <span className={`grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br ${s.tone} text-white`}><Icon name={s.chip} size={16} /></span>{t(`ob.s${k + 1}.chip`)}</div>
             </div>
             <p className="text-xs font-extrabold uppercase tracking-[3px] text-gold-600">{t(`ob.s${k + 1}.kicker`)}</p>

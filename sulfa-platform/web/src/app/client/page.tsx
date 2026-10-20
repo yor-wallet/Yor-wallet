@@ -6,7 +6,7 @@ import { useI18n } from '@/lib/i18n';
 import { renderNotification } from '@/lib/notif';
 import type { Application, Installment, Notification, Summary } from '@/lib/types';
 import { Ring, ScheduleBars } from '@/components/charts';
-import { Portrait } from '@/components/portraits';
+import { Img3D } from '@/components/img3d';
 import { Icon, type IconName } from '@/components/icons';
 import { Alert, Badge, Card, ErrorBox, LinkButton, Loading, Num, PageHeader, Stat, must, useLoad } from '@/components/ui';
 
@@ -44,9 +44,9 @@ export default function Dashboard() {
         <p className="mt-4 text-xs text-emerald-100/60">{t('dash.balance_note')}</p>
       </section>
       <nav aria-label={t('dash.quick')} className="mt-5 grid grid-cols-4 gap-2">
-        {([['/client/apply/', 'cn.apply', 'plus'], ['/client/documents/', 'cn.documents', 'id'], ['/client/installments/', 'cn.installments', 'calendar'], ['/client/history/', 'cn.history', 'receipt']] as [string, string, IconName][]).map(([h, k, ic]) => (
+        {([['/client/apply/', 'cn.apply', 'plus'], ['/client/documents/', 'cn.documents', 'id'], ['/client/installments/', 'cn.installments', 'calendar'], ['/client/history/', 'cn.history', 'receipt']] as [string, string, IconName][]).map(([h, k, ic], i) => (
           <Link key={h} href={h} className="press flex flex-col items-center gap-2 rounded-2xl p-2 text-center text-[11.5px] font-bold text-ink-soft dark:text-emerald-50/85">
-            <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white text-emerald-700 shadow-card ring-1 ring-line dark:bg-white/5 dark:text-emerald-300 dark:ring-white/10"><Icon name={ic} size={24} /></span>{t(k)}</Link>))}
+            <span className={'tile-3d grid h-14 w-14 place-items-center rounded-2xl ' + ['', 'tile-gold', 'tile-blue', 'tile-ink'][i]}><Icon name={ic} size={24} /></span>{t(k)}</Link>))}
       </nav>
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label={t('dash.outstanding')} value={money(s.outstanding)} />
@@ -64,7 +64,7 @@ export default function Dashboard() {
         </Card>)}
       {active.length === 0 && !app && (
         <Card className="mt-6"><div className="flex flex-wrap items-center gap-5">
-          <span className="h-28 w-28 shrink-0 overflow-hidden rounded-full shadow-lift"><Portrait who="aisha" ring title={t('chars.aisha')} /></span>
+          <Img3D name="card" className="w-48 shrink-0" />
           <div className="max-w-md"><p className="text-lg font-extrabold">{t('dash.empty_t')}</p><p className="mt-1 text-sm text-ink-muted">{t('dash.empty_b')}</p><LinkButton href="/client/apply/" className="mt-3">{t('cn.apply')}</LinkButton></div>
         </div></Card>)}
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
