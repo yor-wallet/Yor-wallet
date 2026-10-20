@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: Readex; src: url(../../web/node_modules/@fontsource-variable/readex-pro/files/readex-pro-arabic-wght-normal.woff2) format('woff2'); font-weight: 160 700; }
+@font-face { font-family: ReadexL; src: url(../../web/node_modules/@fontsource-variable/readex-pro/files/readex-pro-latin-wght-normal.woff2) format('woff2'); font-weight: 160 700; }
+html, body { margin: 0; background: transparent; }
+/* ---- app icon: full-bleed square (iOS / Android mask the corners themselves) ---- */
+.icon { position: relative; width: 1024px; height: 1024px; overflow: hidden;
+  background: radial-gradient(120% 120% at 28% 18%, #17b483 0%, #0a8a62 30%, #06503f 68%, #03281f 100%); }
+.icon.rounded { border-radius: 230px; }
+.icon .pattern { position: absolute; inset: 0; opacity: .13; }
+.icon .glow { position: absolute; width: 760px; height: 760px; left: 132px; top: 150px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(246,214,138,.38), rgba(246,214,138,0) 62%); }
+.icon .glyph { position: absolute; inset: 0; display: grid; place-items: center; padding-bottom: 90px;
+  font: 700 440px/1 Readex; color: transparent;
+  background: linear-gradient(170deg, #fff6d6 0%, #f4d28a 26%, #d4a24c 52%, #a8761f 74%, #f1cf86 100%);
+  -webkit-background-clip: text; background-clip: text;
+  filter: drop-shadow(0 22px 26px rgba(0,0,0,.42)) drop-shadow(0 3px 0 rgba(120,80,20,.55)); }
+.icon .dot { position: absolute; width: 78px; height: 78px; right: 268px; top: 268px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff3cf, #e2b65f 45%, #9c6c1c 100%); box-shadow: 0 14px 22px rgba(0,0,0,.4); }
+.icon .gloss { position: absolute; left: -10%; top: -46%; width: 120%; height: 86%; border-radius: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,.26), rgba(255,255,255,0) 70%); }
+.icon .rim { position: absolute; inset: 0; box-shadow: inset 0 0 0 10px rgba(255,255,255,.07), inset 0 -40px 80px rgba(0,0,0,.35); border-radius: inherit; }
+/* ---- iOS launch screen ---- */
+.launch { position: relative; overflow: hidden; display: grid; place-items: center;
+  background: radial-gradient(90% 60% at 50% 38%, #0d7f5c 0%, #064a3a 48%, #032a21 100%); }
+.launch .center { display: flex; flex-direction: column; align-items: center; margin-top: -6%; }
+.launch .mark { border-radius: 26%; overflow: hidden; box-shadow: 0 40px 90px rgba(0,0,0,.45); }
+.launch .name { font: 700 1em/1.2 Readex; color: #fff; margin-top: .55em; }
+.launch .tag { font: 600 .26em/1 ReadexL; letter-spacing: .5em; color: #e3c27a; margin-top: .6em; padding-inline-start: .5em; }
+.launch .pattern { position: absolute; inset: 0; opacity: .07; }
+</style></head>
+<body>
+<template id="pattern">
+  <svg class="pattern" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs><pattern id="khatam" width="128" height="128" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#f6dc9c" stroke-width="3">
+        <rect x="34" y="34" width="60" height="60" /><rect x="34" y="34" width="60" height="60" transform="rotate(45 64 64)" />
+        <circle cx="64" cy="64" r="12" /><path d="M0 64h18M110 64h18M64 0v18M64 110v18" />
+      </g></pattern></defs>
+    <rect width="100%" height="100%" fill="url(#khatam)" />
+  </svg>
+</template>
+<div id="root"></div>
+<script>
+const pat = () => document.getElementById('pattern').content.cloneNode(true);
+function icon(rounded) {
+  const d = document.createElement('div'); d.className = 'icon' + (rounded ? ' rounded' : '');
+  d.append(pat());
+  d.insertAdjacentHTML('beforeend', '<div class="glow"></div><div class="glyph">س</div><div class="dot"></div><div class="gloss"></div><div class="rim"></div>');
+  return d;
+}
+window.renderIcon = (rounded) => { const r = document.getElementById('root'); r.innerHTML = ''; r.append(icon(rounded)); return document.fonts.ready; };
+window.renderLaunch = (w, h) => {
+  const r = document.getElementById('root'); r.innerHTML = '';
+  const l = document.createElement('div'); l.className = 'launch'; l.style.width = w + 'px'; l.style.height = h + 'px';
+  const base = Math.min(w, h * .56);
+  l.append(pat());
+  const c = document.createElement('div'); c.className = 'center'; c.style.fontSize = (base * .12) + 'px';
+  const m = document.createElement('div'); m.className = 'mark'; const s = base * .36; m.style.width = m.style.height = s + 'px';
+  const ic = icon(false); ic.style.transform = `scale(${s / 1024})`; ic.style.transformOrigin = '0 0'; m.append(ic);
+  c.append(m); c.insertAdjacentHTML('beforeend', '<div class="name">سلفه</div><div class="tag">SULFA FINANCE</div>');
+  l.append(c); r.append(l); return document.fonts.ready;
+};
+</script>
+</body></html>

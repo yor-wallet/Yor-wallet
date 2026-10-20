@@ -54,10 +54,10 @@ test('client dashboard: share repaid and schedule chart from the real installmen
 
 test('characters: labelled for screen readers, the film shows a character per scene', { skip }, async () => {
   const s = await open(browser, { lang: 'en', handlers: { 'rpc:sulfa_public_settings': () => SETTINGS } });
-  assert.ok(await s.page.locator('svg[aria-label="Aisha, client"]').count() >= 1);
-  assert.match(await s.page.innerText('#cast-h ~ p, section:has(#cast-h)'), /Illustrative characters/);
+  assert.ok(await s.page.locator('img[aria-label="Aisha, client"]').count() >= 1);
+  assert.match(await s.page.innerText('#cast-h ~ p, section:has(#cast-h)'), /Illustrative AI-generated portraits/);
   await s.page.locator('#film-h').scrollIntoViewIfNeeded();
   await s.page.click('#film-h ~ ol button:has-text("Verification")');
-  await s.page.waitForSelector('section:has(#film-h) svg[aria-label="Maryam, administrator"]');
+  await s.page.waitForSelector('section:has(#film-h) img[aria-label="Maryam, administrator"]');
   await s.ctx.close();
 });

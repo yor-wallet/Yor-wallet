@@ -9,6 +9,7 @@ import type { AdminRole } from '@/lib/types';
 import { cx, Loading, NotConfigured, Alert, LinkButton } from './ui';
 import { Icon, type IconName } from './icons';
 import { supabase } from '@/lib/supabase';
+import { LaunchScreen } from './launch';
 
 export function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -135,10 +136,13 @@ const ADMIN_TABS = ['/admin/', '/admin/applications/', '/admin/documents/', '/ad
 const TAB_LABEL: Record<string, string> = { '/client/': 'tab.home', '/client/applications/': 'tab.apps', '/client/installments/': 'tab.inst', '/client/notifications/': 'tab.notif',
   '/admin/': 'tab.overview', '/admin/applications/': 'tab.apps', '/admin/documents/': 'tab.docs', '/admin/withdrawals/': 'tab.wd' };
 
+/* set while the user signs out on purpose: the guard must not bounce them to the login page */
+let signingOut = false;
+
 function Guard({ admin, roles, children }: { admin?: boolean; roles?: AdminRole[]; children: ReactNode }) {
   const { ready, session, role, profile, profileError } = useAuth(); const { t } = useI18n();
   const router = useRouter(); const path = usePathname();
-  useEffect(() => { if (ready && !session) router.replace('/login/?next=' + encodeURIComponent(path)); }, [ready, session, router, path]);
+  useEffect(() => { if (ready && !session && !signingOut) router.replace('/login/?next=' + encodeURIComponent(path)); }, [ready, session, router, path]);
   if (!ready || !session) return <Loading />;
   if (admin && !role) return <div className="p-6"><Alert tone="error" title={t('guard.admin_only')}>{t('guard.admin_only_body')}</Alert></div>;
   if (roles && role && !roles.includes(role)) return <Alert tone="warn" title={t('guard.role_title')}>{t('guard.role_body', { roles: roles.join(', ') })}</Alert>;
@@ -183,12 +187,22 @@ function SpaceShell({ nav, tabs, title, admin, children }: { nav: readonly NavIt
       .then(({ count }) => setUnread(count ?? 0));
   }, [session, admin, path]);
   const name = profile ? `${profile.first_name} ${profile.last_name}`.trim() : session?.user.email ?? '';
-  const out = async () => { await signOut(); router.replace('/app/'); };
+  const [bye, setBye] = useState(false);
+  const out = async () => {
+    setBye(true);
+    await new Promise(r => setTimeout(r, 1500));                          // goodbye animation, then sign out
+    signingOut = true;
+    try { sessionStorage.setItem('sulfa_bye', '1'); } catch {}
+    await signOut();
+    router.replace('/app/');
+    setTimeout(() => { signingOut = false; }, 1000);
+  };
   const current = nav.find(([h]) => isOn(h, path)) ?? nav[0];
   const tabItems = tabs.map(h => nav.find(n => n[0] === h)!).filter(Boolean);
   const moreOn = !tabItems.some(([h]) => isOn(h, path));
   return (
     <div className="app-root min-h-[100dvh] overflow-x-clip lg:grid lg:grid-cols-[264px_1fr]">
+      {bye && <LaunchScreen closing />}
       <aside className="hidden border-e border-line bg-white/70 p-4 lg:block dark:border-white/10 dark:bg-emerald-950/50">
         <div className="sticky top-4 space-y-6"><Brand />
           {admin && <span className="inline-block rounded-full bg-gold-100 px-3 py-1 text-xs font-extrabold text-gold-600">{t('admin.badge')} · {role ? t('role.' + role) : ''}</span>}

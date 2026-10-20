@@ -140,7 +140,7 @@ export function Film() {
   return (
     <section ref={box} aria-labelledby="film-h" className="relative mt-16 overflow-hidden rounded-[2rem] bg-emerald-950 px-5 py-10 text-white shadow-lift sm:px-10 sm:py-14">
       <div aria-hidden className="mesh absolute inset-0 opacity-70" />
-      <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+      <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_auto]">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-bold text-gold-300"><span className="film-dot h-2 w-2 rounded-full bg-red-500" />{t('film.badge')}</span>
           <h2 id="film-h" className="mt-4 text-3xl font-black sm:text-4xl">{t('film.title')}</h2>

@@ -10,6 +10,7 @@ import { Img3D, type Asset3D } from '@/components/img3d';
 import { Icon, type IconName } from '@/components/icons';
 import { LangSwitch } from '@/components/shell';
 import { cx } from '@/components/ui';
+import { LaunchScreen } from '@/components/launch';
 
 const SLIDES: { who: 'aisha' | 'salim' | 'maryam'; chip: IconName; tone: string; art: Asset3D }[] = [
   { who: 'aisha', chip: 'check', tone: 'from-emerald-500 to-emerald-800', art: 'idcard' },
@@ -20,23 +21,20 @@ const SLIDES: { who: 'aisha' | 'salim' | 'maryam'; chip: IconName; tone: string;
 export default function AppEntry() {
   const { t } = useI18n(); const { ready, session, role } = useAuth(); const router = useRouter();
   const [splash, setSplash] = useState(true);
+  const [leaving, setLeaving] = useState(false);
   const [i, setI] = useState(0);
   const track = useRef<HTMLDivElement>(null);
-  useEffect(() => { const id = setTimeout(() => setSplash(false), 1300); return () => clearTimeout(id); }, []);
+  useEffect(() => {
+    let skip = false; try { skip = sessionStorage.getItem('sulfa_bye') === '1'; sessionStorage.removeItem('sulfa_bye'); } catch {}
+    if (skip) { setSplash(false); return; }
+    const a = setTimeout(() => setLeaving(true), 1900), b = setTimeout(() => setSplash(false), 2450);
+    return () => { clearTimeout(a); clearTimeout(b); };
+  }, []);
   useEffect(() => { if (!splash && ready && session) router.replace(role ? '/admin/' : '/client/'); }, [splash, ready, session, role, router]);
   const go = (n: number) => { const el = track.current; if (!el) return; el.scrollTo({ left: (document.documentElement.dir === 'rtl' ? -1 : 1) * n * el.clientWidth, behavior: 'smooth' }); };
   const onScroll = () => { const el = track.current; if (el) setI(Math.round(Math.abs(el.scrollLeft) / el.clientWidth)); };
 
-  if (splash || (ready && session)) return (
-    <div className="splash fixed inset-0 z-50 grid place-items-center bg-gradient-to-br from-emerald-700 via-emerald-900 to-emerald-950 text-white">
-      <div aria-hidden className="mesh absolute inset-0 opacity-60" />
-      <div className="relative flex flex-col items-center">
-        <span className="splash-logo grid h-24 w-24 place-items-center rounded-[30px_30px_30px_10px] bg-white/10 text-6xl font-black shadow-[0_30px_60px_rgba(0,0,0,.35)] backdrop-blur">س</span>
-        <p className="splash-name mt-6 text-3xl font-black">سلفه</p>
-        <p className="splash-tag mt-1 font-latin text-xs font-bold tracking-[4px] text-gold-300">SULFA FINANCE</p>
-      </div>
-    </div>
-  );
+  if (splash || (ready && session)) return <LaunchScreen leaving={leaving && !(ready && session)} />;
 
   return (
     <div className="onboard fixed inset-0 flex flex-col bg-paper dark:bg-emerald-950">

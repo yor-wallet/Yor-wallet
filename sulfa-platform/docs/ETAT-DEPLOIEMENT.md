@@ -47,3 +47,14 @@ Sur l'offre gratuite, Netlify injecte un commentaire et un script dans les pages
 - Cache hors ligne renommé `sulfa-shell-v1.4.0` (l'ancien cache est supprimé à l'activation).
 - Netlify ayant refusé (« Skipped due to account credit usage exceeded »), la 1.4.0 est publiée sur **Vercel** : https://sulfa-oman.vercel.app. Compilation sur Vercel depuis la branche GitHub (`sulfa-platform/web`), variables publiques Supabase dans le projet Vercel, en-têtes de sécurité dans `web/vercel.json`. Protection Vercel limitée aux aperçus : la production est publique.
 - Vérifié en ligne : pages, images 3D, en-têtes (CSP, HSTS, X-Frame-Options), cache `sulfa-shell-v1.4.0`, connexion réelle de l'administrateur → `/admin/`, 1 000 000,000 / 0,000 OMR, paramètres modifiables, aucune erreur de page (plus d'injection Netlify, donc plus d'erreur #418).
+
+## Version 1.5.0 (portraits réalistes, icône iOS, ouverture et fermeture animées)
+- Portraits photoréalistes d'Aisha, Salim et Maryam (tenues omanaises : shayla, kuma, dishdasha), générés par IA avec Moda (`web/public/people`). Ils représentent des rôles : la mention « صور توضيحية مولّدة بالذكاء الاصطناعي » / « Portraits illustratifs générés par IA » est affichée sous les portraits et dans l'application. Ce ne sont ni des clients ni des employés réels.
+- Cartes « من يفعل ماذا » en grand format photo, avec zoom lent et reflet lumineux.
+- Icône de l'application : « س » doré sur fond émeraude, motif géométrique omanais discret. Icône d'écran d'accueil iOS (`apple-touch-icon.png`, 180 px), icônes Android standard et adaptatives (192 et 512 px), favicon.
+- Écrans de lancement iOS pour 10 tailles d'iPhone (`web/public/brand/launch-*.jpg`), déclarés dans les balises `apple-touch-startup-image`.
+- Ouverture : icône qui apparaît avec un reflet, anneaux dorés, étincelles, nom et barre de chargement (2,4 s). Fermeture : à la déconnexion, écran « مع السلامة / À bientôt » (1,5 s), puis retour à l'application sans rejouer l'ouverture.
+- Tout est régénérable avec `cd tools/brand && node render.mjs`.
+- Corrections :
+  - à la déconnexion, la protection des pages pouvait rediriger vers la page de connexion au lieu de l'application ;
+  - sur téléphone, le texte de la section « film » dépassait à gauche.

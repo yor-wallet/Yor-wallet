@@ -8,12 +8,17 @@ import '@fontsource-variable/inter/index.css';
 import './globals.css';
 import { Providers } from '@/components/shell';
 
+/* iPhone launch screens rendered by tools/brand (css width, css height, pixel ratio) */
+const LAUNCH: [number, number, number][] = [[430, 932, 3], [393, 852, 3], [428, 926, 3], [390, 844, 3], [375, 812, 3], [414, 896, 3], [414, 896, 2], [414, 736, 3], [375, 667, 2], [320, 568, 2]];
+
 export const metadata: Metadata = {
   title: { default: 'سلفه | SULFA', template: '%s · SULFA' },
   description: 'SULFA — سلفه : demandes de financement en ligne en Oman, suivies et décidées par un administrateur.',
   manifest: '/manifest.webmanifest',
-  icons: { icon: '/icon.svg', apple: '/icon-192.png' },
-  appleWebApp: { capable: true, title: 'SULFA', statusBarStyle: 'default' },
+  applicationName: 'SULFA سلفه',
+  icons: { icon: [{ url: '/icon.svg', type: 'image/svg+xml' }, { url: '/favicon-64.png', sizes: '64x64', type: 'image/png' }], apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }] },
+  appleWebApp: { capable: true, title: 'سلفه', statusBarStyle: 'default', startupImage: LAUNCH.map(([w, h, r]) => ({ url: `/brand/launch-${w * r}x${h * r}.jpg`, media: `(device-width: ${w}px) and (device-height: ${h}px) and (-webkit-device-pixel-ratio: ${r}) and (orientation: portrait)` })) },
+  formatDetection: { telephone: false },
 };
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover', themeColor: [{ media: '(prefers-color-scheme: light)', color: '#f7f9f8' }, { media: '(prefers-color-scheme: dark)', color: '#04211b' }] };
 

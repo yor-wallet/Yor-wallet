@@ -21,14 +21,37 @@ test('manifest: the installed app starts on /app/ in portrait, standalone', { sk
 
 test('visitor: launch screen, then three onboarding screens with portraits, then sign-up', { skip }, async () => {
   const s = await open(browser, { path: '/app/', lang: 'en', viewport: V });
-  await s.page.waitForSelector('.splash');
+  await s.page.waitForSelector('.launch .launch-icon img');
   await s.page.waitForSelector('text=Your application, tracked live');
-  assert.ok(await s.page.locator('.onboard svg[aria-label="Aisha, client"]').count() === 1);
+  assert.ok(await s.page.locator('.onboard img[aria-label="Aisha, client"]').count() === 1);
   await s.page.click('button:has-text("Continue")'); await s.page.waitForTimeout(700);
   await s.page.click('button:has-text("Continue")'); await s.page.waitForTimeout(700);
   await s.page.click('a:has-text("Create my account")');
   await s.page.waitForURL(/\/signup\/$/);
   assert.deepEqual(s.errors, []);
+  await s.ctx.close();
+});
+
+test('sign-out plays the goodbye screen, then returns to the app without replaying the launch', { skip }, async () => {
+  const s = await open(browser, { path: '/client/', lang: 'en', user, viewport: V, handlers: client });
+  await s.page.locator('nav.tabbar button:has-text("More")').click();
+  await s.page.locator('[role="dialog"][aria-label="More"] button:has-text("Sign out")').click();
+  await s.page.waitForSelector('.launch-closing:has-text("See you soon")');
+  await s.page.waitForURL(/\/app\/$/, { timeout: 8000 });
+  await s.page.waitForSelector('text=Your application, tracked live', { timeout: 1500 });
+  assert.deepEqual(s.errors, []);
+  await s.ctx.close();
+});
+
+test('iOS: home-screen icon and launch screens are declared and served', { skip }, async () => {
+  const s = await open(browser, { path: '/app/', lang: 'en', viewport: V });
+  const links = await s.page.evaluate(() => [...document.querySelectorAll('link')].map(l => [l.rel, l.getAttribute('href'), l.media || '']));
+  const apple = links.find(l => l[0] === 'apple-touch-icon');
+  assert.ok(apple && apple[1].endsWith('/apple-touch-icon.png'));
+  const starts = links.filter(l => l[0] === 'apple-touch-startup-image');
+  assert.equal(starts.length, 10);
+  for (const [, href] of [apple, ...starts]) assert.equal((await s.page.request.get(new URL(href, s.page.url()).href)).status(), 200, href);
+  assert.ok(starts.some(l => l[1].includes('1179x2556') && l[2].includes('393px')));
   await s.ctx.close();
 });
 
