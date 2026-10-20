@@ -1,0 +1,6932 @@
+[
+    {
+        "term": 3,
+        "quote": {
+            "fee": 0.000,
+            "last": 166.666,
+            "term": 3,
+            "total": 500.000,
+            "amount": 500.000,
+            "monthly": 166.667,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 0.000,
+            "last": 125.000,
+            "term": 4,
+            "total": 500.000,
+            "amount": 500.000,
+            "monthly": 125.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 0.000,
+            "last": 100.000,
+            "term": 5,
+            "total": 500.000,
+            "amount": 500.000,
+            "monthly": 100.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 0.000,
+            "last": 83.335,
+            "term": 6,
+            "total": 500.000,
+            "amount": 500.000,
+            "monthly": 83.333,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 0.000,
+            "last": 71.426,
+            "term": 7,
+            "total": 500.000,
+            "amount": 500.000,
+            "monthly": 71.429,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 0.000,
+            "last": 62.500,
+            "term": 8,
+            "total": 500.000,
+            "amount": 500.000,
+            "monthly": 62.500,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 0.000,
+            "last": 55.552,
+            "term": 9,
+            "total": 500.000,
+            "amount": 500.000,
+            "monthly": 55.556,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 0.000,
+            "last": 259.259,
+            "term": 3,
+            "total": 777.777,
+            "amount": 777.777,
+            "monthly": 259.259,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 0.000,
+            "last": 194.445,
+            "term": 4,
+            "total": 777.777,
+            "amount": 777.777,
+            "monthly": 194.444,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 0.000,
+            "last": 155.557,
+            "term": 5,
+            "total": 777.777,
+            "amount": 777.777,
+            "monthly": 155.555,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 0.000,
+            "last": 129.627,
+            "term": 6,
+            "total": 777.777,
+            "amount": 777.777,
+            "monthly": 129.630,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 0.000,
+            "last": 111.111,
+            "term": 7,
+            "total": 777.777,
+            "amount": 777.777,
+            "monthly": 111.111,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 0.000,
+            "last": 97.223,
+            "term": 8,
+            "total": 777.777,
+            "amount": 777.777,
+            "monthly": 97.222,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 0.000,
+            "last": 86.417,
+            "term": 9,
+            "total": 777.777,
+            "amount": 777.777,
+            "monthly": 86.420,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 0.000,
+            "last": 333.334,
+            "term": 3,
+            "total": 1000.000,
+            "amount": 1000.000,
+            "monthly": 333.333,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 0.000,
+            "last": 250.000,
+            "term": 4,
+            "total": 1000.000,
+            "amount": 1000.000,
+            "monthly": 250.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 0.000,
+            "last": 200.000,
+            "term": 5,
+            "total": 1000.000,
+            "amount": 1000.000,
+            "monthly": 200.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 0.000,
+            "last": 166.665,
+            "term": 6,
+            "total": 1000.000,
+            "amount": 1000.000,
+            "monthly": 166.667,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 0.000,
+            "last": 142.858,
+            "term": 7,
+            "total": 1000.000,
+            "amount": 1000.000,
+            "monthly": 142.857,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 0.000,
+            "last": 125.000,
+            "term": 8,
+            "total": 1000.000,
+            "amount": 1000.000,
+            "monthly": 125.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 0.000,
+            "last": 111.112,
+            "term": 9,
+            "total": 1000.000,
+            "amount": 1000.000,
+            "monthly": 111.111,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 0.000,
+            "last": 411.500,
+            "term": 3,
+            "total": 1234.500,
+            "amount": 1234.500,
+            "monthly": 411.500,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 0.000,
+            "last": 308.625,
+            "term": 4,
+            "total": 1234.500,
+            "amount": 1234.500,
+            "monthly": 308.625,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 0.000,
+            "last": 246.900,
+            "term": 5,
+            "total": 1234.500,
+            "amount": 1234.500,
+            "monthly": 246.900,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 0.000,
+            "last": 205.750,
+            "term": 6,
+            "total": 1234.500,
+            "amount": 1234.500,
+            "monthly": 205.750,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 0.000,
+            "last": 176.358,
+            "term": 7,
+            "total": 1234.500,
+            "amount": 1234.500,
+            "monthly": 176.357,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 0.000,
+            "last": 154.309,
+            "term": 8,
+            "total": 1234.500,
+            "amount": 1234.500,
+            "monthly": 154.313,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 0.000,
+            "last": 137.164,
+            "term": 9,
+            "total": 1234.500,
+            "amount": 1234.500,
+            "monthly": 137.167,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 0.000,
+            "last": 666.666,
+            "term": 3,
+            "total": 2000.000,
+            "amount": 2000.000,
+            "monthly": 666.667,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 0.000,
+            "last": 500.000,
+            "term": 4,
+            "total": 2000.000,
+            "amount": 2000.000,
+            "monthly": 500.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 0.000,
+            "last": 400.000,
+            "term": 5,
+            "total": 2000.000,
+            "amount": 2000.000,
+            "monthly": 400.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 0.000,
+            "last": 333.335,
+            "term": 6,
+            "total": 2000.000,
+            "amount": 2000.000,
+            "monthly": 333.333,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 0.000,
+            "last": 285.716,
+            "term": 7,
+            "total": 2000.000,
+            "amount": 2000.000,
+            "monthly": 285.714,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 0.000,
+            "last": 250.000,
+            "term": 8,
+            "total": 2000.000,
+            "amount": 2000.000,
+            "monthly": 250.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 0.000,
+            "last": 222.224,
+            "term": 9,
+            "total": 2000.000,
+            "amount": 2000.000,
+            "monthly": 222.222,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 0.000,
+            "last": 1111.111,
+            "term": 3,
+            "total": 3333.333,
+            "amount": 3333.333,
+            "monthly": 1111.111,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 0.000,
+            "last": 833.334,
+            "term": 4,
+            "total": 3333.333,
+            "amount": 3333.333,
+            "monthly": 833.333,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 0.000,
+            "last": 666.665,
+            "term": 5,
+            "total": 3333.333,
+            "amount": 3333.333,
+            "monthly": 666.667,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 0.000,
+            "last": 555.553,
+            "term": 6,
+            "total": 3333.333,
+            "amount": 3333.333,
+            "monthly": 555.556,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 0.000,
+            "last": 476.193,
+            "term": 7,
+            "total": 3333.333,
+            "amount": 3333.333,
+            "monthly": 476.190,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 0.000,
+            "last": 416.664,
+            "term": 8,
+            "total": 3333.333,
+            "amount": 3333.333,
+            "monthly": 416.667,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 0.000,
+            "last": 370.373,
+            "term": 9,
+            "total": 3333.333,
+            "amount": 3333.333,
+            "monthly": 370.370,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 0.000,
+            "last": 1666.669,
+            "term": 3,
+            "total": 5000.005,
+            "amount": 5000.005,
+            "monthly": 1666.668,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 0.000,
+            "last": 1250.002,
+            "term": 4,
+            "total": 5000.005,
+            "amount": 5000.005,
+            "monthly": 1250.001,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 0.000,
+            "last": 1000.001,
+            "term": 5,
+            "total": 5000.005,
+            "amount": 5000.005,
+            "monthly": 1000.001,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 0.000,
+            "last": 833.335,
+            "term": 6,
+            "total": 5000.005,
+            "amount": 5000.005,
+            "monthly": 833.334,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 0.000,
+            "last": 714.289,
+            "term": 7,
+            "total": 5000.005,
+            "amount": 5000.005,
+            "monthly": 714.286,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 0.000,
+            "last": 624.998,
+            "term": 8,
+            "total": 5000.005,
+            "amount": 5000.005,
+            "monthly": 625.001,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 0.000,
+            "last": 555.557,
+            "term": 9,
+            "total": 5000.005,
+            "amount": 5000.005,
+            "monthly": 555.556,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 0.000,
+            "last": 3333.333,
+            "term": 3,
+            "total": 9999.999,
+            "amount": 9999.999,
+            "monthly": 3333.333,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 0.000,
+            "last": 2499.999,
+            "term": 4,
+            "total": 9999.999,
+            "amount": 9999.999,
+            "monthly": 2500.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 0.000,
+            "last": 1999.999,
+            "term": 5,
+            "total": 9999.999,
+            "amount": 9999.999,
+            "monthly": 2000.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 0.000,
+            "last": 1666.664,
+            "term": 6,
+            "total": 9999.999,
+            "amount": 9999.999,
+            "monthly": 1666.667,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 0.000,
+            "last": 1428.573,
+            "term": 7,
+            "total": 9999.999,
+            "amount": 9999.999,
+            "monthly": 1428.571,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 0.000,
+            "last": 1249.999,
+            "term": 8,
+            "total": 9999.999,
+            "amount": 9999.999,
+            "monthly": 1250.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 0.000,
+            "last": 1111.111,
+            "term": 9,
+            "total": 9999.999,
+            "amount": 9999.999,
+            "monthly": 1111.111,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 0.000,
+            "last": 3333.334,
+            "term": 3,
+            "total": 10000.000,
+            "amount": 10000.000,
+            "monthly": 3333.333,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 0.000,
+            "last": 2500.000,
+            "term": 4,
+            "total": 10000.000,
+            "amount": 10000.000,
+            "monthly": 2500.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 0.000,
+            "last": 2000.000,
+            "term": 5,
+            "total": 10000.000,
+            "amount": 10000.000,
+            "monthly": 2000.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 0.000,
+            "last": 1666.665,
+            "term": 6,
+            "total": 10000.000,
+            "amount": 10000.000,
+            "monthly": 1666.667,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 0.000,
+            "last": 1428.574,
+            "term": 7,
+            "total": 10000.000,
+            "amount": 10000.000,
+            "monthly": 1428.571,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 0.000,
+            "last": 1250.000,
+            "term": 8,
+            "total": 10000.000,
+            "amount": 10000.000,
+            "monthly": 1250.000,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 0.000,
+            "last": 1111.112,
+            "term": 9,
+            "total": 10000.000,
+            "amount": 10000.000,
+            "monthly": 1111.111,
+            "currency": "OMR",
+            "interest": 0.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 0.0000,
+            "monthly_rate_percent": 0.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 0,
+            "monthly_rate_percent": 0
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 10.000,
+            "last": 175.000,
+            "term": 3,
+            "total": 525.000,
+            "amount": 500.000,
+            "monthly": 175.000,
+            "currency": "OMR",
+            "interest": 15.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 10.000,
+            "last": 132.500,
+            "term": 4,
+            "total": 530.000,
+            "amount": 500.000,
+            "monthly": 132.500,
+            "currency": "OMR",
+            "interest": 20.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 10.000,
+            "last": 107.000,
+            "term": 5,
+            "total": 535.000,
+            "amount": 500.000,
+            "monthly": 107.000,
+            "currency": "OMR",
+            "interest": 25.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 10.000,
+            "last": 90.000,
+            "term": 6,
+            "total": 540.000,
+            "amount": 500.000,
+            "monthly": 90.000,
+            "currency": "OMR",
+            "interest": 30.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 10.000,
+            "last": 77.858,
+            "term": 7,
+            "total": 545.000,
+            "amount": 500.000,
+            "monthly": 77.857,
+            "currency": "OMR",
+            "interest": 35.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 10.000,
+            "last": 68.750,
+            "term": 8,
+            "total": 550.000,
+            "amount": 500.000,
+            "monthly": 68.750,
+            "currency": "OMR",
+            "interest": 40.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 10.000,
+            "last": 61.664,
+            "term": 9,
+            "total": 555.000,
+            "amount": 500.000,
+            "monthly": 61.667,
+            "currency": "OMR",
+            "interest": 45.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 15.556,
+            "last": 272.222,
+            "term": 3,
+            "total": 816.666,
+            "amount": 777.777,
+            "monthly": 272.222,
+            "currency": "OMR",
+            "interest": 23.333,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 15.556,
+            "last": 206.111,
+            "term": 4,
+            "total": 824.444,
+            "amount": 777.777,
+            "monthly": 206.111,
+            "currency": "OMR",
+            "interest": 31.111,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 15.556,
+            "last": 166.446,
+            "term": 5,
+            "total": 832.222,
+            "amount": 777.777,
+            "monthly": 166.444,
+            "currency": "OMR",
+            "interest": 38.889,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 15.556,
+            "last": 140.000,
+            "term": 6,
+            "total": 840.000,
+            "amount": 777.777,
+            "monthly": 140.000,
+            "currency": "OMR",
+            "interest": 46.667,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 15.556,
+            "last": 121.111,
+            "term": 7,
+            "total": 847.777,
+            "amount": 777.777,
+            "monthly": 121.111,
+            "currency": "OMR",
+            "interest": 54.444,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 15.556,
+            "last": 106.947,
+            "term": 8,
+            "total": 855.555,
+            "amount": 777.777,
+            "monthly": 106.944,
+            "currency": "OMR",
+            "interest": 62.222,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 15.556,
+            "last": 95.925,
+            "term": 9,
+            "total": 863.333,
+            "amount": 777.777,
+            "monthly": 95.926,
+            "currency": "OMR",
+            "interest": 70.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 20.000,
+            "last": 350.000,
+            "term": 3,
+            "total": 1050.000,
+            "amount": 1000.000,
+            "monthly": 350.000,
+            "currency": "OMR",
+            "interest": 30.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 20.000,
+            "last": 265.000,
+            "term": 4,
+            "total": 1060.000,
+            "amount": 1000.000,
+            "monthly": 265.000,
+            "currency": "OMR",
+            "interest": 40.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 20.000,
+            "last": 214.000,
+            "term": 5,
+            "total": 1070.000,
+            "amount": 1000.000,
+            "monthly": 214.000,
+            "currency": "OMR",
+            "interest": 50.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 20.000,
+            "last": 180.000,
+            "term": 6,
+            "total": 1080.000,
+            "amount": 1000.000,
+            "monthly": 180.000,
+            "currency": "OMR",
+            "interest": 60.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 20.000,
+            "last": 155.716,
+            "term": 7,
+            "total": 1090.000,
+            "amount": 1000.000,
+            "monthly": 155.714,
+            "currency": "OMR",
+            "interest": 70.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 20.000,
+            "last": 137.500,
+            "term": 8,
+            "total": 1100.000,
+            "amount": 1000.000,
+            "monthly": 137.500,
+            "currency": "OMR",
+            "interest": 80.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 20.000,
+            "last": 123.336,
+            "term": 9,
+            "total": 1110.000,
+            "amount": 1000.000,
+            "monthly": 123.333,
+            "currency": "OMR",
+            "interest": 90.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 24.690,
+            "last": 432.075,
+            "term": 3,
+            "total": 1296.225,
+            "amount": 1234.500,
+            "monthly": 432.075,
+            "currency": "OMR",
+            "interest": 37.035,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 24.690,
+            "last": 327.141,
+            "term": 4,
+            "total": 1308.570,
+            "amount": 1234.500,
+            "monthly": 327.143,
+            "currency": "OMR",
+            "interest": 49.380,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 24.690,
+            "last": 264.183,
+            "term": 5,
+            "total": 1320.915,
+            "amount": 1234.500,
+            "monthly": 264.183,
+            "currency": "OMR",
+            "interest": 61.725,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 24.690,
+            "last": 222.210,
+            "term": 6,
+            "total": 1333.260,
+            "amount": 1234.500,
+            "monthly": 222.210,
+            "currency": "OMR",
+            "interest": 74.070,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 24.690,
+            "last": 192.231,
+            "term": 7,
+            "total": 1345.605,
+            "amount": 1234.500,
+            "monthly": 192.229,
+            "currency": "OMR",
+            "interest": 86.415,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 24.690,
+            "last": 169.742,
+            "term": 8,
+            "total": 1357.950,
+            "amount": 1234.500,
+            "monthly": 169.744,
+            "currency": "OMR",
+            "interest": 98.760,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 24.690,
+            "last": 152.255,
+            "term": 9,
+            "total": 1370.295,
+            "amount": 1234.500,
+            "monthly": 152.255,
+            "currency": "OMR",
+            "interest": 111.105,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 40.000,
+            "last": 700.000,
+            "term": 3,
+            "total": 2100.000,
+            "amount": 2000.000,
+            "monthly": 700.000,
+            "currency": "OMR",
+            "interest": 60.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 40.000,
+            "last": 530.000,
+            "term": 4,
+            "total": 2120.000,
+            "amount": 2000.000,
+            "monthly": 530.000,
+            "currency": "OMR",
+            "interest": 80.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 40.000,
+            "last": 428.000,
+            "term": 5,
+            "total": 2140.000,
+            "amount": 2000.000,
+            "monthly": 428.000,
+            "currency": "OMR",
+            "interest": 100.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 40.000,
+            "last": 360.000,
+            "term": 6,
+            "total": 2160.000,
+            "amount": 2000.000,
+            "monthly": 360.000,
+            "currency": "OMR",
+            "interest": 120.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 40.000,
+            "last": 311.426,
+            "term": 7,
+            "total": 2180.000,
+            "amount": 2000.000,
+            "monthly": 311.429,
+            "currency": "OMR",
+            "interest": 140.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 40.000,
+            "last": 275.000,
+            "term": 8,
+            "total": 2200.000,
+            "amount": 2000.000,
+            "monthly": 275.000,
+            "currency": "OMR",
+            "interest": 160.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 40.000,
+            "last": 246.664,
+            "term": 9,
+            "total": 2220.000,
+            "amount": 2000.000,
+            "monthly": 246.667,
+            "currency": "OMR",
+            "interest": 180.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 66.667,
+            "last": 1166.666,
+            "term": 3,
+            "total": 3500.000,
+            "amount": 3333.333,
+            "monthly": 1166.667,
+            "currency": "OMR",
+            "interest": 100.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 66.667,
+            "last": 883.334,
+            "term": 4,
+            "total": 3533.333,
+            "amount": 3333.333,
+            "monthly": 883.333,
+            "currency": "OMR",
+            "interest": 133.333,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 66.667,
+            "last": 713.335,
+            "term": 5,
+            "total": 3566.667,
+            "amount": 3333.333,
+            "monthly": 713.333,
+            "currency": "OMR",
+            "interest": 166.667,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 66.667,
+            "last": 600.000,
+            "term": 6,
+            "total": 3600.000,
+            "amount": 3333.333,
+            "monthly": 600.000,
+            "currency": "OMR",
+            "interest": 200.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 66.667,
+            "last": 519.045,
+            "term": 7,
+            "total": 3633.333,
+            "amount": 3333.333,
+            "monthly": 519.048,
+            "currency": "OMR",
+            "interest": 233.333,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 66.667,
+            "last": 458.336,
+            "term": 8,
+            "total": 3666.667,
+            "amount": 3333.333,
+            "monthly": 458.333,
+            "currency": "OMR",
+            "interest": 266.667,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 66.667,
+            "last": 411.112,
+            "term": 9,
+            "total": 3700.000,
+            "amount": 3333.333,
+            "monthly": 411.111,
+            "currency": "OMR",
+            "interest": 300.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 100.000,
+            "last": 1750.001,
+            "term": 3,
+            "total": 5250.005,
+            "amount": 5000.005,
+            "monthly": 1750.002,
+            "currency": "OMR",
+            "interest": 150.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 100.000,
+            "last": 1325.002,
+            "term": 4,
+            "total": 5300.005,
+            "amount": 5000.005,
+            "monthly": 1325.001,
+            "currency": "OMR",
+            "interest": 200.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 100.000,
+            "last": 1070.001,
+            "term": 5,
+            "total": 5350.005,
+            "amount": 5000.005,
+            "monthly": 1070.001,
+            "currency": "OMR",
+            "interest": 250.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 100.000,
+            "last": 900.000,
+            "term": 6,
+            "total": 5400.005,
+            "amount": 5000.005,
+            "monthly": 900.001,
+            "currency": "OMR",
+            "interest": 300.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 100.000,
+            "last": 778.573,
+            "term": 7,
+            "total": 5450.005,
+            "amount": 5000.005,
+            "monthly": 778.572,
+            "currency": "OMR",
+            "interest": 350.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 100.000,
+            "last": 687.498,
+            "term": 8,
+            "total": 5500.005,
+            "amount": 5000.005,
+            "monthly": 687.501,
+            "currency": "OMR",
+            "interest": 400.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 100.000,
+            "last": 616.669,
+            "term": 9,
+            "total": 5550.005,
+            "amount": 5000.005,
+            "monthly": 616.667,
+            "currency": "OMR",
+            "interest": 450.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 200.000,
+            "last": 3499.999,
+            "term": 3,
+            "total": 10499.999,
+            "amount": 9999.999,
+            "monthly": 3500.000,
+            "currency": "OMR",
+            "interest": 300.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 200.000,
+            "last": 2649.999,
+            "term": 4,
+            "total": 10599.999,
+            "amount": 9999.999,
+            "monthly": 2650.000,
+            "currency": "OMR",
+            "interest": 400.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 200.000,
+            "last": 2139.999,
+            "term": 5,
+            "total": 10699.999,
+            "amount": 9999.999,
+            "monthly": 2140.000,
+            "currency": "OMR",
+            "interest": 500.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 200.000,
+            "last": 1799.999,
+            "term": 6,
+            "total": 10799.999,
+            "amount": 9999.999,
+            "monthly": 1800.000,
+            "currency": "OMR",
+            "interest": 600.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 200.000,
+            "last": 1557.141,
+            "term": 7,
+            "total": 10899.999,
+            "amount": 9999.999,
+            "monthly": 1557.143,
+            "currency": "OMR",
+            "interest": 700.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 200.000,
+            "last": 1374.999,
+            "term": 8,
+            "total": 10999.999,
+            "amount": 9999.999,
+            "monthly": 1375.000,
+            "currency": "OMR",
+            "interest": 800.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 200.000,
+            "last": 1233.335,
+            "term": 9,
+            "total": 11099.999,
+            "amount": 9999.999,
+            "monthly": 1233.333,
+            "currency": "OMR",
+            "interest": 900.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 200.000,
+            "last": 3500.000,
+            "term": 3,
+            "total": 10500.000,
+            "amount": 10000.000,
+            "monthly": 3500.000,
+            "currency": "OMR",
+            "interest": 300.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 200.000,
+            "last": 2650.000,
+            "term": 4,
+            "total": 10600.000,
+            "amount": 10000.000,
+            "monthly": 2650.000,
+            "currency": "OMR",
+            "interest": 400.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 200.000,
+            "last": 2140.000,
+            "term": 5,
+            "total": 10700.000,
+            "amount": 10000.000,
+            "monthly": 2140.000,
+            "currency": "OMR",
+            "interest": 500.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 200.000,
+            "last": 1800.000,
+            "term": 6,
+            "total": 10800.000,
+            "amount": 10000.000,
+            "monthly": 1800.000,
+            "currency": "OMR",
+            "interest": 600.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 200.000,
+            "last": 1557.142,
+            "term": 7,
+            "total": 10900.000,
+            "amount": 10000.000,
+            "monthly": 1557.143,
+            "currency": "OMR",
+            "interest": 700.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 200.000,
+            "last": 1375.000,
+            "term": 8,
+            "total": 11000.000,
+            "amount": 10000.000,
+            "monthly": 1375.000,
+            "currency": "OMR",
+            "interest": 800.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 200.000,
+            "last": 1233.336,
+            "term": 9,
+            "total": 11100.000,
+            "amount": 10000.000,
+            "monthly": 1233.333,
+            "currency": "OMR",
+            "interest": 900.000,
+            "fee_fixed": 0.000,
+            "fee_percent": 2.0000,
+            "monthly_rate_percent": 1.0000
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0,
+            "fee_percent": 2,
+            "monthly_rate_percent": 1
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 12.500,
+            "last": 174.584,
+            "term": 3,
+            "total": 523.750,
+            "amount": 500.000,
+            "monthly": 174.583,
+            "currency": "OMR",
+            "interest": 11.250,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 12.500,
+            "last": 131.875,
+            "term": 4,
+            "total": 527.500,
+            "amount": 500.000,
+            "monthly": 131.875,
+            "currency": "OMR",
+            "interest": 15.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 12.500,
+            "last": 106.250,
+            "term": 5,
+            "total": 531.250,
+            "amount": 500.000,
+            "monthly": 106.250,
+            "currency": "OMR",
+            "interest": 18.750,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 12.500,
+            "last": 89.165,
+            "term": 6,
+            "total": 535.000,
+            "amount": 500.000,
+            "monthly": 89.167,
+            "currency": "OMR",
+            "interest": 22.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 12.500,
+            "last": 76.966,
+            "term": 7,
+            "total": 538.750,
+            "amount": 500.000,
+            "monthly": 76.964,
+            "currency": "OMR",
+            "interest": 26.250,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 12.500,
+            "last": 67.809,
+            "term": 8,
+            "total": 542.500,
+            "amount": 500.000,
+            "monthly": 67.813,
+            "currency": "OMR",
+            "interest": 30.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 12.500,
+            "last": 60.698,
+            "term": 9,
+            "total": 546.250,
+            "amount": 500.000,
+            "monthly": 60.694,
+            "currency": "OMR",
+            "interest": 33.750,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 16.667,
+            "last": 270.648,
+            "term": 3,
+            "total": 811.944,
+            "amount": 777.777,
+            "monthly": 270.648,
+            "currency": "OMR",
+            "interest": 17.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 16.667,
+            "last": 204.445,
+            "term": 4,
+            "total": 817.777,
+            "amount": 777.777,
+            "monthly": 204.444,
+            "currency": "OMR",
+            "interest": 23.333,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 16.667,
+            "last": 164.723,
+            "term": 5,
+            "total": 823.611,
+            "amount": 777.777,
+            "monthly": 164.722,
+            "currency": "OMR",
+            "interest": 29.167,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 16.667,
+            "last": 138.239,
+            "term": 6,
+            "total": 829.444,
+            "amount": 777.777,
+            "monthly": 138.241,
+            "currency": "OMR",
+            "interest": 35.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 16.667,
+            "last": 119.327,
+            "term": 7,
+            "total": 835.277,
+            "amount": 777.777,
+            "monthly": 119.325,
+            "currency": "OMR",
+            "interest": 40.833,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 16.667,
+            "last": 105.138,
+            "term": 8,
+            "total": 841.111,
+            "amount": 777.777,
+            "monthly": 105.139,
+            "currency": "OMR",
+            "interest": 46.667,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 16.667,
+            "last": 94.104,
+            "term": 9,
+            "total": 846.944,
+            "amount": 777.777,
+            "monthly": 94.105,
+            "currency": "OMR",
+            "interest": 52.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 20.000,
+            "last": 347.500,
+            "term": 3,
+            "total": 1042.500,
+            "amount": 1000.000,
+            "monthly": 347.500,
+            "currency": "OMR",
+            "interest": 22.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 20.000,
+            "last": 262.500,
+            "term": 4,
+            "total": 1050.000,
+            "amount": 1000.000,
+            "monthly": 262.500,
+            "currency": "OMR",
+            "interest": 30.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 20.000,
+            "last": 211.500,
+            "term": 5,
+            "total": 1057.500,
+            "amount": 1000.000,
+            "monthly": 211.500,
+            "currency": "OMR",
+            "interest": 37.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 20.000,
+            "last": 177.500,
+            "term": 6,
+            "total": 1065.000,
+            "amount": 1000.000,
+            "monthly": 177.500,
+            "currency": "OMR",
+            "interest": 45.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 20.000,
+            "last": 153.216,
+            "term": 7,
+            "total": 1072.500,
+            "amount": 1000.000,
+            "monthly": 153.214,
+            "currency": "OMR",
+            "interest": 52.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 20.000,
+            "last": 135.000,
+            "term": 8,
+            "total": 1080.000,
+            "amount": 1000.000,
+            "monthly": 135.000,
+            "currency": "OMR",
+            "interest": 60.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 20.000,
+            "last": 120.836,
+            "term": 9,
+            "total": 1087.500,
+            "amount": 1000.000,
+            "monthly": 120.833,
+            "currency": "OMR",
+            "interest": 67.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 23.518,
+            "last": 428.598,
+            "term": 3,
+            "total": 1285.794,
+            "amount": 1234.500,
+            "monthly": 428.598,
+            "currency": "OMR",
+            "interest": 27.776,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 23.518,
+            "last": 323.764,
+            "term": 4,
+            "total": 1295.053,
+            "amount": 1234.500,
+            "monthly": 323.763,
+            "currency": "OMR",
+            "interest": 37.035,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 23.518,
+            "last": 260.864,
+            "term": 5,
+            "total": 1304.312,
+            "amount": 1234.500,
+            "monthly": 260.862,
+            "currency": "OMR",
+            "interest": 46.294,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 23.518,
+            "last": 218.926,
+            "term": 6,
+            "total": 1313.571,
+            "amount": 1234.500,
+            "monthly": 218.929,
+            "currency": "OMR",
+            "interest": 55.553,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 23.518,
+            "last": 188.973,
+            "term": 7,
+            "total": 1322.829,
+            "amount": 1234.500,
+            "monthly": 188.976,
+            "currency": "OMR",
+            "interest": 64.811,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 23.518,
+            "last": 166.511,
+            "term": 8,
+            "total": 1332.088,
+            "amount": 1234.500,
+            "monthly": 166.511,
+            "currency": "OMR",
+            "interest": 74.070,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 23.518,
+            "last": 149.035,
+            "term": 9,
+            "total": 1341.347,
+            "amount": 1234.500,
+            "monthly": 149.039,
+            "currency": "OMR",
+            "interest": 83.329,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 35.000,
+            "last": 693.334,
+            "term": 3,
+            "total": 2080.000,
+            "amount": 2000.000,
+            "monthly": 693.333,
+            "currency": "OMR",
+            "interest": 45.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 35.000,
+            "last": 523.750,
+            "term": 4,
+            "total": 2095.000,
+            "amount": 2000.000,
+            "monthly": 523.750,
+            "currency": "OMR",
+            "interest": 60.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 35.000,
+            "last": 422.000,
+            "term": 5,
+            "total": 2110.000,
+            "amount": 2000.000,
+            "monthly": 422.000,
+            "currency": "OMR",
+            "interest": 75.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 35.000,
+            "last": 354.165,
+            "term": 6,
+            "total": 2125.000,
+            "amount": 2000.000,
+            "monthly": 354.167,
+            "currency": "OMR",
+            "interest": 90.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 35.000,
+            "last": 305.716,
+            "term": 7,
+            "total": 2140.000,
+            "amount": 2000.000,
+            "monthly": 305.714,
+            "currency": "OMR",
+            "interest": 105.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 35.000,
+            "last": 269.375,
+            "term": 8,
+            "total": 2155.000,
+            "amount": 2000.000,
+            "monthly": 269.375,
+            "currency": "OMR",
+            "interest": 120.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 35.000,
+            "last": 241.112,
+            "term": 9,
+            "total": 2170.000,
+            "amount": 2000.000,
+            "monthly": 241.111,
+            "currency": "OMR",
+            "interest": 135.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 55.000,
+            "last": 1154.445,
+            "term": 3,
+            "total": 3463.333,
+            "amount": 3333.333,
+            "monthly": 1154.444,
+            "currency": "OMR",
+            "interest": 75.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 55.000,
+            "last": 872.084,
+            "term": 4,
+            "total": 3488.333,
+            "amount": 3333.333,
+            "monthly": 872.083,
+            "currency": "OMR",
+            "interest": 100.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 55.000,
+            "last": 702.665,
+            "term": 5,
+            "total": 3513.333,
+            "amount": 3333.333,
+            "monthly": 702.667,
+            "currency": "OMR",
+            "interest": 125.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 55.000,
+            "last": 589.723,
+            "term": 6,
+            "total": 3538.333,
+            "amount": 3333.333,
+            "monthly": 589.722,
+            "currency": "OMR",
+            "interest": 150.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 55.000,
+            "last": 509.045,
+            "term": 7,
+            "total": 3563.333,
+            "amount": 3333.333,
+            "monthly": 509.048,
+            "currency": "OMR",
+            "interest": 175.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 55.000,
+            "last": 448.539,
+            "term": 8,
+            "total": 3588.333,
+            "amount": 3333.333,
+            "monthly": 448.542,
+            "currency": "OMR",
+            "interest": 200.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 55.000,
+            "last": 401.485,
+            "term": 9,
+            "total": 3613.333,
+            "amount": 3333.333,
+            "monthly": 401.481,
+            "currency": "OMR",
+            "interest": 225.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 80.000,
+            "last": 1730.835,
+            "term": 3,
+            "total": 5192.505,
+            "amount": 5000.005,
+            "monthly": 1730.835,
+            "currency": "OMR",
+            "interest": 112.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 80.000,
+            "last": 1307.502,
+            "term": 4,
+            "total": 5230.005,
+            "amount": 5000.005,
+            "monthly": 1307.501,
+            "currency": "OMR",
+            "interest": 150.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 80.000,
+            "last": 1053.501,
+            "term": 5,
+            "total": 5267.505,
+            "amount": 5000.005,
+            "monthly": 1053.501,
+            "currency": "OMR",
+            "interest": 187.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 80.000,
+            "last": 884.165,
+            "term": 6,
+            "total": 5305.005,
+            "amount": 5000.005,
+            "monthly": 884.168,
+            "currency": "OMR",
+            "interest": 225.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 80.000,
+            "last": 763.215,
+            "term": 7,
+            "total": 5342.505,
+            "amount": 5000.005,
+            "monthly": 763.215,
+            "currency": "OMR",
+            "interest": 262.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 80.000,
+            "last": 672.498,
+            "term": 8,
+            "total": 5380.005,
+            "amount": 5000.005,
+            "monthly": 672.501,
+            "currency": "OMR",
+            "interest": 300.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 80.000,
+            "last": 601.945,
+            "term": 9,
+            "total": 5417.505,
+            "amount": 5000.005,
+            "monthly": 601.945,
+            "currency": "OMR",
+            "interest": 337.500,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 155.000,
+            "last": 3459.999,
+            "term": 3,
+            "total": 10379.999,
+            "amount": 9999.999,
+            "monthly": 3460.000,
+            "currency": "OMR",
+            "interest": 225.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 155.000,
+            "last": 2613.749,
+            "term": 4,
+            "total": 10454.999,
+            "amount": 9999.999,
+            "monthly": 2613.750,
+            "currency": "OMR",
+            "interest": 300.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 155.000,
+            "last": 2105.999,
+            "term": 5,
+            "total": 10529.999,
+            "amount": 9999.999,
+            "monthly": 2106.000,
+            "currency": "OMR",
+            "interest": 375.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 155.000,
+            "last": 1767.499,
+            "term": 6,
+            "total": 10604.999,
+            "amount": 9999.999,
+            "monthly": 1767.500,
+            "currency": "OMR",
+            "interest": 450.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 155.000,
+            "last": 1525.715,
+            "term": 7,
+            "total": 10679.999,
+            "amount": 9999.999,
+            "monthly": 1525.714,
+            "currency": "OMR",
+            "interest": 525.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 155.000,
+            "last": 1344.374,
+            "term": 8,
+            "total": 10754.999,
+            "amount": 9999.999,
+            "monthly": 1344.375,
+            "currency": "OMR",
+            "interest": 600.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 155.000,
+            "last": 1203.335,
+            "term": 9,
+            "total": 10829.999,
+            "amount": 9999.999,
+            "monthly": 1203.333,
+            "currency": "OMR",
+            "interest": 675.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 155.000,
+            "last": 3460.000,
+            "term": 3,
+            "total": 10380.000,
+            "amount": 10000.000,
+            "monthly": 3460.000,
+            "currency": "OMR",
+            "interest": 225.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 155.000,
+            "last": 2613.750,
+            "term": 4,
+            "total": 10455.000,
+            "amount": 10000.000,
+            "monthly": 2613.750,
+            "currency": "OMR",
+            "interest": 300.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 155.000,
+            "last": 2106.000,
+            "term": 5,
+            "total": 10530.000,
+            "amount": 10000.000,
+            "monthly": 2106.000,
+            "currency": "OMR",
+            "interest": 375.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 155.000,
+            "last": 1767.500,
+            "term": 6,
+            "total": 10605.000,
+            "amount": 10000.000,
+            "monthly": 1767.500,
+            "currency": "OMR",
+            "interest": 450.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 155.000,
+            "last": 1525.716,
+            "term": 7,
+            "total": 10680.000,
+            "amount": 10000.000,
+            "monthly": 1525.714,
+            "currency": "OMR",
+            "interest": 525.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 155.000,
+            "last": 1344.375,
+            "term": 8,
+            "total": 10755.000,
+            "amount": 10000.000,
+            "monthly": 1344.375,
+            "currency": "OMR",
+            "interest": 600.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 155.000,
+            "last": 1203.336,
+            "term": 9,
+            "total": 10830.000,
+            "amount": 10000.000,
+            "monthly": 1203.333,
+            "currency": "OMR",
+            "interest": 675.000,
+            "fee_fixed": 5.000,
+            "fee_percent": 1.5000,
+            "monthly_rate_percent": 0.7500
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 5,
+            "fee_percent": 1.5,
+            "monthly_rate_percent": 0.75
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 4.167,
+            "last": 174.229,
+            "term": 3,
+            "total": 522.685,
+            "amount": 500.000,
+            "monthly": 174.228,
+            "currency": "OMR",
+            "interest": 18.518,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 4.167,
+            "last": 132.215,
+            "term": 4,
+            "total": 528.857,
+            "amount": 500.000,
+            "monthly": 132.214,
+            "currency": "OMR",
+            "interest": 24.690,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 4.167,
+            "last": 107.006,
+            "term": 5,
+            "total": 535.030,
+            "amount": 500.000,
+            "monthly": 107.006,
+            "currency": "OMR",
+            "interest": 30.863,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 4.167,
+            "last": 90.202,
+            "term": 6,
+            "total": 541.202,
+            "amount": 500.000,
+            "monthly": 90.200,
+            "currency": "OMR",
+            "interest": 37.035,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 4.167,
+            "last": 78.199,
+            "term": 7,
+            "total": 547.375,
+            "amount": 500.000,
+            "monthly": 78.196,
+            "currency": "OMR",
+            "interest": 43.208,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 4.167,
+            "last": 69.196,
+            "term": 8,
+            "total": 553.547,
+            "amount": 500.000,
+            "monthly": 69.193,
+            "currency": "OMR",
+            "interest": 49.380,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 4.167,
+            "last": 62.192,
+            "term": 9,
+            "total": 559.720,
+            "amount": 500.000,
+            "monthly": 62.191,
+            "currency": "OMR",
+            "interest": 55.553,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 5.092,
+            "last": 270.558,
+            "term": 3,
+            "total": 811.674,
+            "amount": 777.777,
+            "monthly": 270.558,
+            "currency": "OMR",
+            "interest": 28.805,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 5.092,
+            "last": 205.319,
+            "term": 4,
+            "total": 821.276,
+            "amount": 777.777,
+            "monthly": 205.319,
+            "currency": "OMR",
+            "interest": 38.407,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 5.092,
+            "last": 166.177,
+            "term": 5,
+            "total": 830.877,
+            "amount": 777.777,
+            "monthly": 166.175,
+            "currency": "OMR",
+            "interest": 48.008,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 5.092,
+            "last": 140.079,
+            "term": 6,
+            "total": 840.479,
+            "amount": 777.777,
+            "monthly": 140.080,
+            "currency": "OMR",
+            "interest": 57.610,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 5.092,
+            "last": 121.441,
+            "term": 7,
+            "total": 850.081,
+            "amount": 777.777,
+            "monthly": 121.440,
+            "currency": "OMR",
+            "interest": 67.212,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 5.092,
+            "last": 107.462,
+            "term": 8,
+            "total": 859.682,
+            "amount": 777.777,
+            "monthly": 107.460,
+            "currency": "OMR",
+            "interest": 76.813,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 5.092,
+            "last": 96.588,
+            "term": 9,
+            "total": 869.284,
+            "amount": 777.777,
+            "monthly": 96.587,
+            "currency": "OMR",
+            "interest": 86.415,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 5.833,
+            "last": 347.622,
+            "term": 3,
+            "total": 1042.868,
+            "amount": 1000.000,
+            "monthly": 347.623,
+            "currency": "OMR",
+            "interest": 37.035,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 5.833,
+            "last": 263.804,
+            "term": 4,
+            "total": 1055.213,
+            "amount": 1000.000,
+            "monthly": 263.803,
+            "currency": "OMR",
+            "interest": 49.380,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 5.833,
+            "last": 213.510,
+            "term": 5,
+            "total": 1067.558,
+            "amount": 1000.000,
+            "monthly": 213.512,
+            "currency": "OMR",
+            "interest": 61.725,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 5.833,
+            "last": 179.983,
+            "term": 6,
+            "total": 1079.903,
+            "amount": 1000.000,
+            "monthly": 179.984,
+            "currency": "OMR",
+            "interest": 74.070,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 5.833,
+            "last": 156.038,
+            "term": 7,
+            "total": 1092.248,
+            "amount": 1000.000,
+            "monthly": 156.035,
+            "currency": "OMR",
+            "interest": 86.415,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 5.833,
+            "last": 138.075,
+            "term": 8,
+            "total": 1104.593,
+            "amount": 1000.000,
+            "monthly": 138.074,
+            "currency": "OMR",
+            "interest": 98.760,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 5.833,
+            "last": 124.106,
+            "term": 9,
+            "total": 1116.938,
+            "amount": 1000.000,
+            "monthly": 124.104,
+            "currency": "OMR",
+            "interest": 111.105,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 6.615,
+            "last": 428.945,
+            "term": 3,
+            "total": 1286.835,
+            "amount": 1234.500,
+            "monthly": 428.945,
+            "currency": "OMR",
+            "interest": 45.720,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 6.615,
+            "last": 325.518,
+            "term": 4,
+            "total": 1302.075,
+            "amount": 1234.500,
+            "monthly": 325.519,
+            "currency": "OMR",
+            "interest": 60.960,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 6.615,
+            "last": 263.463,
+            "term": 5,
+            "total": 1317.315,
+            "amount": 1234.500,
+            "monthly": 263.463,
+            "currency": "OMR",
+            "interest": 76.200,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 6.615,
+            "last": 222.094,
+            "term": 6,
+            "total": 1332.554,
+            "amount": 1234.500,
+            "monthly": 222.092,
+            "currency": "OMR",
+            "interest": 91.439,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 6.615,
+            "last": 192.542,
+            "term": 7,
+            "total": 1347.794,
+            "amount": 1234.500,
+            "monthly": 192.542,
+            "currency": "OMR",
+            "interest": 106.679,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 6.615,
+            "last": 170.381,
+            "term": 8,
+            "total": 1363.034,
+            "amount": 1234.500,
+            "monthly": 170.379,
+            "currency": "OMR",
+            "interest": 121.919,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 6.615,
+            "last": 153.138,
+            "term": 9,
+            "total": 1378.274,
+            "amount": 1234.500,
+            "monthly": 153.142,
+            "currency": "OMR",
+            "interest": 137.159,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 9.166,
+            "last": 694.412,
+            "term": 3,
+            "total": 2083.236,
+            "amount": 2000.000,
+            "monthly": 694.412,
+            "currency": "OMR",
+            "interest": 74.070,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 9.166,
+            "last": 526.980,
+            "term": 4,
+            "total": 2107.926,
+            "amount": 2000.000,
+            "monthly": 526.982,
+            "currency": "OMR",
+            "interest": 98.760,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 9.166,
+            "last": 426.524,
+            "term": 5,
+            "total": 2132.616,
+            "amount": 2000.000,
+            "monthly": 426.523,
+            "currency": "OMR",
+            "interest": 123.450,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 9.166,
+            "last": 359.551,
+            "term": 6,
+            "total": 2157.306,
+            "amount": 2000.000,
+            "monthly": 359.551,
+            "currency": "OMR",
+            "interest": 148.140,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 9.166,
+            "last": 311.712,
+            "term": 7,
+            "total": 2181.996,
+            "amount": 2000.000,
+            "monthly": 311.714,
+            "currency": "OMR",
+            "interest": 172.830,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 9.166,
+            "last": 275.834,
+            "term": 8,
+            "total": 2206.686,
+            "amount": 2000.000,
+            "monthly": 275.836,
+            "currency": "OMR",
+            "interest": 197.520,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 9.166,
+            "last": 247.928,
+            "term": 9,
+            "total": 2231.376,
+            "amount": 2000.000,
+            "monthly": 247.931,
+            "currency": "OMR",
+            "interest": 222.210,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 13.610,
+            "last": 1156.797,
+            "term": 3,
+            "total": 3470.393,
+            "amount": 3333.333,
+            "monthly": 1156.798,
+            "currency": "OMR",
+            "interest": 123.450,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 13.610,
+            "last": 877.885,
+            "term": 4,
+            "total": 3511.543,
+            "amount": 3333.333,
+            "monthly": 877.886,
+            "currency": "OMR",
+            "interest": 164.600,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 13.610,
+            "last": 710.537,
+            "term": 5,
+            "total": 3552.693,
+            "amount": 3333.333,
+            "monthly": 710.539,
+            "currency": "OMR",
+            "interest": 205.750,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 13.610,
+            "last": 598.973,
+            "term": 6,
+            "total": 3593.843,
+            "amount": 3333.333,
+            "monthly": 598.974,
+            "currency": "OMR",
+            "interest": 246.900,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 13.610,
+            "last": 519.283,
+            "term": 7,
+            "total": 3634.993,
+            "amount": 3333.333,
+            "monthly": 519.285,
+            "currency": "OMR",
+            "interest": 288.050,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 13.610,
+            "last": 459.517,
+            "term": 8,
+            "total": 3676.143,
+            "amount": 3333.333,
+            "monthly": 459.518,
+            "currency": "OMR",
+            "interest": 329.200,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 13.610,
+            "last": 413.029,
+            "term": 9,
+            "total": 3717.293,
+            "amount": 3333.333,
+            "monthly": 413.033,
+            "currency": "OMR",
+            "interest": 370.350,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 19.165,
+            "last": 1734.781,
+            "term": 3,
+            "total": 5204.345,
+            "amount": 5000.005,
+            "monthly": 1734.782,
+            "currency": "OMR",
+            "interest": 185.175,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 19.165,
+            "last": 1316.516,
+            "term": 4,
+            "total": 5266.070,
+            "amount": 5000.005,
+            "monthly": 1316.518,
+            "currency": "OMR",
+            "interest": 246.900,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 19.165,
+            "last": 1065.559,
+            "term": 5,
+            "total": 5327.795,
+            "amount": 5000.005,
+            "monthly": 1065.559,
+            "currency": "OMR",
+            "interest": 308.625,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 19.165,
+            "last": 898.255,
+            "term": 6,
+            "total": 5389.520,
+            "amount": 5000.005,
+            "monthly": 898.253,
+            "currency": "OMR",
+            "interest": 370.350,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 19.165,
+            "last": 778.751,
+            "term": 7,
+            "total": 5451.245,
+            "amount": 5000.005,
+            "monthly": 778.749,
+            "currency": "OMR",
+            "interest": 432.075,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 19.165,
+            "last": 689.123,
+            "term": 8,
+            "total": 5512.970,
+            "amount": 5000.005,
+            "monthly": 689.121,
+            "currency": "OMR",
+            "interest": 493.800,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 19.165,
+            "last": 619.408,
+            "term": 9,
+            "total": 5574.696,
+            "amount": 5000.005,
+            "monthly": 619.411,
+            "currency": "OMR",
+            "interest": 555.526,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 35.830,
+            "last": 3468.727,
+            "term": 3,
+            "total": 10406.179,
+            "amount": 9999.999,
+            "monthly": 3468.726,
+            "currency": "OMR",
+            "interest": 370.350,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 35.830,
+            "last": 2632.408,
+            "term": 4,
+            "total": 10529.629,
+            "amount": 9999.999,
+            "monthly": 2632.407,
+            "currency": "OMR",
+            "interest": 493.800,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 35.830,
+            "last": 2130.615,
+            "term": 5,
+            "total": 10653.079,
+            "amount": 9999.999,
+            "monthly": 2130.616,
+            "currency": "OMR",
+            "interest": 617.250,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 35.830,
+            "last": 1796.089,
+            "term": 6,
+            "total": 10776.529,
+            "amount": 9999.999,
+            "monthly": 1796.088,
+            "currency": "OMR",
+            "interest": 740.700,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 35.830,
+            "last": 1557.139,
+            "term": 7,
+            "total": 10899.979,
+            "amount": 9999.999,
+            "monthly": 1557.140,
+            "currency": "OMR",
+            "interest": 864.150,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 35.830,
+            "last": 1377.926,
+            "term": 8,
+            "total": 11023.429,
+            "amount": 9999.999,
+            "monthly": 1377.929,
+            "currency": "OMR",
+            "interest": 987.600,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 35.830,
+            "last": 1238.543,
+            "term": 9,
+            "total": 11146.879,
+            "amount": 9999.999,
+            "monthly": 1238.542,
+            "currency": "OMR",
+            "interest": 1111.050,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 35.830,
+            "last": 3468.726,
+            "term": 3,
+            "total": 10406.180,
+            "amount": 10000.000,
+            "monthly": 3468.727,
+            "currency": "OMR",
+            "interest": 370.350,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 35.830,
+            "last": 2632.406,
+            "term": 4,
+            "total": 10529.630,
+            "amount": 10000.000,
+            "monthly": 2632.408,
+            "currency": "OMR",
+            "interest": 493.800,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 35.830,
+            "last": 2130.616,
+            "term": 5,
+            "total": 10653.080,
+            "amount": 10000.000,
+            "monthly": 2130.616,
+            "currency": "OMR",
+            "interest": 617.250,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 35.830,
+            "last": 1796.090,
+            "term": 6,
+            "total": 10776.530,
+            "amount": 10000.000,
+            "monthly": 1796.088,
+            "currency": "OMR",
+            "interest": 740.700,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 35.830,
+            "last": 1557.140,
+            "term": 7,
+            "total": 10899.980,
+            "amount": 10000.000,
+            "monthly": 1557.140,
+            "currency": "OMR",
+            "interest": 864.150,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 35.830,
+            "last": 1377.927,
+            "term": 8,
+            "total": 11023.430,
+            "amount": 10000.000,
+            "monthly": 1377.929,
+            "currency": "OMR",
+            "interest": 987.600,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 35.830,
+            "last": 1238.544,
+            "term": 9,
+            "total": 11146.880,
+            "amount": 10000.000,
+            "monthly": 1238.542,
+            "currency": "OMR",
+            "interest": 1111.050,
+            "fee_fixed": 2.500,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 2.5,
+            "fee_percent": 0.3333,
+            "monthly_rate_percent": 1.2345
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 15.004,
+            "last": 186.667,
+            "term": 3,
+            "total": 560.003,
+            "amount": 500.000,
+            "monthly": 186.668,
+            "currency": "OMR",
+            "interest": 44.999,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 15.004,
+            "last": 143.749,
+            "term": 4,
+            "total": 575.002,
+            "amount": 500.000,
+            "monthly": 143.751,
+            "currency": "OMR",
+            "interest": 59.998,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 15.004,
+            "last": 118.002,
+            "term": 5,
+            "total": 590.002,
+            "amount": 500.000,
+            "monthly": 118.000,
+            "currency": "OMR",
+            "interest": 74.998,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 15.004,
+            "last": 100.831,
+            "term": 6,
+            "total": 605.001,
+            "amount": 500.000,
+            "monthly": 100.834,
+            "currency": "OMR",
+            "interest": 89.997,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 15.004,
+            "last": 88.569,
+            "term": 7,
+            "total": 620.001,
+            "amount": 500.000,
+            "monthly": 88.572,
+            "currency": "OMR",
+            "interest": 104.997,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 15.004,
+            "last": 79.375,
+            "term": 8,
+            "total": 635.000,
+            "amount": 500.000,
+            "monthly": 79.375,
+            "currency": "OMR",
+            "interest": 119.996,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 15.004,
+            "last": 72.224,
+            "term": 9,
+            "total": 650.000,
+            "amount": 500.000,
+            "monthly": 72.222,
+            "currency": "OMR",
+            "interest": 134.996,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 500,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 23.338,
+            "last": 290.371,
+            "term": 3,
+            "total": 871.113,
+            "amount": 777.777,
+            "monthly": 290.371,
+            "currency": "OMR",
+            "interest": 69.998,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 23.338,
+            "last": 223.612,
+            "term": 4,
+            "total": 894.445,
+            "amount": 777.777,
+            "monthly": 223.611,
+            "currency": "OMR",
+            "interest": 93.330,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 23.338,
+            "last": 183.554,
+            "term": 5,
+            "total": 917.778,
+            "amount": 777.777,
+            "monthly": 183.556,
+            "currency": "OMR",
+            "interest": 116.663,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 23.338,
+            "last": 156.850,
+            "term": 6,
+            "total": 941.110,
+            "amount": 777.777,
+            "monthly": 156.852,
+            "currency": "OMR",
+            "interest": 139.995,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 23.338,
+            "last": 137.775,
+            "term": 7,
+            "total": 964.443,
+            "amount": 777.777,
+            "monthly": 137.778,
+            "currency": "OMR",
+            "interest": 163.328,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 23.338,
+            "last": 123.471,
+            "term": 8,
+            "total": 987.775,
+            "amount": 777.777,
+            "monthly": 123.472,
+            "currency": "OMR",
+            "interest": 186.660,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 23.338,
+            "last": 112.348,
+            "term": 9,
+            "total": 1011.108,
+            "amount": 777.777,
+            "monthly": 112.345,
+            "currency": "OMR",
+            "interest": 209.993,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 777.777,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 30.006,
+            "last": 373.335,
+            "term": 3,
+            "total": 1120.003,
+            "amount": 1000.000,
+            "monthly": 373.334,
+            "currency": "OMR",
+            "interest": 89.997,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 30.006,
+            "last": 287.499,
+            "term": 4,
+            "total": 1150.002,
+            "amount": 1000.000,
+            "monthly": 287.501,
+            "currency": "OMR",
+            "interest": 119.996,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 30.006,
+            "last": 236.001,
+            "term": 5,
+            "total": 1180.001,
+            "amount": 1000.000,
+            "monthly": 236.000,
+            "currency": "OMR",
+            "interest": 149.995,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 30.006,
+            "last": 201.665,
+            "term": 6,
+            "total": 1210.000,
+            "amount": 1000.000,
+            "monthly": 201.667,
+            "currency": "OMR",
+            "interest": 179.994,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 30.006,
+            "last": 177.141,
+            "term": 7,
+            "total": 1239.999,
+            "amount": 1000.000,
+            "monthly": 177.143,
+            "currency": "OMR",
+            "interest": 209.993,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 30.006,
+            "last": 158.748,
+            "term": 8,
+            "total": 1269.998,
+            "amount": 1000.000,
+            "monthly": 158.750,
+            "currency": "OMR",
+            "interest": 239.992,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 30.006,
+            "last": 144.445,
+            "term": 9,
+            "total": 1299.997,
+            "amount": 1000.000,
+            "monthly": 144.444,
+            "currency": "OMR",
+            "interest": 269.991,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 37.042,
+            "last": 460.881,
+            "term": 3,
+            "total": 1382.643,
+            "amount": 1234.500,
+            "monthly": 460.881,
+            "currency": "OMR",
+            "interest": 111.101,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 37.042,
+            "last": 354.920,
+            "term": 4,
+            "total": 1419.677,
+            "amount": 1234.500,
+            "monthly": 354.919,
+            "currency": "OMR",
+            "interest": 148.135,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 37.042,
+            "last": 291.343,
+            "term": 5,
+            "total": 1456.711,
+            "amount": 1234.500,
+            "monthly": 291.342,
+            "currency": "OMR",
+            "interest": 185.169,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 37.042,
+            "last": 248.955,
+            "term": 6,
+            "total": 1493.745,
+            "amount": 1234.500,
+            "monthly": 248.958,
+            "currency": "OMR",
+            "interest": 222.203,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 37.042,
+            "last": 218.680,
+            "term": 7,
+            "total": 1530.778,
+            "amount": 1234.500,
+            "monthly": 218.683,
+            "currency": "OMR",
+            "interest": 259.236,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 37.042,
+            "last": 195.973,
+            "term": 8,
+            "total": 1567.812,
+            "amount": 1234.500,
+            "monthly": 195.977,
+            "currency": "OMR",
+            "interest": 296.270,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 37.042,
+            "last": 178.318,
+            "term": 9,
+            "total": 1604.846,
+            "amount": 1234.500,
+            "monthly": 178.316,
+            "currency": "OMR",
+            "interest": 333.304,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 1234.5,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 60.011,
+            "last": 746.669,
+            "term": 3,
+            "total": 2240.005,
+            "amount": 2000.000,
+            "monthly": 746.668,
+            "currency": "OMR",
+            "interest": 179.994,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 60.011,
+            "last": 575.000,
+            "term": 4,
+            "total": 2300.003,
+            "amount": 2000.000,
+            "monthly": 575.001,
+            "currency": "OMR",
+            "interest": 239.992,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 60.011,
+            "last": 472.001,
+            "term": 5,
+            "total": 2360.001,
+            "amount": 2000.000,
+            "monthly": 472.000,
+            "currency": "OMR",
+            "interest": 299.990,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 60.011,
+            "last": 403.334,
+            "term": 6,
+            "total": 2419.999,
+            "amount": 2000.000,
+            "monthly": 403.333,
+            "currency": "OMR",
+            "interest": 359.988,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 60.011,
+            "last": 354.287,
+            "term": 7,
+            "total": 2479.997,
+            "amount": 2000.000,
+            "monthly": 354.285,
+            "currency": "OMR",
+            "interest": 419.986,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 60.011,
+            "last": 317.502,
+            "term": 8,
+            "total": 2539.995,
+            "amount": 2000.000,
+            "monthly": 317.499,
+            "currency": "OMR",
+            "interest": 479.984,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 60.011,
+            "last": 288.889,
+            "term": 9,
+            "total": 2599.993,
+            "amount": 2000.000,
+            "monthly": 288.888,
+            "currency": "OMR",
+            "interest": 539.982,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 2000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 100.018,
+            "last": 1244.447,
+            "term": 3,
+            "total": 3733.341,
+            "amount": 3333.333,
+            "monthly": 1244.447,
+            "currency": "OMR",
+            "interest": 299.990,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 100.018,
+            "last": 958.333,
+            "term": 4,
+            "total": 3833.338,
+            "amount": 3333.333,
+            "monthly": 958.335,
+            "currency": "OMR",
+            "interest": 399.987,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 100.018,
+            "last": 786.666,
+            "term": 5,
+            "total": 3933.334,
+            "amount": 3333.333,
+            "monthly": 786.667,
+            "currency": "OMR",
+            "interest": 499.983,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 100.018,
+            "last": 672.221,
+            "term": 6,
+            "total": 4033.331,
+            "amount": 3333.333,
+            "monthly": 672.222,
+            "currency": "OMR",
+            "interest": 599.980,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 100.018,
+            "last": 590.478,
+            "term": 7,
+            "total": 4133.328,
+            "amount": 3333.333,
+            "monthly": 590.475,
+            "currency": "OMR",
+            "interest": 699.977,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 100.018,
+            "last": 529.162,
+            "term": 8,
+            "total": 4233.324,
+            "amount": 3333.333,
+            "monthly": 529.166,
+            "currency": "OMR",
+            "interest": 799.973,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 100.018,
+            "last": 481.481,
+            "term": 9,
+            "total": 4333.321,
+            "amount": 3333.333,
+            "monthly": 481.480,
+            "currency": "OMR",
+            "interest": 899.970,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 3333.333,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 150.026,
+            "last": 1866.672,
+            "term": 3,
+            "total": 5600.016,
+            "amount": 5000.005,
+            "monthly": 1866.672,
+            "currency": "OMR",
+            "interest": 449.985,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 150.026,
+            "last": 1437.503,
+            "term": 4,
+            "total": 5750.012,
+            "amount": 5000.005,
+            "monthly": 1437.503,
+            "currency": "OMR",
+            "interest": 599.981,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 150.026,
+            "last": 1180.003,
+            "term": 5,
+            "total": 5900.007,
+            "amount": 5000.005,
+            "monthly": 1180.001,
+            "currency": "OMR",
+            "interest": 749.976,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 150.026,
+            "last": 1008.332,
+            "term": 6,
+            "total": 6050.002,
+            "amount": 5000.005,
+            "monthly": 1008.334,
+            "currency": "OMR",
+            "interest": 899.971,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 150.026,
+            "last": 885.713,
+            "term": 7,
+            "total": 6199.997,
+            "amount": 5000.005,
+            "monthly": 885.714,
+            "currency": "OMR",
+            "interest": 1049.966,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 150.026,
+            "last": 793.749,
+            "term": 8,
+            "total": 6349.992,
+            "amount": 5000.005,
+            "monthly": 793.749,
+            "currency": "OMR",
+            "interest": 1199.961,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 150.026,
+            "last": 722.219,
+            "term": 9,
+            "total": 6499.987,
+            "amount": 5000.005,
+            "monthly": 722.221,
+            "currency": "OMR",
+            "interest": 1349.956,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 5000.005,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 300.051,
+            "last": 3733.340,
+            "term": 3,
+            "total": 11200.020,
+            "amount": 9999.999,
+            "monthly": 3733.340,
+            "currency": "OMR",
+            "interest": 899.970,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 300.051,
+            "last": 2875.001,
+            "term": 4,
+            "total": 11500.010,
+            "amount": 9999.999,
+            "monthly": 2875.003,
+            "currency": "OMR",
+            "interest": 1199.960,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 300.051,
+            "last": 2360.000,
+            "term": 5,
+            "total": 11800.000,
+            "amount": 9999.999,
+            "monthly": 2360.000,
+            "currency": "OMR",
+            "interest": 1499.950,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 300.051,
+            "last": 2016.665,
+            "term": 6,
+            "total": 12099.990,
+            "amount": 9999.999,
+            "monthly": 2016.665,
+            "currency": "OMR",
+            "interest": 1799.940,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 300.051,
+            "last": 1771.424,
+            "term": 7,
+            "total": 12399.980,
+            "amount": 9999.999,
+            "monthly": 1771.426,
+            "currency": "OMR",
+            "interest": 2099.930,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 300.051,
+            "last": 1587.498,
+            "term": 8,
+            "total": 12699.970,
+            "amount": 9999.999,
+            "monthly": 1587.496,
+            "currency": "OMR",
+            "interest": 2399.920,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 300.051,
+            "last": 1444.440,
+            "term": 9,
+            "total": 12999.960,
+            "amount": 9999.999,
+            "monthly": 1444.440,
+            "currency": "OMR",
+            "interest": 2699.910,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 9999.999,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 3,
+        "quote": {
+            "fee": 300.051,
+            "last": 3733.341,
+            "term": 3,
+            "total": 11200.021,
+            "amount": 10000.000,
+            "monthly": 3733.340,
+            "currency": "OMR",
+            "interest": 899.970,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 4,
+        "quote": {
+            "fee": 300.051,
+            "last": 2875.002,
+            "term": 4,
+            "total": 11500.011,
+            "amount": 10000.000,
+            "monthly": 2875.003,
+            "currency": "OMR",
+            "interest": 1199.960,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 5,
+        "quote": {
+            "fee": 300.051,
+            "last": 2360.001,
+            "term": 5,
+            "total": 11800.001,
+            "amount": 10000.000,
+            "monthly": 2360.000,
+            "currency": "OMR",
+            "interest": 1499.950,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 6,
+        "quote": {
+            "fee": 300.051,
+            "last": 2016.666,
+            "term": 6,
+            "total": 12099.991,
+            "amount": 10000.000,
+            "monthly": 2016.665,
+            "currency": "OMR",
+            "interest": 1799.940,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 7,
+        "quote": {
+            "fee": 300.051,
+            "last": 1771.425,
+            "term": 7,
+            "total": 12399.981,
+            "amount": 10000.000,
+            "monthly": 1771.426,
+            "currency": "OMR",
+            "interest": 2099.930,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 8,
+        "quote": {
+            "fee": 300.051,
+            "last": 1587.499,
+            "term": 8,
+            "total": 12699.971,
+            "amount": 10000.000,
+            "monthly": 1587.496,
+            "currency": "OMR",
+            "interest": 2399.920,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    },
+    {
+        "term": 9,
+        "quote": {
+            "fee": 300.051,
+            "last": 1444.441,
+            "term": 9,
+            "total": 12999.961,
+            "amount": 10000.000,
+            "monthly": 1444.440,
+            "currency": "OMR",
+            "interest": 2699.910,
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        },
+        "amount": 10000,
+        "settings": {
+            "fee_fixed": 0.001,
+            "fee_percent": 3.0005,
+            "monthly_rate_percent": 2.9999
+        }
+    }
+]

@@ -13,7 +13,7 @@ for f in "$MIG"/*.sql; do "${PSQL[@]}" -f "$f"; "${PSQL[@]}" -f "$f"; done
 echo "migration applied twice: OK"
 pass=0; fail=0
 for t in "$HERE"/[1-9]*.sql; do
-  if out=$("${PSQL[@]}" -f "$t" 2>&1); then pass=$((pass+1)); echo "ok   $(basename "$t")"; echo "$out" | grep -E '^(NOTICE|INFO).*PASS' | sed 's/^/     /' || true
+  if out=$("${PSQL[@]}" -f "$t" 2>&1); then pass=$((pass+1)); echo "ok   $(basename "$t")"; echo "$out" | grep -oE 'PASS .*' | sed 's/^/     /' || true
   else fail=$((fail+1)); echo "FAIL $(basename "$t")"; echo "$out" | tail -15 | sed 's/^/     /'; fi
 done
 echo "SQL test files: $pass passed, $fail failed"; [ "$fail" -eq 0 ]

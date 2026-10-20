@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; --paper: #f7f9f8; }
+html.dark { color-scheme: dark; --paper: #04211b; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  @apply bg-paper font-sans text-ink antialiased dark:text-emerald-50;
+  background-image: radial-gradient(60rem 30rem at 110% -10%, rgba(216, 242, 230, .7), transparent 60%), radial-gradient(50rem 30rem at -20% 40%, rgba(245, 233, 201, .45), transparent 60%);
+  background-attachment: fixed; min-height: 100vh; overflow-x: hidden;
+}
+html.dark body { background-color: #04211b; background-image: radial-gradient(60rem 30rem at 110% -10%, rgba(13, 154, 109, .18), transparent 60%), radial-gradient(50rem 30rem at -20% 40%, rgba(214, 179, 106, .08), transparent 60%); }
+html[lang='fr'] body, html[lang='en'] body { font-family: 'Inter Variable', Tajawal, system-ui, sans-serif; }
+:focus-visible { outline: 2px solid #0d9a6d; outline-offset: 2px; }
+input[type='range'] { accent-color: #087f5b; }
+.skip { position: absolute; inset-inline-start: -999px; top: 8px; }
+.skip:focus { inset-inline-start: 8px; z-index: 100; @apply rounded-lg bg-white px-3 py-2 font-bold text-emerald-800 shadow-card; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+@media print {
+  body { background: #fff !important; }
+  header, aside, nav, .no-print { display: none !important; }
+  main { padding: 0 !important; max-width: none !important; }
+}
