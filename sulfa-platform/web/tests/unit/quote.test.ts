@@ -5,10 +5,10 @@ import fixtures from './quote-fixtures.json';
 import { computeQuote, divRound, toScaled, QuoteError, type QuoteSettings } from '@/lib/quote';
 
 const base = { min_amount: 500, max_amount: 10000, min_term: 3, max_term: 9 };
-type Fx = { settings: { fee_fixed: number; fee_percent: number; monthly_rate_percent: number }; amount: number; term: number; quote: Record<string, number> };
+type Fx = { settings: { fee_fixed: number; fee_percent: number; monthly_rate_percent: number }; amount: number; term: number; quote: Record<string, number | string> };
 
 describe('computeQuote = public.sulfa_quote', () => {
-  it(`matches the SQL function on all ${(fixtures as Fx[]).length} recorded cases`, () => {
+  it(`matches the SQL function on all ${(fixtures as unknown as Fx[]).length} recorded cases`, () => {
     let n = 0;
     for (const f of fixtures as Fx[]) {
       const s: QuoteSettings = { ...base, ...f.settings };

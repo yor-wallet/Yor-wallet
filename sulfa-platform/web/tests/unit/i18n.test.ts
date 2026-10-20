@@ -27,7 +27,7 @@ describe('dictionaries', () => {
     expect(missing).toEqual([]);
   });
   it('Arabic is really Arabic (no French left behind) and is the default', () => {
-    const latinOnly = Object.entries(DICTS.ar).filter(([k, v]) => !/[؀-ۿ]/.test(v) && !['cur'].includes(k) && !/^(SULFA|OMR|IBAN|PDF|JPG)/.test(v));
+    const latinOnly = Object.entries(DICTS.ar).filter(([k, v]) => /[A-Za-z]/.test(v) && !/[؀-ۿ]/.test(v) && !['cur'].includes(k) && !/^(SULFA|OMR|IBAN|PDF|JPG)/.test(v));
     expect(latinOnly.map(([k]) => k)).toEqual([]);
     expect(translate('ar', 'nav.login')).toBe('تسجيل الدخول');
   });

@@ -13,7 +13,7 @@ export const en: Record<keyof typeof fr, string> = {
   'common.loading': 'Loading…', 'common.retry': 'Try again', 'common.check_again': 'Check again', 'common.cancel': 'Cancel', 'common.confirm': 'Confirm',
   'common.save': 'Save', 'common.edit': 'Edit', 'common.back': 'Back', 'common.refresh': 'Refresh', 'common.see_all': 'See all', 'common.open': 'Open',
   'common.reference': 'Reference', 'common.amount': 'Amount', 'common.date': 'Date', 'common.status': 'Status', 'common.actions': 'Actions', 'common.application': 'Application',
-  'common.yes': 'Yes', 'common.no': 'No',
+  'common.yes': 'Yes', 'common.no': 'No', 'common.colon': ': ',
   'home.kicker': 'Digital financing, human decision',
   'home.h1a': 'Your step towards', 'home.h1b': 'a calmer financial future',
   'home.lead': 'A platform to submit your financing application, send your documents securely and follow every decision from your personal account.',

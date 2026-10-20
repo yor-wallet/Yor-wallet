@@ -13,7 +13,7 @@ export const ar: Record<keyof typeof fr, string> = {
   'common.loading': 'جارٍ التحميل…', 'common.retry': 'إعادة المحاولة', 'common.check_again': 'التحقق مجدداً', 'common.cancel': 'إلغاء', 'common.confirm': 'تأكيد',
   'common.save': 'حفظ', 'common.edit': 'تعديل', 'common.back': 'رجوع', 'common.refresh': 'تحديث', 'common.see_all': 'عرض الكل', 'common.open': 'فتح',
   'common.reference': 'المرجع', 'common.amount': 'المبلغ', 'common.date': 'التاريخ', 'common.status': 'الحالة', 'common.actions': 'الإجراءات', 'common.application': 'الطلب',
-  'common.yes': 'نعم', 'common.no': 'لا',
+  'common.yes': 'نعم', 'common.no': 'لا', 'common.colon': ': ',
   'home.kicker': 'تمويل رقمي بقرار بشري',
   'home.h1a': 'خطوتك نحو', 'home.h1b': 'مستقبل مالي أفضل',
   'home.lead': 'منصة رقمية لتقديم طلب التمويل، وإرسال مستنداتك بأمان، ومتابعة كل قرار من حسابك الشخصي.',

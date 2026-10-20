@@ -25,7 +25,7 @@ function W() {
     title: t('adm.wd.' + a), confirm: t('adm.wd.' + a), tone: a === 'PAY' ? 'gold' : ['REJECT', 'FAIL'].includes(a) ? 'danger' : 'primary',
     reason: ['REJECT', 'FAIL'].includes(a) ? 'required' : 'optional', reference: a === 'PAY' ? 'required' : undefined,
     body: <>{t('adm.wd_b', { ref: w.reference, amount: money(w.amount), name: fullName(data?.people[w.user_id]) })}
-      <dl className="mt-3 rounded-xl bg-emerald-50 p-3 text-sm dark:bg-white/5"><div>{t('wd.bank')} : <b>{w.bank_name}</b></div><div>{t('wd.holder')} : <b>{w.account_holder}</b></div><div>{t('wd.account')} : <b dir="ltr">{w.bank_account}</b></div></dl>
+      <dl className="mt-3 rounded-xl bg-emerald-50 p-3 text-sm dark:bg-white/5"><div>{t('wd.bank')}{t('common.colon')}<b>{w.bank_name}</b></div><div>{t('wd.holder')}{t('common.colon')}<b>{w.account_holder}</b></div><div>{t('wd.account')}{t('common.colon')}<b dir="ltr">{w.bank_account}</b></div></dl>
       {a === 'PAY' && <p className="mt-2 font-bold">{t('adm.pay_warn')}</p>}</>,
     run: async ({ reason, reference }) => { await rpc('sulfa_admin_withdrawal_action', { p_id: w.id, p_action: a, p_reason: reason || null, p_internal_ref: reference || null }); reload(); },
   });

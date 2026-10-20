@@ -163,7 +163,7 @@ function SpaceShell({ nav, title, admin, children }: { nav: readonly (readonly [
           <span className="lg:hidden"><Brand compact /></span>
           <span className="truncate text-sm text-ink-muted">{t('nav.hello', { name })}</span>
           <div className="ms-auto flex items-center gap-2"><LangSwitch className="hidden sm:block" /><ThemeToggle />
-            <button onClick={out} className="min-h-10 rounded-xl px-3 text-sm font-bold text-emerald-800 hover:bg-emerald-50 dark:text-emerald-100 dark:hover:bg-white/5">{t('nav.logout')}</button></div>
+            <button onClick={out} className="min-h-10 whitespace-nowrap rounded-xl px-3 text-sm font-bold text-emerald-800 hover:bg-emerald-50 dark:text-emerald-100 dark:hover:bg-white/5">{t('nav.logout')}</button></div>
         </header>
         {open && <div className="border-b border-line bg-white p-4 lg:hidden dark:border-white/10 dark:bg-emerald-950">{navEl}<div className="mt-3"><LangSwitch /></div></div>}
         <main id="main" className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8"><NotConfigured /><Guard admin={admin}>{children}</Guard></main>

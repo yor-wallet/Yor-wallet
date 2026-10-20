@@ -14,7 +14,7 @@ export const fr = {
   'common.loading': 'Chargement…', 'common.retry': 'Réessayer', 'common.check_again': 'Vérifier à nouveau', 'common.cancel': 'Annuler', 'common.confirm': 'Confirmer',
   'common.save': 'Enregistrer', 'common.edit': 'Modifier', 'common.back': 'Retour', 'common.refresh': 'Actualiser', 'common.see_all': 'Tout voir', 'common.open': 'Ouvrir',
   'common.reference': 'Référence', 'common.amount': 'Montant', 'common.date': 'Date', 'common.status': 'Statut', 'common.actions': 'Actions', 'common.application': 'Demande',
-  'common.yes': 'Oui', 'common.no': 'Non',
+  'common.yes': 'Oui', 'common.no': 'Non', 'common.colon': '\u00a0: ',
   // accueil
   'home.kicker': 'Financement numérique, décision humaine',
   'home.h1a': 'Votre pas vers', 'home.h1b': 'un avenir financier plus serein',

@@ -32,7 +32,7 @@ export default function Dashboard() {
         <p className="text-sm text-emerald-100/80">{t('dash.available')}</p>
         <p className="mt-1 text-4xl font-black sm:text-5xl"><Num>{money(s.available)}</Num></p>
         <div className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm text-emerald-100/80">
-          <span>{t('dash.balance')} : <Num>{money(s.balance)}</Num></span>{s.reserved > 0 && <span>{t('dash.reserved')} : <Num>{money(s.reserved)}</Num></span>}
+          <span>{t('dash.balance')}{t('common.colon')}<Num>{money(s.balance)}</Num></span>{s.reserved > 0 && <span>{t('dash.reserved')}{t('common.colon')}<Num>{money(s.reserved)}</Num></span>}
         </div>
         <div className="mt-6 flex flex-wrap gap-2"><LinkButton href="/client/withdraw/" variant="gold">{t('cn.withdraw')}</LinkButton><LinkButton href="/client/history/" variant="secondary" className="!border-white/20 !bg-white/10 !text-white">{t('cn.history')}</LinkButton></div>
         <p className="mt-4 text-xs text-emerald-100/60">{t('dash.balance_note')}</p>

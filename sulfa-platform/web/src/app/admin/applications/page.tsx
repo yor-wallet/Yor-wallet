@@ -93,7 +93,7 @@ function Detail({ id }: { id: string }) {
               {a.approved_amount != null && <div><dt className="text-xs text-ink-muted">{t('app.approved')}</dt><dd className="font-extrabold text-emerald-700"><Num>{money(a.approved_amount)}</Num> · {t('sim.months', { n: a.approved_term })}</dd></div>}
               {([['sim.fee', q.fee], ['sim.interest', q.interest], ['sim.total', q.total], ['sim.monthly', q.monthly]] as const).map(([k, v]) => <div key={k}><dt className="text-xs text-ink-muted">{t(k)}</dt><dd className="font-bold"><Num>{money(v)}</Num></dd></div>)}
             </dl>
-            {a.decision_reason && <p className="mt-4 text-sm"><b>{t('app.admin_reason')} :</b> {a.decision_reason}</p>}
+            {a.decision_reason && <p className="mt-4 text-sm"><b>{t('app.admin_reason')}{t('common.colon')}</b> {a.decision_reason}</p>}
             {decider ? (
               <div className="mt-6 flex flex-wrap gap-2 border-t border-line pt-4 dark:border-white/10">
                 {a.status === 'SUBMITTED' && <Button variant="secondary" onClick={() => decide('IN_REVIEW', 'primary', 'optional')}>{t('adm.act.IN_REVIEW')}</Button>}
