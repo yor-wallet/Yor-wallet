@@ -33,9 +33,9 @@ describe('server contract', () => {
     const calls = [...code.matchAll(/rpc(?:<[^>]*>)?\(\s*'(sulfa_[a-z_]+)'\s*(?:,\s*\{([^}]*)\})?/g)];
     expect(calls.length).toBeGreaterThan(20);
     for (const [, fn, args] of calls) {
-      const def = new RegExp(`function public\\.${fn}\\(([^)]*)\\)`).exec(sql);
-      expect(def, fn).not.toBeNull();
-      const params = (def![1].match(/\bp_?[a-z_]*\b(?= )/g) ?? []).filter(x => x.startsWith('p'));
+      const defs = [...sql.matchAll(new RegExp(`function public\\.${fn}\\(([^)]*)\\)`, 'g'))];   // every overload / later version
+      expect(defs.length, fn).toBeGreaterThan(0);
+      const params = defs.flatMap(d => (d[1].match(/\bp_?[a-z_]*\b(?= )/g) ?? []).filter(x => x.startsWith('p')));
       for (const a of (args ?? '').matchAll(/\b(p_[a-z_]+|p)\s*:/g)) expect(params, `${fn}(${a[1]})`).toContain(a[1]);
     }
   });

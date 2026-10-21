@@ -70,6 +70,7 @@ select t.ok(true, 'a client cannot call any administrator function (server-side 
 select t.expect_error($$select public.sulfa_register_document('id_front', 'c2000000-0000-0000-0000-0000000000c2/front.jpg')$$, 'sulfa_invalid_path');
 select public.sulfa_register_document('id_front', 'c1000000-0000-0000-0000-0000000000c1/front.jpg');
 select public.sulfa_register_document('id_back', 'c1000000-0000-0000-0000-0000000000c1/back.jpg');
+select public.sulfa_register_document('selfie', 'c1000000-0000-0000-0000-0000000000c1/selfie.jpg');
 select t.ok((select identity_status from public.sulfa_profiles) = 'PENDING', 'documents received: identity PENDING (never verified by the client)');
 select t.expect_error($$insert into storage.objects (bucket_id, name) values ('sulfa-identity', 'c2000000-0000-0000-0000-0000000000c2/x.jpg')$$, 'row-level security');
 select t.ok(true, 'storage: a client cannot upload into another client''s folder');
@@ -94,10 +95,15 @@ reset role;
 set role authenticated; select set_config('request.jwt.claim.sub', 'b0000000-0000-0000-0000-00000000000b', false);
 select t.expect_error($$select public.sulfa_admin_update_settings('{"fee_percent": 0}')$$, 'sulfa_forbidden');
 select t.expect_error($$select public.sulfa_admin_review_document((select id from public.sulfa_documents where document_type = 'id_front'), 'REJECTED', '')$$, 'sulfa_reason_required');
-select public.sulfa_admin_review_document(id, 'IN_REVIEW', null) from public.sulfa_documents where document_type in ('id_front','id_back');
+select public.sulfa_admin_review_document(id, 'IN_REVIEW', null) from public.sulfa_documents where document_type in ('id_front','id_back','selfie');
 select public.sulfa_admin_review_document(id, 'VERIFIED', null) from public.sulfa_documents where document_type in ('id_front','id_back');
-select t.ok((select identity_status from public.sulfa_profiles where user_id = 'c1000000-0000-0000-0000-0000000000c1') = 'VERIFIED', 'identity VERIFIED only after the reviewer validated both sides');
-select t.ok((select count(*) from public.sulfa_documents where reviewed_by = 'b0000000-0000-0000-0000-00000000000b' and reviewed_at is not null and status = 'VERIFIED') = 2, 'each document decision keeps its author and date');
+select t.ok((select identity_status from public.sulfa_profiles where user_id = 'c1000000-0000-0000-0000-0000000000c1') = 'IN_REVIEW', 'both sides of the ID verified but the selfie not yet: identity is NOT verified');
+select public.sulfa_admin_review_document(id, 'VERIFIED', null) from public.sulfa_documents where document_type = 'selfie';
+select t.ok((select identity_status from public.sulfa_profiles where user_id = 'c1000000-0000-0000-0000-0000000000c1') = 'VERIFIED', 'identity VERIFIED only after the reviewer validated both sides and the selfie');
+select t.ok((select count(*) from public.sulfa_notifications where user_id = 'c1000000-0000-0000-0000-0000000000c1' and template_key = 'IDENTITY_VERIFIED') = 1
+  and (select language || '|' || status from public.sulfa_email_log where user_id = 'c1000000-0000-0000-0000-0000000000c1' and template_key = 'IDENTITY_VERIFIED') = 'ar|NO_PROVIDER',
+  'validation: one IDENTITY_VERIFIED notification, its e-mail queued in Arabic (client language fr) and marked NO_PROVIDER until a provider is configured');
+select t.ok((select count(*) from public.sulfa_documents where reviewed_by = 'b0000000-0000-0000-0000-00000000000b' and reviewed_at is not null and status = 'VERIFIED') = 3, 'each document decision keeps its author and date');
 select t.expect_error($$select public.sulfa_admin_decide_application((select id from public.sulfa_applications limit 1), 'APPROVE', null)$$, 'sulfa_forbidden');
 select t.ok(true, 'a REVIEWER validates documents but cannot approve financing');
 reset role;

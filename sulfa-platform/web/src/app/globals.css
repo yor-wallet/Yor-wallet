@@ -199,7 +199,76 @@ body { overscroll-behavior-y: none; }
 .photo-sheen { background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.18) 50%, transparent 60%); background-size: 250% 100%; animation: sheen 7s ease-in-out infinite; }
 @keyframes sheen { 0%, 60% { background-position: 150% 0; } 100% { background-position: -50% 0; } }
 
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } .reveal { opacity: 1 !important; transform: none !important; } .film-type { max-width: 100%; } .film-swap-a { display: none; } .chart-line { stroke-dashoffset: 0; } }
+/* ================================================================ SULFA 1.6 — "future" layer ================================== */
+/* aurora: three soft light fields drifting behind every page (transform-only animation: GPU, no layout work) */
+.aurora { position: fixed; inset: -20vmax; z-index: -1; pointer-events: none; overflow: hidden; }
+.aurora i { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(70px); opacity: .55; will-change: transform; }
+.aurora i:nth-child(1) { left: 45%; top: 0; background: radial-gradient(circle, rgba(19,180,131,.55), transparent 62%); animation: aur1 26s ease-in-out infinite alternate; }
+.aurora i:nth-child(2) { left: 0; top: 35%; background: radial-gradient(circle, rgba(232,199,121,.45), transparent 62%); animation: aur2 32s ease-in-out infinite alternate; }
+.aurora i:nth-child(3) { left: 30%; top: 60%; background: radial-gradient(circle, rgba(58,130,220,.22), transparent 60%); animation: aur3 38s ease-in-out infinite alternate; }
+html.dark .aurora i { opacity: .32; }
+@keyframes aur1 { to { transform: translate3d(-18vmax, 12vmax, 0) scale(1.15); } }
+@keyframes aur2 { to { transform: translate3d(16vmax, -10vmax, 0) scale(.9); } }
+@keyframes aur3 { to { transform: translate3d(-10vmax, -16vmax, 0) scale(1.2); } }
+
+/* glass surfaces with a light edge */
+.glass { background: rgba(255,255,255,.72); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); }
+html.dark .glass { background: rgba(4,40,32,.55); }
+.edge { isolation: isolate; }
+.edge:not(.fixed):not(.sticky):not(.absolute) { position: relative; }
+.edge::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none; z-index: 1;
+  background: linear-gradient(160deg, rgba(255,255,255,.95), rgba(255,255,255,.2) 40%, rgba(13,154,109,.25) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+html.dark .edge::before { background: linear-gradient(160deg, rgba(255,255,255,.22), rgba(255,255,255,.03) 45%, rgba(214,179,106,.25)); }
+.lift { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
+@media (hover: hover) { .lift:hover { transform: translateY(-3px); box-shadow: 0 22px 50px -24px rgba(6,59,50,.35); } }
+
+/* primary buttons: a light sweep on hover, a soft press */
+.btn-fx { position: relative; overflow: hidden; isolation: isolate; }
+.btn-fx::after { content: ''; position: absolute; inset: -40% auto -40% -60%; width: 40%; transform: skewX(-20deg) translateX(-150%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent); transition: transform .8s cubic-bezier(.2,.8,.2,1); z-index: -1; }
+@media (hover: hover) { .btn-fx:hover::after { transform: skewX(-20deg) translateX(520%); } }
+
+/* holographic balance card */
+.holo { position: relative; overflow: hidden; isolation: isolate; background: linear-gradient(135deg, #0b8a63 0%, #075a44 45%, #032a21 100%); }
+.holo::before { content: ''; position: absolute; inset: -60%; z-index: -1; opacity: .55;
+  background: conic-gradient(from 0deg at 50% 50%, rgba(19,180,131,.0), rgba(232,199,121,.5), rgba(58,130,220,.35), rgba(19,180,131,.55), rgba(19,180,131,0));
+  animation: holo-spin 16s linear infinite; filter: blur(40px); }
+.holo::after { content: ''; position: absolute; inset: 0; z-index: -1; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.07'%3E%3Crect x='12' y='12' width='24' height='24'/%3E%3Crect x='12' y='12' width='24' height='24' transform='rotate(45 24 24)'/%3E%3C/g%3E%3C/svg%3E"); }
+@keyframes holo-spin { to { transform: rotate(360deg); } }
+.holo-chip { width: 46px; height: 34px; border-radius: 8px; background: linear-gradient(135deg, #f6dc9c, #c49a45 55%, #f1cf86); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), 0 6px 14px rgba(0,0,0,.25); }
+.holo-sheen { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.16) 50%, transparent 65%); background-size: 250% 100%; animation: sheen 6s ease-in-out infinite; }
+
+/* page titles: a short animated light bar under the heading */
+.title-bar { display: block; height: 4px; width: 46px; margin-top: 10px; border-radius: 4px; background: linear-gradient(90deg, #0d9a6d, #e3c27a); transform-origin: right; animation: bar-in .9s .15s cubic-bezier(.2,.8,.2,1) both; }
+html[dir='ltr'] .title-bar { transform-origin: left; }
+@keyframes bar-in { from { transform: scaleX(0); opacity: 0; } }
+
+/* selfie scanner */
+.selfie-frame { box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 24px 50px -20px rgba(3,42,33,.6); }
+.selfie-oval { box-shadow: 0 0 0 9999px rgba(3,42,33,.55); border: 3px solid rgba(227,194,122,.85); transition: border-color .3s; }
+.selfie-oval.is-live { animation: oval-pulse 2.2s ease-in-out infinite; }
+@keyframes oval-pulse { 50% { border-color: rgba(19,180,131,.95); box-shadow: 0 0 0 9999px rgba(3,42,33,.55), 0 0 30px rgba(19,180,131,.45); } }
+.selfie-scan { border-radius: 50%; overflow: hidden; }
+.selfie-scan::after { content: ''; position: absolute; inset-inline: 0; height: 30%; background: linear-gradient(180deg, transparent, rgba(19,180,131,.35), transparent); animation: scan-y 2.4s ease-in-out infinite; }
+@keyframes scan-y { from { top: -30%; } to { top: 100%; } }
+
+/* ---------------------------------------------------------------- typography (all languages) */
+p, li, dd { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+html[lang='ar'] body { line-height: 1.75; }
+html[lang='ar'] p, html[lang='ar'] li { line-height: 1.85; }
+/* letter-spacing breaks the joins of Arabic letters: tracking utilities only apply to Latin text */
+html[lang='ar'] [class*='tracking-']:not(.font-latin):not(.font-num) { letter-spacing: 0 !important; }
+html[lang='ar'] .uppercase { text-transform: none; }
+.font-num, [dir='ltr'] .font-num { font-variant-numeric: tabular-nums lining-nums; }
+
+/* ---------------------------------------------------------------- no accidental zoom, no 300 ms delay */
+a, button, [role='button'], input, select, textarea, label { touch-action: manipulation; }
+@supports (-webkit-touch-callout: none) { input, select, textarea { font-size: max(16px, 1em) !important; } }
+img { -webkit-user-drag: none; }
+
+@media (prefers-reduced-motion: reduce) { .aurora { display: none; } *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } .reveal { opacity: 1 !important; transform: none !important; } .film-type { max-width: 100%; } .film-swap-a { display: none; } .chart-line { stroke-dashoffset: 0; } }
 @media print {
   body { background: #fff !important; }
   header, aside, nav, .no-print { display: none !important; }

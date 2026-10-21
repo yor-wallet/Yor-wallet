@@ -58,3 +58,35 @@ Sur l'offre gratuite, Netlify injecte un commentaire et un script dans les pages
 - Corrections :
   - à la déconnexion, la protection des pages pouvait rediriger vers la page de connexion au lieu de l'application ;
   - sur téléphone, le texte de la section « film » dépassait à gauche.
+
+## Version 1.6.0 (banques, selfie, e-mail arabe, moteur de données, nouvelle apparence)
+- **Base de données** : mise à jour appliquée au projet réel, instruction par instruction, puis vérifiée.
+  - Table `sulfa_banks` : 17 banques, lecture seule pour le public, protection contre l'écriture directe.
+  - Colonne `bank_code` sur les retraits ; nouvelle version à 6 paramètres de `sulfa_request_withdrawal`. L'ancienne version à 5 paramètres est conservée.
+  - Type de document `selfie` : l'identité exige le recto, le verso et le selfie vérifiés.
+  - Notification `IDENTITY_VERIFIED` et e-mail en arabe mis en file d'attente.
+  - Aucune donnée existante n'a été modifiée.
+- **Fonction Supabase `sulfa-mailer`** : déployée. Elle n'envoie rien tant que `BREVO_API_KEY` et `SULFA_MAIL_FROM` ne sont pas configurés (voir le guide administrateur) et renvoie alors `configured: false`.
+- **Moteur de données local (`lib/vault.ts`)** :
+  - à l'ouverture, l'application affiche instantanément la dernière copie (même utilisateur, moins de 24 heures), puis la réponse du serveur ;
+  - taille limitée, les entrées les plus anciennes sont supprimées en premier ;
+  - les entrées expirées, d'un autre utilisateur ou corrompues sont nettoyées au démarrage ;
+  - tout est effacé à la déconnexion.
+- **Protection contre les plantages** : un écran qui échoue affiche « حدث خلل بسيط » avec « Réessayer ». Après une mise à jour du site, la page se recharge seule une fois. Si l'erreur se répète, le cache local est effacé.
+- **Service worker v1.6.0** :
+  - pages servies par le réseau avec 2,5 secondes au maximum, sinon par la dernière copie ;
+  - fichiers de code mis en cache avec une taille limitée ;
+  - anciennes versions supprimées.
+- **Apparence** :
+  - fond « aurore » animé, surfaces en verre avec reflet ;
+  - carte de solde holographique ;
+  - barre d'onglets flottante, centrée sur tablette ;
+  - boutons avec balayage de lumière, barre lumineuse sous les titres ;
+  - sélecteur de banques en feuille, avec recherche en arabe et en anglais ;
+  - scanner de selfie animé.
+- **Typographie et zoom** :
+  - plus aucun espacement de lettres sur le texte arabe (il cassait les liaisons) ;
+  - interlignes arabes 1,75 à 1,85, titres équilibrés ;
+  - champs de saisie à 16 px, ce qui supprime le zoom automatique de l'iPhone ;
+  - `touch-action: manipulation` supprime le délai de toucher.
+- **Caméra** : l'en-tête `Permissions-Policy` autorise désormais la caméra pour le site lui-même (`camera=(self)`), nécessaire au selfie.

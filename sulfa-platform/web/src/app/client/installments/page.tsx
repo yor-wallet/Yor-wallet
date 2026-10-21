@@ -16,7 +16,7 @@ export default function Installments() {
       must(supabase!.from('sulfa_applications').select('id, reference').eq('user_id', uid)),
     ]);
     return { inst: inst as Installment[], reps: reps as Repayment[], ref: Object.fromEntries((apps as Pick<Application, 'id' | 'reference'>[]).map(a => [a.id, a.reference])) };
-  }, [uid]);
+  }, [uid], { cache: 'inst' });
   if (loading && !data) return <Loading />;
   if (error) return <ErrorBox failure={error} onRetry={reload} />;
   const { inst, reps, ref } = data!;

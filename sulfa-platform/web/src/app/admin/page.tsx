@@ -14,7 +14,7 @@ type Overview = { reference_capital: number; cash_available: number; capital_rec
 export default function Overview() {
   const { t, money } = useI18n(); const can = useCan();
   const [dlg, setDlg] = useState<DialogSpec | null>(null); const [sent, setSent] = useState<number | null>(null);
-  const { data, error, loading, reload } = useLoad(() => rpc<Overview>('sulfa_admin_overview', {}), []);
+  const { data, error, loading, reload } = useLoad(() => rpc<Overview>('sulfa_admin_overview', {}), [], { cache: 'adm-overview' });
   if (loading && !data) return <Loading />;
   if (error) return <ErrorBox failure={error} onRetry={reload} />;
   const o = data!;

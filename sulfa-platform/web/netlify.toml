@@ -11,7 +11,7 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Permissions-Policy = "camera=(self), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     # Next.js static export uses small inline bootstrap scripts, hence 'unsafe-inline' for scripts.
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.supabase.co; font-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"

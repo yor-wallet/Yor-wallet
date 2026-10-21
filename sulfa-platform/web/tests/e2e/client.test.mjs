@@ -63,10 +63,12 @@ test('apply: server quote shown, network cut = uncertain, retry sends the SAME i
 
 test('withdrawal: more than the available balance is blocked before sending; a server refusal is certain', { skip }, async () => {
   const s = await open(browser, { path: '/client/withdraw/', lang: 'en', user, handlers: base({
-    'GET:sulfa_withdrawals': () => [],
+    'GET:sulfa_withdrawals': () => [], 'GET:sulfa_banks': () => [],
     'rpc:sulfa_request_withdrawal': () => ({ status: 400, body: { code: '22023', message: 'sulfa_insufficient_funds', details: null, hint: null } }),
   }) });
   await s.page.waitForSelector('text=Send the withdrawal request');
+  await s.page.click('button:has-text("Choose your bank")');                     // empty list mocked: "other bank" with a free name
+  await s.page.click('[role="dialog"] button:has-text("Other bank")');
   await s.page.fill('form input >> nth=0', '1300.001');
   await s.page.fill('form input >> nth=1', 'Bank'); await s.page.fill('form input >> nth=3', 'OM00 1234');
   assert.match(await s.page.innerText('form'), /Insufficient available balance/);

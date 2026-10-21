@@ -61,7 +61,7 @@ function Detail({ id, isNew }: { id: string; isNew: boolean }) {
 
 function List() {
   const { t, money, date } = useI18n(); const { session } = useAuth();
-  const { data, error, loading, reload } = useLoad(() => must(supabase!.from('sulfa_applications').select('*').eq('user_id', session!.user.id).order('created_at', { ascending: false })), []);
+  const { data, error, loading, reload } = useLoad(() => must(supabase!.from('sulfa_applications').select('*').eq('user_id', session!.user.id).order('created_at', { ascending: false })), [], { cache: 'apps' });
   if (loading && !data) return <Loading />;
   if (error) return <ErrorBox failure={error} onRetry={reload} />;
   const apps = data as Application[];

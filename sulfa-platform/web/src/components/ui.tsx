@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState, type ButtonHTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
 import { useI18n } from '@/lib/i18n';
+import { vault } from '@/lib/vault';
 import { describeError, type RpcFailure } from '@/lib/errors';
 import { configured } from '@/lib/supabase';
 
@@ -10,11 +11,11 @@ export const cx = (...c: (string | false | null | undefined)[]) => c.filter(Bool
 /* ---------------------------------------------------------------- buttons, links */
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'gold';
 const VARIANT: Record<Variant, string> = {
-  primary: 'gloss bg-gradient-to-b from-emerald-500 to-emerald-700 text-white hover:brightness-110',
+  primary: 'gloss btn-fx bg-gradient-to-b from-emerald-500 to-emerald-700 text-white hover:brightness-110',
   secondary: 'border border-line bg-white text-emerald-900 hover:border-emerald-300 dark:border-white/10 dark:bg-white/5 dark:text-emerald-50',
   ghost: 'text-emerald-800 hover:bg-emerald-50 dark:text-emerald-100 dark:hover:bg-white/5',
   danger: 'bg-red-700 text-white hover:bg-red-800',
-  gold: 'bg-gradient-to-b from-gold-300 to-gold-500 text-emerald-950 shadow-[inset_0_1px_0_rgba(255,255,255,.5),0_10px_22px_-8px_rgba(168,122,34,.6)] hover:brightness-105',
+  gold: 'btn-fx bg-gradient-to-b from-gold-300 to-gold-500 text-emerald-950 shadow-[inset_0_1px_0_rgba(255,255,255,.5),0_10px_22px_-8px_rgba(168,122,34,.6)] hover:brightness-105',
 };
 const BTN = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-[15px] font-bold transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 disabled:cursor-not-allowed disabled:opacity-50 active:scale-[.98]';
 
@@ -31,19 +32,19 @@ export function LinkButton({ href, variant = 'primary', className, children }: {
 
 /* ---------------------------------------------------------------- layout atoms */
 export function Card({ className, children, as: As = 'section' }: { className?: string; children: ReactNode; as?: 'section' | 'div' | 'article' }) {
-  return <As className={cx('rounded-2xl border border-line bg-white p-5 shadow-card dark:border-white/10 dark:bg-emerald-950/60', className)}>{children}</As>;
+  return <As className={cx('glass edge rounded-[1.4rem] border border-white/60 p-5 shadow-card dark:border-white/10', className)}>{children}</As>;
 }
 export function PageHeader({ title, sub, actions, desktopOnly }: { title: string; sub?: string; actions?: ReactNode; desktopOnly?: boolean }) {
   return (
     <header className={cx('mb-6 flex-wrap items-end justify-between gap-3 animate-rise', desktopOnly ? 'hidden lg:flex' : 'page-head flex')}>
-      <div><h1 className="text-[28px] font-black leading-tight text-emerald-950 dark:text-white sm:text-3xl">{title}</h1>{sub && <p className="mt-1 text-ink-muted dark:text-emerald-100/70">{sub}</p>}</div>
+      <div><h1 className="text-[28px] font-black leading-tight text-emerald-950 dark:text-white sm:text-3xl">{title}</h1><span aria-hidden className="title-bar" />{sub && <p className="mt-2 text-ink-muted dark:text-emerald-100/70">{sub}</p>}</div>
       {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
     </header>
   );
 }
 export function Stat({ label, value, hint, tone }: { label: string; value: ReactNode; hint?: ReactNode; tone?: 'gold' | 'emerald' | 'plain' }) {
   return (
-    <div className={cx('rounded-2xl border p-4', tone === 'gold' ? 'border-gold-300/60 bg-gold-100/60 dark:bg-gold-500/10' : tone === 'emerald' ? 'border-emerald-200 bg-emerald-50 dark:border-emerald-700/40 dark:bg-emerald-800/20' : 'border-line bg-white dark:border-white/10 dark:bg-white/5')}>
+    <div className={cx('edge lift rounded-[1.25rem] border p-4', tone === 'gold' ? 'border-gold-300/60 bg-gradient-to-br from-gold-100/90 to-white/70 dark:from-gold-500/15 dark:to-transparent' : tone === 'emerald' ? 'border-emerald-200 bg-emerald-50 dark:border-emerald-700/40 dark:bg-emerald-800/20' : 'glass border-white/60 dark:border-white/10')}>
       <div className="text-sm text-ink-muted dark:text-emerald-100/70">{label}</div>
       <div className="mt-1 font-num text-xl font-extrabold tabular-nums text-emerald-950 dark:text-white">{value}</div>
       {hint && <div className="mt-1 text-xs text-ink-muted dark:text-emerald-100/60">{hint}</div>}
@@ -110,7 +111,7 @@ export function Badge({ status, group = 'st' }: { status: string; group?: string
 }
 
 /* ---------------------------------------------------------------- form fields */
-const FIELD = 'w-full rounded-xl border border-line bg-white px-3.5 py-3 text-[15px] text-ink outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 dark:border-white/15 dark:bg-white/5 dark:text-white';
+const FIELD = 'w-full rounded-xl border border-line bg-white/90 px-3.5 py-3 text-base text-ink outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 dark:border-white/15 dark:bg-white/5 dark:text-white';
 export function Field({ label, hint, error, children }: { label: string; hint?: string; error?: string | null; children: ReactNode }) {
   return (
     <label className="block">
@@ -184,19 +185,24 @@ export function Dialog({ spec, onClose }: { spec: DialogSpec | null; onClose: ()
 }
 
 /* ---------------------------------------------------------------- data loading */
-export function useLoad<T>(fn: () => Promise<T>, deps: unknown[] = []): { data: T | null; error: RpcFailure | null; loading: boolean; reload: () => void } {
-  const [data, setData] = useState<T | null>(null);
+/** Loads a screen's data. With `cache`, the last good copy (same user, < 24 h) is shown at once while the server is asked
+    again (see lib/vault): the app opens instantly and still ends on the server's answer — or on its error. */
+export function useLoad<T>(fn: () => Promise<T>, deps: unknown[] = [], opts?: { cache?: string }): { data: T | null; error: RpcFailure | null; loading: boolean; reload: () => void; cached: boolean } {
+  const key = opts?.cache;
+  const [data, setData] = useState<T | null>(() => (key ? vault.get<T>(key)?.data ?? null : null));
+  const [cached, setCached] = useState(() => !!(key && data !== null));
   const [error, setError] = useState<RpcFailure | null>(null);
   const [loading, setLoading] = useState(true);
   const [n, setN] = useState(0);
   useEffect(() => {
     let alive = true; setLoading(true);
-    fn().then(d => { if (alive) { setData(d); setError(null); } }, e => { if (alive) setError(describeError(e)); }).finally(() => { if (alive) setLoading(false); });
+    fn().then(d => { if (alive) { setData(d); setCached(false); setError(null); if (key) vault.set(key, d); } }, e => { if (alive) setError(describeError(e)); })
+      .finally(() => { if (alive) setLoading(false); });
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [...deps, n]);
   const reload = useCallback(() => setN(x => x + 1), []);
-  return { data, error, loading, reload };
+  return { data, error, loading, reload, cached };
 }
 
 /** unwraps a supabase-js result: throws the error object so describeError can classify it */

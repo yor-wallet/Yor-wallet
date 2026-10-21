@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { I18nProvider, useI18n } from '@/lib/i18n';
 import { LANGS, LANG_NAMES, type Lang } from '@/lib/i18n/dict';
 import { AuthProvider, useAuth } from '@/lib/auth';
@@ -10,13 +11,14 @@ import { cx, Loading, NotConfigured, Alert, LinkButton } from './ui';
 import { Icon, type IconName } from './icons';
 import { supabase } from '@/lib/supabase';
 import { LaunchScreen } from './launch';
+import { Recover } from './recover';
 
 export function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
     try { if (localStorage.getItem('sulfa_theme') === 'dark') document.documentElement.classList.add('dark'); } catch {}
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('/sw.js').catch(() => {});
   }, []);
-  return <I18nProvider><AuthProvider>{children}</AuthProvider></I18nProvider>;
+  return <I18nProvider><AuthProvider><Recover>{children}</Recover></AuthProvider></I18nProvider>;
 }
 
 export function Brand({ compact }: { compact?: boolean }) {
@@ -162,8 +164,8 @@ export function Sheet({ open, onClose, title, children }: { open: boolean; onClo
     document.addEventListener('keydown', k); document.body.style.overflow = 'hidden';
     return () => { document.removeEventListener('keydown', k); document.body.style.overflow = ''; };
   }, [open, onClose]);
-  if (!open) return null;
-  return (
+  if (!open || typeof document === 'undefined') return null;
+  return createPortal(
     <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label={title}>
       <button aria-label={title} className="sheet-backdrop absolute inset-0 bg-emerald-950/45 backdrop-blur-sm" onClick={onClose} />
       <div className="sheet-panel absolute inset-x-0 bottom-0 max-h-[85vh] overflow-y-auto rounded-t-[1.75rem] bg-paper px-4 pb-[calc(env(safe-area-inset-bottom)+16px)] pt-3 shadow-lift dark:bg-emerald-950">
@@ -171,7 +173,8 @@ export function Sheet({ open, onClose, title, children }: { open: boolean; onClo
         <p className="mb-3 px-1 text-lg font-black">{title}</p>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -216,7 +219,7 @@ function SpaceShell({ nav, tabs, title, admin, children }: { nav: readonly NavIt
       </aside>
       <div className="min-w-0">
         {/* top bar: app-style on phones (title of the current tab), full header on desktop */}
-        <header className="sticky top-0 z-30 border-b border-line/70 bg-paper/80 px-4 pb-2 pt-[calc(env(safe-area-inset-top)+10px)] backdrop-blur-xl sm:px-6 dark:border-white/10 dark:bg-emerald-950/80">
+        <header className="glass sticky top-0 z-30 border-b border-white/60 px-4 pb-2 pt-[calc(env(safe-area-inset-top)+10px)] sm:px-6 dark:border-white/10">
           <div className="flex items-center gap-3">
             <span className="lg:hidden"><Brand compact /></span>
             <span className="min-w-0 truncate text-sm text-ink-muted lg:block">{t('nav.hello', { name })}</span>
@@ -229,7 +232,7 @@ function SpaceShell({ nav, tabs, title, admin, children }: { nav: readonly NavIt
       </div>
 
       {/* bottom tab bar (phones / tablets) */}
-      <nav aria-label={title} className="tabbar fixed inset-x-0 bottom-0 z-40 border-t border-line/70 bg-paper/85 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-emerald-950/85">
+      <nav aria-label={title} className="tabbar glass edge fixed inset-x-3 sm:inset-x-auto sm:left-1/2 sm:w-[30rem] sm:-translate-x-1/2 bottom-[calc(env(safe-area-inset-bottom)+10px)] z-40 rounded-[26px] border border-white/70 shadow-[0_18px_40px_-16px_rgba(3,42,33,.45)] lg:hidden dark:border-white/10">
         <ul className="mx-auto grid max-w-lg grid-cols-5">
           {tabItems.map(([h, k, ic]) => {
             const on = isOn(h, path);

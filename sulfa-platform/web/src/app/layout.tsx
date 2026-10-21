@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: BOOT }} /></head>
-      <body><a href="#main" className="skip">↓</a><Providers>{children}</Providers></body>
+      <body><div aria-hidden className="aurora"><i /><i /><i /></div><a href="#main" className="skip">↓</a><Providers>{children}</Providers></body>
     </html>
   );
 }

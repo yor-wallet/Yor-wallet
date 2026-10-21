@@ -54,3 +54,37 @@ Les notifications s'affichent dans l'espace client. Aucun fournisseur d'e-mail n
 
 ## Journal d'audit
 Toutes les actions, filtrables par objet, avec recherche. Le journal ne peut être ni modifié ni supprimé.
+
+## Version 1.6 : selfie, e-mail de validation en arabe, liste des banques
+
+### Selfie obligatoire
+L'identité d'un client ne passe à « vérifiée » qu'après validation de **trois** documents : le recto de la carte, le verso de la carte et le **selfie**.
+Le client prend son selfie avec la caméra frontale, dans un cadre ovale. Si la caméra n'est pas disponible, il prend une photo avec son téléphone.
+Dans *Administration → Documents*, ouvrez le selfie (lien privé valable 2 minutes) et comparez-le à la photo de la carte avant de cliquer sur « Vérifier ».
+Les clients déjà vérifiés avant la version 1.6 gardent leur statut.
+
+### E-mail de validation (en arabe)
+Quand les trois documents sont vérifiés, le client reçoit une notification dans l'application. Un e-mail en arabe est aussi mis en file d'attente.
+Juste après votre validation, l'application demande l'envoi et affiche le résultat réel :
+- « envoyé » avec le nombre d'e-mails partis ;
+- « échec » ;
+- « non envoyé : aucun service d'envoi configuré ».
+
+Pour activer l'envoi, utilisez Brevo (offre gratuite : environ 300 e-mails par jour) :
+1. Dans Brevo, rubrique *SMTP & API → API keys*, créez une clé. Validez aussi une adresse d'expéditeur dans *Senders*.
+2. Dans Supabase, rubrique *Edge Functions → Secrets*, ajoutez deux secrets :
+   - `BREVO_API_KEY` : la clé Brevo ;
+   - `SULFA_MAIL_FROM` : l'adresse d'expéditeur validée.
+3. Optionnel : `SULFA_SITE_URL`, par défaut `https://sulfa-oman.vercel.app`.
+
+La clé ne doit jamais être collée dans le site, dans un fichier ou dans une conversation.
+Le texte de l'e-mail se trouve dans la table `sulfa_message_templates`, sous la clé `IDENTITY_VERIFIED` en langue `ar`. Le journal `sulfa_email_log` garde pour chaque envoi son statut et l'identifiant Brevo.
+
+### Liste des banques (retraits)
+Le client choisit sa banque dans une liste groupée en quatre catégories : banques omanaises, islamiques, spécialisées et étrangères en Oman. Il peut aussi choisir « Autre banque » et taper le nom.
+La liste de départ compte 17 banques. Vérifiez-la auprès de la Banque centrale d'Oman : https://cbo.gov.om/pages/licensedbanks.aspx.
+Pour ajouter, renommer ou désactiver une banque, un SUPER_ADMIN exécute la fonction suivante (l'action est enregistrée dans le journal d'audit) :
+`select public.sulfa_admin_upsert_bank('CODE', 'الاسم بالعربية', 'English name', 'LOCAL', true, 10);`
+- 4ᵉ valeur, catégorie : `LOCAL`, `ISLAMIC`, `SPECIALIZED` ou `FOREIGN`.
+- 5ᵉ valeur : `true` pour active, `false` pour masquée.
+- 6ᵉ valeur : l'ordre d'affichage.

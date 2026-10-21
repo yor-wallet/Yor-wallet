@@ -67,7 +67,7 @@ test('phone: bottom tab bar with short labels; "More" opens a sheet with the oth
   await bar.waitFor();
   assert.deepEqual((await bar.locator('a, button').allInnerTexts()).map(x => x.trim()), ['Home', 'Requests', 'Schedule', 'Alerts', 'More']);
   const box = await bar.boundingBox();
-  assert.ok(Math.abs(box.y + box.height - V.height) < 2, 'stuck to the bottom of the screen');
+  assert.ok(V.height - (box.y + box.height) >= 0 && V.height - (box.y + box.height) < 30, 'floating just above the bottom of the screen');
   await bar.locator('a:has-text("Schedule")').click();
   await s.page.waitForURL(/\/client\/installments\/$/);
   await bar.locator('button:has-text("More")').click();

@@ -8,27 +8,30 @@ import { useIdempotencyKey } from '@/lib/idem';
 import { describeError, type RpcFailure } from '@/lib/errors';
 import { isAmount } from '@/lib/validate';
 import type { Summary, Withdrawal } from '@/lib/types';
+import { BankPicker, type Bank, type BankChoice } from '@/components/bank-picker';
 import { Alert, Badge, Button, Card, Dialog, Empty, ErrorBox, Field, Input, Loading, Num, PageHeader, Table, Td, must, useLoad, type DialogSpec } from '@/components/ui';
 
 export default function Withdraw() {
   const { t, money, date } = useI18n(); const { session, profile } = useAuth(); const uid = session!.user.id;
   const { data, error, loading, reload } = useLoad(async () => {
-    const [s, w] = await Promise.all([must(supabase!.rpc('sulfa_my_summary')), must(supabase!.from('sulfa_withdrawals').select('*').eq('user_id', uid).order('created_at', { ascending: false }))]);
-    return { s: s as Summary, w: w as Withdrawal[] };
-  }, [uid]);
-  const [f, setF] = useState({ amount: '', bank: '', holder: profile ? `${profile.first_name} ${profile.last_name}` : '', account: '' });
+    const [s, w, b] = await Promise.all([must(supabase!.rpc('sulfa_my_summary')), must(supabase!.from('sulfa_withdrawals').select('*').eq('user_id', uid).order('created_at', { ascending: false })),
+      must(supabase!.from('sulfa_banks').select('code, name_ar, name_en, kind, sort').eq('active', true).order('sort'))]);
+    return { s: s as Summary, w: w as Withdrawal[], banks: b as Bank[] };
+  }, [uid], { cache: 'wd' });
+  const [bank, setBank] = useState<BankChoice>({ name: '' });
+  const [f, setF] = useState({ amount: '', holder: profile ? `${profile.first_name} ${profile.last_name}` : '', account: '' });
   const [busy, setBusy] = useState(false); const [fail, setFail] = useState<RpcFailure | null>(null); const [ok, setOk] = useState<Withdrawal | null>(null);
   const [dlg, setDlg] = useState<DialogSpec | null>(null);
   const [key, renew] = useIdempotencyKey('wd');
   if (loading && !data) return <Loading />;
   if (error) return <ErrorBox failure={error} onRetry={reload} />;
-  const { s, w } = data!;
+  const { s, w, banks } = data!;
   const amountErr = f.amount && (!isAmount(f.amount) ? t('v.amount') : Number(f.amount) > s.available ? t('err.sulfa_insufficient_funds') : '');
-  const valid = isAmount(f.amount) && !amountErr && f.bank.trim() && f.holder.trim() && f.account.trim();
+  const valid = isAmount(f.amount) && !amountErr && (bank.code || bank.name.trim()) && f.holder.trim() && f.account.trim();
   const submit = async (e: React.FormEvent) => {
     e.preventDefault(); if (busy || !valid) return;
     setBusy(true); setFail(null); setOk(null);
-    const { data: wd, error: er } = await supabase!.rpc('sulfa_request_withdrawal', { p_amount: Number(f.amount), p_bank: f.bank, p_holder: f.holder, p_account: f.account, p_idempotency_key: key() });
+    const { data: wd, error: er } = await supabase!.rpc('sulfa_request_withdrawal', { p_amount: Number(f.amount), p_bank: bank.code ? '' : bank.name, p_holder: f.holder, p_account: f.account, p_idempotency_key: key(), p_bank_code: bank.code ?? null });
     setBusy(false);
     if (er) { const x = describeError(er); setFail(x); if (x.certain) renew(); return; }
     renew(); setOk(wd as Withdrawal); setF(x => ({ ...x, amount: '' })); reload();
@@ -44,7 +47,8 @@ export default function Withdraw() {
           {s.reserved > 0 && <p className="mt-1 text-xs text-ink-muted">{t('wd.reserved_note', { amount: money(s.reserved) })}</p>}
           <form onSubmit={submit} className="mt-6 space-y-4">
             <Field label={t('common.amount')} error={amountErr || null}><Input inputMode="decimal" dir="ltr" value={f.amount} onChange={e => setF({ ...f, amount: e.target.value.replace(/[^0-9.]/g, '') })} /></Field>
-            <Field label={t('wd.bank')}><Input value={f.bank} maxLength={80} onChange={e => setF({ ...f, bank: e.target.value })} /></Field>
+            <Field label={t('wd.bank')}><BankPicker banks={banks} value={bank} onChange={setBank} /></Field>
+            {bank.code === null && <Field label={t('bank.other_name')}><Input value={bank.name} maxLength={80} onChange={e => setBank({ code: null, name: e.target.value })} /></Field>}
             <Field label={t('wd.holder')}><Input value={f.holder} maxLength={80} onChange={e => setF({ ...f, holder: e.target.value })} /></Field>
             <Field label={t('wd.account')} hint={t('wd.account_hint')}><Input dir="ltr" value={f.account} maxLength={40} onChange={e => setF({ ...f, account: e.target.value })} /></Field>
             <ErrorBox failure={fail} />

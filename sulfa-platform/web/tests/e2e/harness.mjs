@@ -54,7 +54,7 @@ export async function open(browser, { path = '/', lang, user, handlers = {}, vie
     const key = rpc ? `rpc:${rpc[1]}` : table ? `${req.method()}:${table[1]}` : `${req.method()}:${u.pathname}`;
     let body = null; try { body = req.postDataJSON(); } catch {}
     calls.push({ key, body, url: u.toString() });
-    const h = handlers[key];
+    const h = handlers[key] ?? Object.entries(handlers).find(([k]) => k.endsWith('*') && key.startsWith(k.slice(0, -1)))?.[1];   // 'POST:/storage/v1/object/*'
     let out = h ? await h(body, u, calls.filter(c => c.key === key).length) : (table && !rpc ? [] : null);
     if (out === 'abort') return route.abort('failed');
     let status = 200;

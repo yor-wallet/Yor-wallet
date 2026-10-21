@@ -13,7 +13,7 @@ const LINK: Record<string, (id: string) => string> = { application: id => `/clie
 
 export default function Notifications() {
   const { t, date, lang } = useI18n(); const { session } = useAuth();
-  const { data, error, loading, reload } = useLoad(() => must(supabase!.from('sulfa_notifications').select('*').eq('user_id', session!.user.id).order('created_at', { ascending: false }).limit(200)), []);
+  const { data, error, loading, reload } = useLoad(() => must(supabase!.from('sulfa_notifications').select('*').eq('user_id', session!.user.id).order('created_at', { ascending: false }).limit(200)), [], { cache: 'notif' });
   const list = (data ?? []) as Notification[];
   const unread = list.filter(n => !n.read_at).map(n => n.id);
   // opening the page marks what is shown as read (server function, own notifications only)

@@ -21,7 +21,7 @@ export default function Dashboard() {
       must(supabase!.from('sulfa_installments').select('*').eq('user_id', uid).order('due_date')),
     ]);
     return { summary: summary as Summary, app: (apps as Application[])[0] ?? null, notes: notes as Notification[], inst: inst as Installment[] };
-  }, [uid]);
+  }, [uid], { cache: 'dash' });
   if (loading && !data) return <Loading />;
   if (error) return <ErrorBox failure={error} onRetry={reload} />;
   const { summary: s, app, notes, inst } = data!;
@@ -34,7 +34,9 @@ export default function Dashboard() {
       {!idOk && profile && (
         <div className="mb-6"><Alert tone={profile.identity_status === 'REJECTED' || profile.identity_status === 'REUPLOAD_REQUIRED' ? 'error' : 'warn'} title={t('dash.id_title')}>
           <p>{t('dash.id_' + profile.identity_status)}</p><Link href="/client/documents/" className="mt-2 inline-block font-bold underline">{t('dash.id_cta')}</Link></Alert></div>)}
-      <section className="rounded-[1.75rem] bg-gradient-to-br from-emerald-700 via-emerald-800 to-emerald-950 p-6 text-white shadow-lift sm:p-8">
+      <section className="holo rounded-[1.75rem] p-6 text-white shadow-lift sm:p-8">
+        <span aria-hidden className="holo-sheen" />
+        <div className="mb-5 flex items-center justify-between"><span aria-hidden className="holo-chip" /><span className="font-latin text-[11px] font-bold tracking-[4px] text-gold-300">SULFA · OMR</span></div>
         <p className="text-sm text-emerald-100/80">{t('dash.available')}</p>
         <p className="mt-1 text-4xl font-black sm:text-5xl"><Num>{money(s.available)}</Num></p>
         <div className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm text-emerald-100/80">

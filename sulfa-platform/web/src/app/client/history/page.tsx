@@ -14,7 +14,7 @@ const SIGN: Record<string, string> = { DISBURSEMENT: '+', WITHDRAWAL: '−', REP
 export default function History() {
   const { t, money, date } = useI18n(); const { session } = useAuth();
   const [type, setType] = useState(''); const [q, setQ] = useState('');
-  const { data, error, loading, reload } = useLoad(() => must(supabase!.from('sulfa_transactions').select('*').eq('user_id', session!.user.id).order('created_at', { ascending: false }).limit(500)), []);
+  const { data, error, loading, reload } = useLoad(() => must(supabase!.from('sulfa_transactions').select('*').eq('user_id', session!.user.id).order('created_at', { ascending: false }).limit(500)), [], { cache: 'hist' });
   if (loading && !data) return <Loading />;
   if (error) return <ErrorBox failure={error} onRetry={reload} />;
   const rows = (data as Tx[]).filter(x => (!type || x.transaction_type === type) && (!q || x.reference.toLowerCase().includes(q.toLowerCase().trim())));
