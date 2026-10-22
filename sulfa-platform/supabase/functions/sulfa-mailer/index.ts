@@ -50,7 +50,25 @@ Deno.serve(async req => {
   const { data: rows, error } = await db.from('sulfa_email_log').select('id, user_id, template_key, language, to_email, status')
     .in('status', ['NO_PROVIDER', 'QUEUED']).eq('template_key', 'IDENTITY_VERIFIED').order('id').limit(20);
   if (error) return json({ error: error.message }, 500);
-  if (!BREVO || !FROM) return json({ configured: false, pending: rows?.length ?? 0, sent: 0, failed: 0 });
+  // names of the missing secrets only (never their values), so an administrator can see what to add
+  const missing = [!BREVO && 'BREVO_API_KEY', !FROM && 'SULFA_MAIL_FROM'].filter(Boolean);
+  if (missing.length) return json({ configured: false, missing, pending: rows?.length ?? 0, sent: 0, failed: 0 });
+
+  // { test: true }: one test e-mail to the calling administrator's own address, to prove the provider really delivers
+  const body0 = await req.json().catch(() => ({}));
+  if (body0?.test === true) {
+    const { data: me } = await caller.auth.getUser();
+    const to = me?.user?.email;
+    if (!to) return json({ error: 'no_address' }, 400);
+    const subject = 'رسالة تجريبية من سلفه';
+    const text = 'مرحباً،' + '\n\n' + 'هذه رسالة تجريبية للتأكد من أن إرسال البريد الإلكتروني من سلفه يعمل بشكل صحيح.' + '\n\n' + 'مع تحيات فريق سلفه';
+    const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST', headers: { 'api-key': BREVO, 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ sender: { name: 'سلفه SULFA', email: FROM }, to: [{ email: to }], subject, htmlContent: html(subject, text), textContent: text }),
+    });
+    const out = await res.json().catch(() => ({}));
+    return json({ configured: true, test: true, ok: res.ok && !!out.messageId, status: res.status, messageId: out.messageId ?? null, error: res.ok ? null : (out.message ?? out.code ?? null) });
+  }
 
   let sent = 0, failed = 0;
   for (const r of rows ?? []) {
